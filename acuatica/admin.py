@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import UserExtends, Clients
+from .models import UserExtends, Clients, Inventario, Inputs
 # Register your models here.
 @admin.register(UserExtends)
 class UserExtendsAdmin(admin.ModelAdmin):
@@ -8,5 +8,13 @@ class UserExtendsAdmin(admin.ModelAdmin):
 @admin.register(Clients)
 class ClientsAdmin(admin.ModelAdmin):
     list_display = ('name',)
+
+@admin.register(Inventario)
+class InventarioAdmin(admin.ModelAdmin):
+   list_display = ('name',)
+
+@admin.register(Inputs)
+class InputsAdmin(admin.ModelAdmin):
+    list_display = ('inventory',)
     
 

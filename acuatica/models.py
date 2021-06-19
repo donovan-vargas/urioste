@@ -4,9 +4,10 @@ from multiselectfield import MultiSelectField
 
 
 class UserExtends(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_extend', verbose_name='usuario')    
+    user = models.ForeignKey(User, on_delete=models.CASCADE,
+                             related_name='user_extend', verbose_name='usuario')
     name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)    
+    last_name = models.CharField(max_length=50)
     is_admin = models.BooleanField(default=False)
 
     class Meta(object):
@@ -14,6 +15,7 @@ class UserExtends(models.Model):
 
     def __str__(self):
         return str(self.name)
+
 
 class Levels(models.Model):
     level = models.CharField(max_length=100)
@@ -70,7 +72,6 @@ class Clients(models.Model):
     schedule = models.TextField()
     level = models.ForeignKey(Levels, on_delete=models.DO_NOTHING)
 
-
     class Meta(object):
         verbose_name_plural = 'Clientes'
 
@@ -125,8 +126,9 @@ class Inventario(models.Model):
     def __str__(self):
         return str(self.name)
 
+
 class Inputs(models.Model):
-    inventory=models.ForeignKey(Inventario, on_delete=models.DO_NOTHING)
+    inventory = models.ForeignKey(Inventario, on_delete=models.DO_NOTHING)
     cuantity = models.IntegerField()
     date = models.DateField(blank=True)
     sale = models.IntegerField()
@@ -134,14 +136,10 @@ class Inputs(models.Model):
 
     cost = models.IntegerField()
 
-
     class Meta(object):
         verbose_name_plural = 'Entradas y Salidas'
 
     def __str__(self):
         return str(self.name)
 
-    
-
-
-
+# ya se agrego lo de las fotos

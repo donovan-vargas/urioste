@@ -1,0 +1,31 @@
+{% extends "acuatica/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row center-block" style="width:300px">
+        <h1 class="text-center">Iniciar sesión</h1>
+        {% if mensaje %}
+            <div class="alert alert-warning text-center">{{mensaje}}</div>
+        {% endif %}
+        <form action="" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+            <fieldset class="control-group">
+                <label class="control-label" for="id_{{field.name}}">{{field.label}}</label>
+                <div class="controls">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon">
+                            <span class="glyphicon {% if field.name == 'usuario' %}glyphicon-user{% else %}glyphicon-lock{% endif %}"></span>
+                        </span>
+                        {{field}}
+                        <p class="help-text">{{field.help_text}} </p>
+                    </div>
+                </div>
+            </fieldset>
+            {% endfor %}
+            <br>
+            <input class="form-control btn btn-primary" type="submit" value="Entrar" />
+        </form>
+    </div>
+</div>
+{% endblock %}

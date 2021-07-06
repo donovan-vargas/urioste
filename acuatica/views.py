@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import LoginForm, CreateUserForm
 from django.urls import reverse
+from .models import Inventario, Inputs, Clients
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -72,11 +73,28 @@ def logoutUser(request):
 
 
 def sales(request):
-    return render(request, 'acuatica/venta_normal.html')
+    context = {}
+    if request.method == 'POST':        
+        quantity = request.POST.get('quantity')
+        product = request.POST.get('product')
+        client = request.POST.get('client')
+        model_product = Inventario.objects.filter(name__contains=product, total_cuantity__gte=0)
+        context['quantity'] = quantity
+        context['products'] = model_product
+        print(model_product)
+    return render(request, 'acuatica/venta_normal.html', context)
 
 
 def clients(request):
-    return render(request, 'acuatica/clientes.html')
+    context = {}
+    if request.method == 'GET':
+        clients = Clients.objects.all()
+        context['clients'] = clients
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        clients = Clients.objects.filter(name__contains=name)
+        context['clients'] = clients
+    return render(request, 'acuatica/clientes.html', context)
 
 
 def catalogo(request):

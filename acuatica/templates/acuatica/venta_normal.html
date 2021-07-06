@@ -1,0 +1,76 @@
+{% extends "acuatica/acuatica.html" %} {% load static %} {% block title%}
+Ventas{% endblock %} {%block right_content %}
+<div class="panel-derecho">
+  <div class="sale-information">
+    <!--formulario {cantidad: input para poner numero, Producto: input para buscar producto con sugerencias, cliente: input con lo mismo pero para cliente, verificador de precios}-->
+    <form class="datos-venta">
+      <input type="text" value="cantidad" class="cantidad ventas" />
+      <input type="text" value="Producto" class="producto ventas" />
+      <input type="text" value="Cliente" class="cliente ventas" />
+    </form>
+  </div>
+  <div class="sale-description">
+    <p>Cant</p>
+    <p>Producto</p>
+    <p>Precio</p>
+    <p>Impuesto</p>
+    <p>Descuento</p>
+    <p>Recargo</p>
+  </div>
+  <div class="comment">
+    <textarea
+      id="title"
+      type="text "
+      onkeyup="Allow()"
+      placeholder="Escribe algun comentario......"
+    ></textarea>
+  </div>
+  <div class="checkout">
+    <table class="tabla">
+      <tbody>
+        <tr align="left" class="elemento-cobro">
+          <th class="titulo-precio">SUBTOTAL</th>
+          <td>
+            <input
+              class="input-cobro"
+              type="text"
+              name="subtotal1"
+              id="subtotal1"
+              value=""
+              disabled=""
+            />
+          </td>
+        </tr>
+        <tr class="elemento-cobro">
+          <th class="titulo-precio">Iva</th>
+          <td>
+            <input
+              class="input-cobro"
+              type="text"
+              name="iva1"
+              id="iva1"
+              value=""
+              disabled=""
+            />
+          </td>
+        </tr>
+        <tr class="elemento-cobro">
+          <th ti>Iva</th>
+          <td align="center">
+            <div class="total-cobro">
+              <p>Precio Dinamico</p>
+            </div>
+          </td>
+        </tr>
+        <div class="brake-line"></div>
+        <tr>
+          <td colspan="4" class="brake-line">
+            <hr />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock%}

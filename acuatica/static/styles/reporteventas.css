@@ -1,0 +1,49 @@
+.report-information .separador {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  font-size: 15px;
+  background-color: #d02d89;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.report-information .separador .datos-reporte {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 80%;
+  flex-wrap: nowrap;
+}
+
+.report-information .separador .datos-reporte .elemento-catalogoventas {
+  width: 15%;
+}
+
+.report-information .separador .datos-reporte .categoria {
+  text-align: center;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.report-information.separador .datos-reporte .categoria p {
+  font-size: 10px;
+}
+
+.report-information .client-information .separador .boton {
+  width: 10%;
+}
+.panel-derecho
+  .report-information
+  .separador
+  .boton
+  .elemento-catalogo
+  .categoria
+  button {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: rgb(193, 12, 18);
+  border-radius: 6px;
+  color: white;
+}

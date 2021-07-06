@@ -1,0 +1,18 @@
+{% extends 'acuatica/venta_normal.html' %} {% load static %} {% block title %}
+Clientes {% endblock %} {% block right_content %}
+<div class="panel-derecho">
+  <div class="client-information">
+    <div class="separador">
+      <form class="datos-venta">
+        <div class="Buscar">
+          <p>Buscar</p>
+        </div>
+        <input type="text" value="Cliente" class="input-cliente" />
+      </form>
+      <div class="boton">
+        <button>Agregar</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

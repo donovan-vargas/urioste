@@ -52,7 +52,7 @@ class Clients(models.Model):
     )
 
     name = models.CharField(max_length=50)
-    picture = models.ImageField(verbose_name='foto', null=True, blank=True)
+    #picture = models.ImageField(verbose_name='foto', null=True, blank=True)
     last_name = models.CharField(max_length=50)
     second_last_name = models.CharField(max_length=50)
     birth_date = models.DateField(blank=True)

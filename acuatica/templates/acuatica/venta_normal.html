@@ -3,10 +3,12 @@ Ventas{% endblock %} {%block right_content %}
 <div class="panel-derecho">
   <div class="sale-information">
     <!--formulario {cantidad: input para poner numero, Producto: input para buscar producto con sugerencias, cliente: input con lo mismo pero para cliente, verificador de precios}-->
-    <form class="datos-venta">
-      <input type="text" value="cantidad" class="cantidad ventas" />
-      <input type="text" value="Producto" class="producto ventas" />
-      <input type="text" value="Cliente" class="cliente ventas" />
+    <form class="datos-venta" action="{% url 'acuatica.sales'  %}" method="POST">
+      {% csrf_token %}
+      <input type="text" placeholder="cantidad" class="cantidad ventas" name="quantity" value="1"/>
+      <input type="text" placeholder="Producto" class="producto ventas" name="product"/>
+      <input type="text" placeholder="Cliente" class="cliente ventas" name="client"/>
+      <input type="submit" value="enviar">
     </form>
   </div>
   <div class="sale-description">
@@ -17,6 +19,16 @@ Ventas{% endblock %} {%block right_content %}
     <p>Descuento</p>
     <p>Recargo</p>
   </div>
+  {% for product in products %}
+  <div class="sale-description">
+    <p>{{quantity}}</p>
+    <p>{{product.name}}</p>
+    <p>{{product.cost}}</p>
+    <p>{{0}}</p>
+    <p>{{0}}</p>
+    <p>{{product.pk}}</p>
+  </div>
+  {% endfor %}
   <div class="comment">
     <textarea
       id="title"

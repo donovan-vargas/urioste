@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 from multiselectfield import MultiSelectField
+from django.db.models import Sum
+from django.db.models.signals import post_save, post_delete
+
 
 
 class UserExtends(models.Model):
@@ -19,6 +22,9 @@ class UserExtends(models.Model):
 
 class Levels(models.Model):
     level = models.CharField(max_length=100)
+
+    def __str__(self):
+        return str(self.level)
 
 
 class Clients(models.Model):
@@ -119,6 +125,9 @@ class Inventario(models.Model):
     browserdescription = models.CharField(max_length=100)
     browserTitle = models.CharField(max_length=50)
     friendly_url = models.CharField(max_length=100)
+    cost = models.IntegerField(default=0)
+    total_cuantity = models.IntegerField(default=0)
+
 
     class Meta(object):
         verbose_name_plural = 'Inventario'
@@ -128,18 +137,32 @@ class Inventario(models.Model):
 
 
 class Inputs(models.Model):
-    inventory = models.ForeignKey(Inventario, on_delete=models.DO_NOTHING)
+    inventario = models.ForeignKey(Inventario, on_delete=models.DO_NOTHING)
     cuantity = models.IntegerField()
     date = models.DateField(blank=True)
     sale = models.IntegerField()
     comments = models.TextField()
-
-    cost = models.IntegerField()
+    
 
     class Meta(object):
         verbose_name_plural = 'Entradas y Salidas'
 
     def __str__(self):
-        return str(self.name)
+        return str(self.inventario)
 
-# ya se agrego lo de las fotos
+
+def update_total_cuantity(sender, instance, **kwargs):
+  count = instance.inventario.inputs_set.all().aggregate(Sum("cuantity"))  
+  instance.inventario.total_cuantity = count.get('cuantity__sum')
+  instance.inventario.save()
+
+def update_total_cuantity_sale(sender, instance, **kwargs):
+  count = instance.inventario.inputs_set.all().aggregate(Sum("sale"))  
+  instance.inventario.total_cuantity -= count.get('sale__sum')
+  instance.inventario.save()
+
+
+post_save.connect(update_total_cuantity, sender=Inputs)
+post_delete.connect(update_total_cuantity, sender=Inputs) 
+post_save.connect(update_total_cuantity_sale, sender=Inputs)
+post_delete.connect(update_total_cuantity_sale, sender=Inputs) 

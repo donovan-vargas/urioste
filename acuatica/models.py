@@ -110,7 +110,7 @@ class Inventario(models.Model):
     numcode = models.CharField(max_length=100)
     # categoria A
     # categoria B
-    name = models.TextField()
+    name = models.CharField(max_length=100)
     visible = models.BooleanField()
     size = models.CharField(max_length=20, choices=SIZE_CHOICE)
     measures = models.CharField(max_length=200)
@@ -133,7 +133,7 @@ class Inventario(models.Model):
         verbose_name_plural = 'Inventario'
 
     def __str__(self):
-        return str(self.name)
+        return self.name
 
 
 class Inputs(models.Model):
@@ -148,7 +148,7 @@ class Inputs(models.Model):
         verbose_name_plural = 'Entradas y Salidas'
 
     def __str__(self):
-        return str(self.inventario)
+        return self.inventario
 
 
 def update_total_cuantity(sender, instance, **kwargs):

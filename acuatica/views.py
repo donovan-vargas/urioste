@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
-from .forms import LoginForm, CreateUserForm
+from .forms import InputsForm, LoginForm, CreateUserForm, InputsForm
 from django.urls import reverse
 from .models import Inventario, Inputs, Clients
-
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.views.generic import ListView, CreateView, UpdateView, DetailView
+from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
@@ -73,16 +75,23 @@ def logoutUser(request):
 
 
 def sales(request):
+    form = InputsForm()
     context = {}
     if request.method == 'POST':        
-        quantity = request.POST.get('quantity')
-        product = request.POST.get('product')
+        quantity = request.POST.get('quantity', 1)
+        inventario = request.POST.get('inventario')
         client = request.POST.get('client')
-        model_product = Inventario.objects.filter(name__contains=product, total_cuantity__gte=0)
+        model_product = Inventario.objects.filter(pk=inventario, total_cuantity__gte=0)
         context['quantity'] = quantity
         context['products'] = model_product
-        print(model_product)
+    context['form'] = form
     return render(request, 'acuatica/venta_normal.html', context)
+
+class SalesView(CreateView):
+    model = Inputs    
+    form_class = InputsForm
+    template_name = "acuatica/venta_normal.html"
+    success_url = reverse_lazy("acuatica.sales")
 
 
 def clients(request):

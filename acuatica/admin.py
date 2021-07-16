@@ -11,11 +11,13 @@ class ClientsAdmin(admin.ModelAdmin):
 
 @admin.register(Inventario)
 class InventarioAdmin(admin.ModelAdmin):
+   search_fields = ('name'),
    list_display = ('name',)
 
 @admin.register(Inputs)
 class InputsAdmin(admin.ModelAdmin):
     list_display = ('inventario',)
+    autocomplete_fields = ('inventario',)
 
 
 @admin.register(Levels)

@@ -148,7 +148,7 @@ class Inputs(models.Model):
         verbose_name_plural = 'Entradas y Salidas'
 
     def __str__(self):
-        return self.inventario
+        return self.inventario.name
 
 
 def update_total_cuantity(sender, instance, **kwargs):

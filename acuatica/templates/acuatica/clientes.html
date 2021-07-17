@@ -1,0 +1,25 @@
+{% extends 'acuatica/venta_normal.html' %} {% load static %} {% block title %}
+Clientes {% endblock %} {% block right_content %}
+<div class="panel-derecho">
+  <div class="client-information">
+    <div class="separador">
+      <form class="datos-venta" action="{% url 'acuatica.clientes'%}" method="POST">
+        {% csrf_token %}
+        <div class="Buscar">
+          <p>Buscar</p>
+          <input type="submit" value="buscar">
+        </div>
+        <input type="text" name="name" placeholder="Cliente" class="input-cliente" />
+      </form>
+      <div class="boton">
+        <button>Agregar</button>
+      </div>
+    </div>
+  </div>
+  <ul>
+    {% for client in clients %}
+      <li>{{client.name}} {{client.last_name}} {{client.second_last_name}}</li>
+    {%endfor%}
+  </ul>
+</div>
+{% endblock %}

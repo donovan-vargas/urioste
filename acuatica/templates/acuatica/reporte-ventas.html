@@ -1,0 +1,86 @@
+{% extends "acuatica/acuatica.html" %} {% load static %} {% block title%}
+Ventas{% endblock %} {%block right_content %}
+<div class="panel-derecho">
+  <div class="report-information">
+    <form class="separador" id="reportesVentas">
+      <div class="datos-reporte">
+        <div class="elemento-catalogoventas">
+          <div class="categoria">
+            <p>Buscar</p>
+            <input type="text" value="Cliente" class="cat" />
+          </div>
+        </div>
+        <div class="elemento-catalogoventas">
+          <div class="categoria">
+            <p>Estado</p>
+
+            <select class="cat">
+              <option value>Terminado</option>
+              <option value>Acuatica</option>
+              <option value>Mantenimiento</option>
+              <option value>Tiendita</option>
+            </select>
+          </div>
+        </div>
+        <div class="elemento-catalogoventas">
+          <div class="categoria">
+            <p>Forma de pago</p>
+
+            <select class="cat">
+              <option value>-- Todos --</option>
+              <option value>Acuatica</option>
+              <option value>Mantenimiento</option>
+              <option value>Tiendita</option>
+            </select>
+          </div>
+        </div>
+        <div class="elemento-catalogoventas">
+          <div class="categoria">
+            <p>Buscar</p>
+
+            <select class="cat">
+              <option value>-- Todos --</option>
+              <option value>Acuatica Urioste</option>
+              <option value>Ajustes Contables</option>
+              <option value>Mantenimiento</option>
+              <option value>Tiendita</option>
+            </select>
+          </div>
+        </div>
+        <div class="elemento-catalogoventas">
+          <div class="categoria">
+            <p>Sucursal</p>
+
+            <select class="cat">
+              <option value>Elegir</option>
+              <option value>Acuatica Urioste</option>
+              <option value>Ajustes Contables</option>
+              <option value>Mantenimiento</option>
+              <option value>Tiendita</option>
+            </select>
+          </div>
+        </div>
+        <div class="elemento-catalogoventas">
+          <div class="categoria">
+            <p>Categoria A</p>
+            <input type="text" value="Elegir" class="cat" />
+          </div>
+        </div>
+        <div class="elemento-catalogoventas">
+          <div class="categoria">
+            <p>Categoria B</p>
+            <input type="text" value="Elegir" class="cat" />
+          </div>
+        </div>
+      </div>
+      <div class="boton">
+        <div class="elemento-catalogo">
+          <div class="categoria">
+            <button class="opciones">opciones</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock%}

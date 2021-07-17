@@ -1,0 +1,33 @@
+{% extends "acuatica/acuatica.html" %} {% load static %} {% block title%}
+Entradas{% endblock %} {%block right_content %}
+<div class="panel-derecho">
+  <div class="sale-information">
+    <!--formulario {cantidad: input para poner numero, Producto: input para buscar producto con sugerencias, cliente: input con lo mismo pero para cliente, verificador de precios}-->
+    <form class="datos-venta" id="formularioEntradas">
+      <select class="sucursal">
+        <option value>-- Todos --</option>
+        <option value>Acuatica Urioste</option>
+        <option value>Ajustes Contables</option>
+        <option value>Mantenimiento</option>
+        <option value>Tiendita</option>
+      </select>
+      <input type="text" value="Cantidad" class="producto ventas" />
+      <input type="text" value="Producto" class="cliente ventas" />
+    </form>
+  </div>
+  <div class="sale-description">
+    <p>Cantidad</p>
+    <p>Codigo</p>
+    <p>Producto</p>
+  </div>
+  <div class="comment">
+    <textarea
+      id="title"
+      type="text "
+      onkeyup="Allow()"
+      placeholder="Escribe algun comentario......"
+    ></textarea>
+  </div>
+</div>
+
+{% endblock%}

@@ -1,0 +1,50 @@
+{% extends 'acuatica/venta_normal.html' %} {% load static %} {% block title %}
+Catalogo {% endblock %} {% block right_content %}
+<div class="panel-derecho">
+  <div class="client-information">
+    <form class="separador">
+      <div class="datos-catalogo">
+        <div class="elemento-catalogo">
+          <div class="categoria">
+            <p>Categoria A</p>
+            <input type="text" value="Elegir" class="cat" />
+          </div>
+        </div>
+        <div class="elemento-catalogo">
+          <div class="categoria">
+            <p>Categoria B</p>
+
+            <input type="text" value="Elegir" class="cat" />
+          </div>
+        </div>
+        <div class="elemento-catalogo">
+          <div class="categoria">
+            <p>Sucursal</p>
+
+            <select class="cat">
+              <option value>-- Todos --</option>
+              <option value>Acuatica</option>
+              <option value>Mantenimiento</option>
+              <option value>Tiendita</option>
+            </select>
+          </div>
+        </div>
+        <div class="elemento-catalogo">
+          <div class="categoria">
+            <p>Buscar</p>
+
+            <input type="text" value="" class="cat" />
+          </div>
+        </div>
+      </div>
+      <div class="boton">
+        <div class="elemento-catalogo">
+          <div class="categoria">
+            <button class="opciones">opciones</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

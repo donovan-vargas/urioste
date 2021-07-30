@@ -1,26 +1,89 @@
 {% extends "acuatica/acuatica.html" %} {% load static %} {% block title%}
 Ventas{% endblock %} {%block right_content %}
 <div class="panel-derecho">
-  <div class="sale-information">
-    <!--formulario {cantidad: input para poner numero, Producto: input para buscar producto con sugerencias, cliente: input con lo mismo pero para cliente, verificador de precios}-->
-    <form class="datos-venta" action="{% url 'acuatica.sales'  %}" method="POST">
-      {% csrf_token %}
-      <input type="text" placeholder="cantidad" class="cantidad ventas" name="quantity" value="1"/>
-      <input type="text" placeholder="Producto" class="producto ventas" name="product"/>
-      <input type="text" placeholder="Cliente" class="cliente ventas" name="client"/>
-      <input type="submit" value="enviar">
-    </form>
-  </div>
-  <div class="sale-description">
-    <p>Cant</p>
-    <p>Producto</p>
-    <p>Precio</p>
-    <p>Impuesto</p>
-    <p>Descuento</p>
-    <p>Recargo</p>
-  </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 0">
+    <div class="container-fluid" style="padding: 4px 15px 4px 15px">
+      <p style="margin-right: 20px">Ventas</p>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li style="margin-right: 20px">
+            <label for="exampleDataList" class="form-label">Producto:</label>
+            <input
+              class="form-control"
+              list="ventaProductolistOptions"
+              id="ventaProductoDataList"
+              placeholder="Elegir..."
+            />
+            <datalist id="ventaProductolistOptions">
+              <option value="Producto 1"></option>
+              <option value="Producto 2"></option>
+              <option value="Producto 3"></option>
+            </datalist>
+          </li>
+          <li class="nav-item" style="margin-right: 20px">
+            <label for="cantidadventa" class="form-label">Cantidad:</label>
+            <input
+              class="form-control"
+              id="cantidadventa"
+              placeholder="cantidad..."
+            />
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Sucursal
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Acuatica</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item" href="#">Ajustes Contables</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item" href="#">Tiendita</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item" href="#">Mantenimiento</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder=""
+            aria-label="Search"
+          />
+          <button
+            type="button"
+            class="btn btn-dark"
+            data-bs-toggle="modal"
+            data-bs-target="#catalogModal"
+            data-bs-whatever="@mdo"
+            style="font-size: 12px"
+          >
+            Agregar
+          </button>
+        </form>
+      </div>
+    </div>
+  </nav>
   {% for product in products %}
-  <div class="sale-description">
+  <div class="position-relative">
     <p>{{quantity}}</p>
     <p>{{product.name}}</p>
     <p>{{product.cost}}</p>
@@ -37,51 +100,70 @@ Ventas{% endblock %} {%block right_content %}
       placeholder="Escribe algun comentario......"
     ></textarea>
   </div>
-  <div class="checkout">
-    <table class="tabla">
-      <tbody>
-        <tr align="left" class="elemento-cobro">
-          <th class="titulo-precio">SUBTOTAL</th>
-          <td>
-            <input
-              class="input-cobro"
-              type="text"
-              name="subtotal1"
-              id="subtotal1"
-              value=""
-              disabled=""
-            />
-          </td>
-        </tr>
-        <tr class="elemento-cobro">
-          <th class="titulo-precio">Iva</th>
-          <td>
-            <input
-              class="input-cobro"
-              type="text"
-              name="iva1"
-              id="iva1"
-              value=""
-              disabled=""
-            />
-          </td>
-        </tr>
-        <tr class="elemento-cobro">
-          <th ti>Iva</th>
-          <td align="center">
-            <div class="total-cobro">
-              <p>Precio Dinamico</p>
+  <div class="position-absolute top-200px end-0">
+    <div class="bg-pay p-3">
+      <span class="font-weight-bold">Resumen de Venta</span>
+      <div class="d-flex justify-content-between mt-2">
+        <span class="fw-500">Subtotal </span> <span>$ precio </span>
+      </div>
+      <div class="d-flex justify-content-between mt-2">
+        <span class="fw-500">Iva</span> <span>$0.0</span>
+      </div>
+      <div class="d-flex justify-content-between mt-2">
+        <span class="fw-500">Total </span>
+        <span class="text-success">$85.00</span>
+      </div>
+
+      <hr />
+      <div class="d-flex justify-content-between mt-2">
+        <form class="">
+          <div class="row mb-3 d-flex justify-content-between mt-2">
+            <label
+              for="colFormLabelSm"
+              class="col-sm-2 col-form-label col-form-label-sm"
+              style="margin-right: 0"
+              >Efectivo</label
+            >
+            <div class="col-sm-auto">
+              <input
+                type="email"
+                class="form-control form-control-sm"
+                id="colFormLabelSm"
+              />
             </div>
-          </td>
-        </tr>
-        <div class="brake-line"></div>
-        <tr>
-          <td colspan="4" class="brake-line">
-            <hr />
-          </td>
-        </tr>
-      </tbody>
-    </table>
+          </div>
+          <div class="row mb-3 d-flex justify-content-between mt-2">
+            <label for="colFormLabel" class="col-sm-2 col-form-label"
+              >T.Credito</label
+            >
+            <div class="col-sm-auto">
+              <input
+                type="email"
+                class="form-control form-control-sm"
+                id="colFormLabel"
+              />
+            </div>
+          </div>
+          <div class="row mb-3 d-flex justify-content-between mt-2">
+            <label for="colFormLabel" class="col-sm-2 col-form-label"
+              >Banco</label
+            >
+            <div class="col-sm-auto">
+              <input
+                type="email"
+                class="form-control form-control-sm"
+                id="colFormLabel"
+              />
+            </div>
+          </div>
+          <hr />
+          <div class="d-flex justify-content-between mt-2">
+            <span class="fw-500">Cambio </span>
+            <span class="text-danger">$cambio</span>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
 

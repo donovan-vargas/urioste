@@ -1,24 +1,52 @@
 {% extends 'acuatica/venta_normal.html' %} {% load static %} {% block title %}
 Clientes {% endblock %} {% block right_content %}
 <div class="panel-derecho">
-  <div class="client-information">
-    <div class="separador">
-      <form class="datos-venta" action="{% url 'acuatica.clientes'%}" method="POST">
-        {% csrf_token %}
-        <div class="Buscar">
-          <p>Buscar</p>
-          <input type="submit" value="buscar">
-        </div>
-        <input type="text" name="name" placeholder="Cliente" class="input-cliente" />
-      </form>
-      <div class="boton">
-        <button>Agregar</button>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 0">
+    <div class="container-fluid" style="padding: 4px 15px 4px 15px">
+      <p style="margin-right: 10%">Clientes</p>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+        <form class="d-flex">
+          <input
+            class="form-control"
+            list="datalistClientOptions"
+            id="clientDataList"
+            placeholder="Buscar Cliente..."
+            style="margin-right: 20px"
+          />
+          <datalist id="datalistClientOptions">
+            <option value="Cliente 1"></option>
+            <option value="Cliente 2"></option>
+            <option value="Cliente 3"></option>
+            <option value="Cliente 4"></option>
+          </datalist>
+          <button
+            type="button"
+            class="btn btn-dark"
+            data-bs-toggle="modal"
+            data-bs-target="#clientModal"
+            data-bs-whatever="@mdo"
+          >
+            Agregar
+          </button>
+        </form>
       </div>
     </div>
-  </div>
+  </nav>
   <ul>
     {% for client in clients %}
-      <li>{{client.name}} {{client.last_name}} {{client.second_last_name}}</li>
+    <li>{{client.name}} {{client.last_name}} {{client.second_last_name}}</li>
     {%endfor%}
   </ul>
 </div>

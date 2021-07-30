@@ -1,50 +1,96 @@
 {% extends 'acuatica/venta_normal.html' %} {% load static %} {% block title %}
 Catalogo {% endblock %} {% block right_content %}
 <div class="panel-derecho">
-  <div class="client-information">
-    <form class="separador">
-      <div class="datos-catalogo">
-        <div class="elemento-catalogo">
-          <div class="categoria">
-            <p>Categoria A</p>
-            <input type="text" value="Elegir" class="cat" />
-          </div>
-        </div>
-        <div class="elemento-catalogo">
-          <div class="categoria">
-            <p>Categoria B</p>
-
-            <input type="text" value="Elegir" class="cat" />
-          </div>
-        </div>
-        <div class="elemento-catalogo">
-          <div class="categoria">
-            <p>Sucursal</p>
-
-            <select class="cat">
-              <option value>-- Todos --</option>
-              <option value>Acuatica</option>
-              <option value>Mantenimiento</option>
-              <option value>Tiendita</option>
-            </select>
-          </div>
-        </div>
-        <div class="elemento-catalogo">
-          <div class="categoria">
-            <p>Buscar</p>
-
-            <input type="text" value="" class="cat" />
-          </div>
-        </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 0">
+    <div class="container-fluid" style="padding: 4px 15px 4px 15px">
+      <p style="margin-right: 20px">Catalogo</p>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li style="margin-right: 20px">
+            <label for="exampleDataList" class="form-label">Categoria A:</label>
+            <input
+              class="form-control"
+              list="datalistOptions"
+              id="exampleDataList"
+              placeholder="Elegir..."
+            />
+            <datalist id="datalistOptions">
+              <option value="San Francisco"></option>
+              <option value="New York"></option>
+              <option value="Seattle"></option>
+              <option value="Los Angeles"></option>
+              <option value="Chicago"></option>
+            </datalist>
+          </li>
+          <li class="nav-item" style="margin-right: 20px">
+            <label for="exampleDataList" class="form-label">Categoria B:</label>
+            <input
+              class="form-control"
+              list="datalistOptions"
+              id="exampleDataList"
+              placeholder="Elegir..."
+            />
+            <datalist id="datalistOptions">
+              <option value="San Francisco"></option>
+              <option value="New York"></option>
+              <option value="Seattle"></option>
+              <option value="Los Angeles"></option>
+              <option value="Chicago"></option>
+            </datalist>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Sucursal
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Acuatica</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item" href="#">Ajustes Contables</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item" href="#">Tiendita</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item" href="#">Mantenimiento</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder=""
+            aria-label="Search"
+          />
+          <button
+            type="button"
+            class="btn btn-dark"
+            data-bs-toggle="modal"
+            data-bs-target="#catalogModal"
+            data-bs-whatever="@mdo"
+            style="font-size: 12px"
+          >
+            Agregar
+          </button>
+        </form>
       </div>
-      <div class="boton">
-        <div class="elemento-catalogo">
-          <div class="categoria">
-            <button class="opciones">opciones</button>
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
+    </div>
+  </nav>
 </div>
 {% endblock %}

@@ -1,20 +1,74 @@
 {% extends "acuatica/acuatica.html" %} {% load static %} {% block title%}
 Entradas{% endblock %} {%block right_content %}
 <div class="panel-derecho">
-  <div class="sale-information">
-    <!--formulario {cantidad: input para poner numero, Producto: input para buscar producto con sugerencias, cliente: input con lo mismo pero para cliente, verificador de precios}-->
-    <form class="datos-venta" id="formularioEntradas">
-      <select class="sucursal">
-        <option value>-- Todos --</option>
-        <option value>Acuatica Urioste</option>
-        <option value>Ajustes Contables</option>
-        <option value>Mantenimiento</option>
-        <option value>Tiendita</option>
-      </select>
-      <input type="text" value="Cantidad" class="producto ventas" />
-      <input type="text" value="Producto" class="cliente ventas" />
-    </form>
-  </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 0">
+    <div class="container-fluid" style="padding: 4px 15px 4px 15px">
+      <p style="margin-right: 20px">Entradas</p>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li style="margin-right: 20px">
+            <label for="sucursalDataList" class="form-label">Sucursal:</label>
+            <input
+              class="form-control"
+              list="sucursallistOptions"
+              id="sucursalesDataList"
+              placeholder="Elegir..."
+            />
+            <datalist id="sucursallistOptions">
+              <option value="San Francisco"></option>
+              <option value="New York"></option>
+              <option value="Seattle"></option>
+              <option value="Los Angeles"></option>
+              <option value="Chicago"></option>
+            </datalist>
+          </li>
+          <li class="nav-item" style="margin-right: 20px">
+            <label for="cantidad-entradas" class="form-label">Cantidad:</label>
+            <input class="form-control" type="text" placeholder="Cantidad..." />
+          </li>
+          <li class="nav-item dropdown">
+            <label for="sucursalDataList" class="form-label">Producto:</label>
+            <input
+              class="form-control"
+              list="productolistOptions"
+              id="productoDataList"
+              placeholder="Elegir..."
+            />
+            <datalist id="productolistOptions">
+              <option value="San Francisco"></option>
+              <option value="New York"></option>
+              <option value="Seattle"></option>
+              <option value="Los Angeles"></option>
+              <option value="Chicago"></option>
+            </datalist>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <button
+            type="button"
+            class="btn btn-dark"
+            data-bs-toggle="modal"
+            data-bs-whatever="@mdo"
+            style="font-size: 12px"
+          >
+            Hacer entrada
+          </button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
   <div class="sale-description">
     <p>Cantidad</p>
     <p>Codigo</p>

@@ -14,87 +14,505 @@ Principal
 <link rel="stylesheet" href="{% static 'styles/catalogo.css' %}"></link>
 <link rel="stylesheet" href="{% static 'styles/entradas.css' %}"></link>
 <link rel="stylesheet" href="{% static 'styles/reporteventas.css' %}"></link>
+
 {% endblock %}
 {% block site_js %}
 
 {% endblock %}
 
 {% block content %}
+
 <div class="main-content">
     <div class="admin-sidebar">
-        <div class="logo-details">
-            <i class='bx bx-swim'></i>
-            <span class="logo_name">A. URIOSTE</span>
-        </div>
-        <ul class="nav-links">
-            <li>
-                <div class="iocn-link">
-                    <a href="#">
-                        <i class='bx bxs-cart'></i>
-                        <span class="name_link">Ventas</span>
-                    </a>
-                    <i class='bx bxs-chevron-down arrow' ></i>
-                </div>
-                <ul class="sub-menu">
-                    <li><a class="link_name" href="#">Ventas</a></li>
-                    <li><a href="{% url 'acuatica.sales'%}">Normal</a></li>
-                    <li><a href="#">Programada</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="{% url 'acuatica.clientes' %}">
-                    <i class='bx bxs-user-account' ></i>
-                    <span class="name_link">Clientes</span>
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="height: 100vh;">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+                <span class="fs-4">Acuatica Urioste</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <button
+                    class="btn btn-toggle align-items-center rounded collapsed text-light"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#home-collapse"
+                    aria-expanded="true"
+                    style="color:white"
+                    >
+                    ventas
+                    </button>
+                    <div class="collapse " id="home-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="{% url 'acuatica.sales'%}" class="link-dark rounded text-light">Normal</a></li>
+                            <li><a href="#" class="link-dark rounded text-light">Programada</a></li>
+                            
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <button
+                    class="btn btn-toggle align-items-center rounded collapsed text-light"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#clientes-collapse"
+                    aria-expanded="true"
+                    style="color:white"
+                    >
+                    Clientes
+                    </button>
+                    <div class="collapse" id="clientes-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="{% url 'acuatica.clientes'%}" class="link-dark rounded text-light">Clientes</a></li>
+                            
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <button
+                    class="btn btn-toggle align-items-center rounded collapsed text-light"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#servicios-collapse"
+                    aria-expanded="true"
+                    style="color:white"
+                    >
+                    Servicios
+                    </button>
+                    <div class="collapse" id="servicios-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a href="{% url 'acuatica.catalogo'%}" class="link-dark rounded text-light">Catalogo</a></li>
+                        <li><a href="#" class="link-dark rounded text-light">Categoria A</a></li>
+                        <li><a href="#" class="link-dark rounded text-light">Categoria B</a></li>
+                        
+                    </ul>
+                </li>
+                <li>
+                    <button
+                    class="btn btn-toggle align-items-center rounded collapsed text-light"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#inventario-collapse"
+                    aria-expanded="true"
+                    style="color:white"
+                    >
+                    Inventario
+                    </button>
+                    <div class="collapse" id="inventario-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a href="{% url 'acuatica.inputs'%}" class="link-dark rounded text-light">Entradas</a></li>
+
+                    </ul>
+                    
+                </li>
+                <li>
+
+                    <button
+                    class="btn btn-toggle align-items-center rounded collapsed text-light"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#reportes-collapse"
+                    aria-expanded="true"
+                    style="color:white"
+                    >
+                    Reportes
+                    </button>
+                    <div class="collapse" id="reportes-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a href="{% url 'acuatica.sales-report'%}" class="link-dark rounded text-light">ventas</a></li>
+                        <li><a href="#" class="link-dark rounded text-light">Venta Periodica</a></li>
+                    </ul>
+
+                    
+                </li>
+                
+            </ul>
+            <hr />
+
+                
+                
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://media.cylex.mx/companies/1141/0836/logo/logo.jpg" alt="" width="32" height="32" class="rounded-circle me-2">
+                    <strong>Usuario</strong>
                 </a>
-            </li>
-            <li>
-                <div class="iocn-link">
-                    <a href="#">
-                        <i class='bx bx-box'></i>
-                        <span class="name_link">Servicios</span>
-                    </a>
-                    <i class='bx bxs-chevron-down arrow' ></i>
-                </div>
-                <ul class="sub-menu">
-                    <li><a class="link_name" href="#">Servicios</a></li>
-                    <li><a href="{% url 'acuatica.catalogo' %}">Catalogo</a></li>
-                    <li><a href="#">Categoria A</a></li>
-                    <li><a href="#">Categoria B</a></li>
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                    <li><a class="dropdown-item" href="#">New project...</a></li>
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{% url 'acuatica.logout' %}">Cerrar sesión</a></li>
                 </ul>
-            </li>
-                <li>
-                <div class="iocn-link">
-                    <a href="#">
-                        <i class='bx bx-store-alt'></i>
-                        <span class="name_link">Inventarios</span>
-                    </a>
-                    <i class='bx bxs-chevron-down arrow' ></i>
-                </div>
-                <ul class="sub-menu">
-                    <li><a class="link_name" href="#">Inventarios</a></li>
-                    <li><a href="{% url 'acuatica.inputs' %}">Entradas</a></li>
-                </ul>
-            </li>
-                <li>
-                <div class="iocn-link">
-                    <a href="#">
-                        <i class='bx bxs-report'></i>
-                        <span class="name_link">Reportes</span>
-                    </a>
-                    <i class='bx bxs-chevron-down arrow' ></i>
-                </div>
-                <ul class="sub-menu">
-                    <li><a class="link_name" href="#">Reportes</a></li>
-                    <li><a href="{% url 'acuatica.sales-report' %}">Ventas</a></li>
-                    <li><a href="#">Venta Periodica</a></li>
-                </ul>
-            </li>
-        
-        </ul>
+            </div>
+        </div>
     </div>
     
     {% block right_content %}
     {% endblock %}
+ 
+
+    <div
+        class="modal fade"
+        id="clientModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Datos de Cliente</h5>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+                </div>
+                <div class="modal-body">
+                    <form class="contenedor-pop">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="nombre-Cliente" class="col-form-label"
+                                    >Nombre:</label
+                                >
+                                <input type="text" class="form-control" id="nombre-Cliente" placeholder="Nombre" />
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="sangre" class="col-form-label"
+                                    >Tipo de sangre:</label
+                                >
+                                <input type="text" class="form-control" id="sangre" placeholder="Tipo de sangre" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="apellido-Paterno" class="col-form-label"
+                                    >Apellido Paterno:</label
+                                >
+                                <input type="text" class="form-control" id="apellido-Paterno" placeholder="Apellido Paterno" />
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="avisar-emergencia" class="col-form-label"
+                                    >En caso de emergencia avisar:</label
+                                >
+                                <input type="text" class="form-control" id="avisar-emergencia" placeholder="Nombre completo" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="apellido-Materno" class="col-form-label"
+                                    >Apellido Materno:</label
+                                >
+                                <input type="text" class="form-control" id="apellido-Materno" placeholder="Apellido materno"/>
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="cel-emergencia" class="col-form-label"
+                                    >Telefono de emergencia:</label
+                                >
+                                <input type="text" class="form-control" id="cel-emergencia" placeholder="Num." />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                               <label for="fecha-Nacimiento" class="col-form-label"
+                                    >Fecha Nacimiento:</label
+                                >
+                                <input type="date" class="form-control" id="fecha-Nacimiento" />
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="Dia-de-pago" class="col-form-label"
+                                    >Día de pago:</label
+                                >
+                                <textarea class="form-control" id="dia-pago"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                               <label for="genero" class="col-form-label"
+                                    >Genero:</label
+                                >
+                                <select class="form-control">
+                                    <option value></option>
+                                    <option value>M</option>
+                                    <option value>F</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="condicion-Medica" class="col-form-label"
+                                    >Condición médica:</label
+                                >
+                                <textarea class="form-control" id="condicion-Medica"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="direccion" class="col-form-label"
+                                    >Dirección:</label
+                                >
+                                <input type="text" class="form-control" id="direccion" placeholder="Dirección" />
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="nivel" class="col-form-label"
+                                    >Nivel:</label
+                                >
+                                <select class="form-control">
+                                    <option value></option>
+                                    <option value>M</option>
+                                    <option value>F</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="codigo-postal" class="col-form-label"
+                                    >C.P:</label
+                                >
+                                <input type="text" class="form-control" id="Código-Postal" placeholder="Código Postal" />
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="horario" class="col-form-label"
+                                    >Horario:</label
+                                >
+                                <textarea class="form-control" id="horario"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                               <label for="celular" class="col-form-label"
+                                    >Celular:</label
+                                >
+                                <input type="text" class="form-control" id="celular" placeholder="Celular" />
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="email" class="col-form-label"
+                                    >Email:</label
+                                >
+                                <input type="email" class="form-control" id="email" placeholder="Email" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                               <label for="estado-civil" class="col-form-label"
+                                    >Estado Civil:</label
+                                >
+                                <select class="form-control">
+                                    <option value></option>
+                                    <option value>Soltero</option>
+                                    <option value>Casado</option>
+                                    <option value>Divorciado</option>
+                                    <option value>Union Libre</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="entero" class="col-form-label"
+                                    >¿Cómo se entero?:</label
+                                >
+                                <select class="form-control">
+                                    <option value></option>
+                                    <option value>Facebook</option>
+                                    <option value>Instagram</option>
+                                    <option value>Recomendación</option>
+                                    <option value>otro</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Message:</label>
+                        <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                    >
+                        Cerrar
+                    </button>
+                    <button type="button" class="btn btn-dark">Agregar Cliente</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+    <div
+        class="modal fade"
+        id="catalogModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Datos del Producto</h5>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                    
+                ></button>
+                </div>
+                <div class="modal-body">
+                    <form class="contenedor-pop">
+                        <div class="mb-3">
+                            <label for="codigo" class="col-form-label">Codigo:</label>
+                            <input type="text" class="form-control" id="codigo" placeholder="Código">
+                        </div>
+                        <div class="mb-3">
+                            <label for="cat-A" class="col-form-label">Categoria A:</label>
+                            <select id="cat-A" class="form-select" placeholder="Elegir">
+                                <option></option>
+                                <option>opcion</option>                                
+                                <option>opcion</option>
+                                <option>opcion</option>
+
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cat-B" class="col-form-label">Categoria B:</label>
+                            <select id="cat-B" class="form-select" placeholder="Elegir">
+                                <option></option>
+                                <option>opcion</option>                                
+                                <option>opcion</option>
+                                <option>opcion</option>
+
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="nombre-catalogo" class="col-form-label">Nombre:</label>
+                            <textarea class="form-control" id="nombre-catalogo"></textarea>
+                        </div>
+
+                        <div class="form-check mb-3">
+                            <input type="checkbox" class="form-check-input" id="validationFormCheck1" required>
+                            <label class="form-check-label" for="validationFormCheck1">Visible</label>
+                            <div class="invalid-feedback">Example invalid feedback text</div>
+                        </div>
+                        
+                        <div class="mb-3">
+
+                            <label for="tamano-producto" class="form-label">Tamaño</label>
+                            <select class="form-select" id="tamano-catalogo" required>
+                                <option selected disabled value="">Elegir.....</option>
+                                <option>...</option>
+                            </select>
+                            <div class="invalid-tooltip">
+                                Porfavor Ingresa una opción valida
+                            </div>   
+                            
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="medidas-catalogo" class="col-form-label">Medidas:</label>
+                            <input  class="form-control" type="text" placeholder="Ancho,Largo,Alto en cm" id="medidas-catalogo">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="nombre-corto" class="col-form-label">Nombre corto:</label>
+                            <input  class="form-control" type="text" placeholder="Nombre corto" id="medidas-catalogo">
+                        </div>
+
+                        <div class="form-check mb-3">
+                            <input type="checkbox" class="form-check-input" id="inventario-limitado-catalogo" required>
+                            <label class="form-check-label" for="validationFormCheck1">Inventario limitado</label>
+                            <div class="invalid-feedback">Elige una opción correcta</div>
+                        </div>
+
+                        <div class="mb-3">
+                        
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="">
+                                <label class="form-check-label" for="acuatica-catalogo">
+                                    Acuatica Urioste
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="" checked>
+                                <label class="form-check-label" for="ajustes-contables">
+                                    Ajustes Contables
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="" checked>
+                                <label class="form-check-label" for="mantenimiento-catalogo">
+                                    Mantenimiento
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="" checked>
+                                <label class="form-check-label" for="tiendita-catalogo">
+                                    tiendita
+                                </label>
+                            </div>
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="producto-contenido-catalogo" class="col-form-label">Producto Contendido:</label>
+                            <input type="text" class="form-control" id="producto-contenido-catalogo" placeholder="Producto contenido">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="cantidad-minima-catalogo" class="col-form-label">Cantidad mínima:</label>
+                            <input type="text" class="form-control" id="cantidad-minima-catalogo" placeholder="Cantidad mínima">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="cantidad-maxima-catalogo" class="col-form-label">Cantidad máxima:</label>
+                            <input type="text" class="form-control" id="cantidad-maxima-catalogo" placeholder="Cantidad máxima">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="colores-catalogo" class="col-form-label">Colores:</label>
+                            <input type="text" class="form-control" id="colores-catalogo" placeholder="Colores">
+                        </div>
+                        <div class="mb-3">
+                            <label for="descripcion-buscador-catalogo" class="col-form-label">Descripción buscador:</label>
+                            <input type="text" class="form-control" id="descripcion-buscador-catalogo" placeholder="Descripción buscador">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="palabras-clave-catalogo" class="col-form-label">Palabras clave:</label>
+                            <input type="text" class="form-control" id="palabras-clave-catalogo" placeholder="Palabras Clave">
+                        </div>
+                        <div class="mb-3">
+                            <label for="titulo-buscador-catalogo" class="col-form-label">Titulo de Buscador:</label>
+                            <input type="text" class="form-control" id="titulo-buscador-catalogo" placeholder="Titulo de Buscador">
+                        </div>
+                        <div class="mb-3">
+                            <label for="url-catalogo" class="col-form-label">URL amigable:</label>
+                            <input type="text" class="form-control" id="url-catalogo" placeholder="URL amigable">
+                        </div>
+                        
+                        
+                        
+                        
+                        
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                    >
+                        Cerrar
+                    </button>
+                    <button type="submit" class="btn btn-dark">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+
     
 </div>
 <script>
@@ -108,6 +526,16 @@ Principal
         arrowParent.classList.toggle("showMenu")
         });
     }
+
+
+    (function () {
+    'use strict'
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+        new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+    })()
+
 </script>
 
 

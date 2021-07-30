@@ -19,13 +19,7 @@
   </head>
   <body>
     {% include 'acuatica/_messages.html' %}
-    <nav class="navbar navbar-light justify-content-between" style="background-color:#e3f2fd; ">
-      <a class="navbar-brand"><img src="https://subsistemas.alojamex.com/mitienda//recursos/imagenes/logos/4.jp"></img></a>
-      <form class="form-inline">
-        
-        <span class="btn btn-danger"><a href="{% url 'acuatica.logout' %}">Cerrar sesión</a></span>
-      </form>
-  </nav>
+    
     <!-- End of Navigation Bar -->
     {% block content %} {% endblock %}
   </body>

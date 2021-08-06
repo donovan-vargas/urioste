@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import UserExtends, Clients, Inventario, Inputs, Levels
+from .models import UserExtends, Clients, Inventario, Inputs, Levels, Sales, InvSales
 # Register your models here.
 @admin.register(UserExtends)
 class UserExtendsAdmin(admin.ModelAdmin):
@@ -25,3 +25,10 @@ class LevelAdmin(admin.ModelAdmin):
     list_display = ('level',)
     
 
+@admin.register(Sales)
+class SalesAdmin(admin.ModelAdmin):
+    list_display = ('user', 'client', 'cash', 'total')
+
+@admin.register(InvSales)
+class InvSalesAdmin(admin.ModelAdmin):
+    list_display = ('user', 'inventory', 'sales', 'quantity')

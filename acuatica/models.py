@@ -61,13 +61,13 @@ class Clients(models.Model):
     #picture = models.ImageField(verbose_name='foto', null=True, blank=True)
     last_name = models.CharField(max_length=50)
     second_last_name = models.CharField(max_length=50)
-    birth_date = models.DateField(blank=True)
+    birth_date = models.DateField(blank=True, null=True)
     gender = models.CharField(choices=SEX_CHOICE, max_length=10)
     address = models.CharField(max_length=200)
     suburb = models.CharField(max_length=200)
     postal_code = models.CharField(max_length=10)
     cel = models.CharField(max_length=12)
-    email = models.EmailField(blank=True)
+    email = models.EmailField(blank=True, null=True)
     civil_status = models.CharField(max_length=10, choices=CIVIL_CHOICE)
     heard_from = models.CharField(max_length=10, choices=FIND_CHOICES)
     blood = models.CharField(max_length=50)
@@ -139,7 +139,7 @@ class Inventario(models.Model):
 class Inputs(models.Model):
     inventario = models.ForeignKey(Inventario, on_delete=models.DO_NOTHING)
     cuantity = models.IntegerField()
-    date = models.DateField(blank=True)
+    date = models.DateField(auto_now_add=True)
     sale = models.IntegerField()
     comments = models.TextField()
     
@@ -166,3 +166,34 @@ post_save.connect(update_total_cuantity, sender=Inputs)
 post_delete.connect(update_total_cuantity, sender=Inputs) 
 post_save.connect(update_total_cuantity_sale, sender=Inputs)
 post_delete.connect(update_total_cuantity_sale, sender=Inputs) 
+
+
+class Sales(models.Model):
+    user = models.ForeignKey(User, related_name='cajero', on_delete=models.DO_NOTHING)
+    client = models.ForeignKey(Clients, on_delete=models.DO_NOTHING)
+    cash = models.FloatField()
+    total = models.FloatField()
+    created = models.DateField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name_plural = 'Ventas'
+
+    def __str__(self):
+        return self.user.username
+
+
+class InvSales(models.Model):    
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    inventory = models.ForeignKey(Inventario, on_delete=models.DO_NOTHING)
+    sales = models.ForeignKey(Sales, on_delete=models.DO_NOTHING)
+    quantity = models.IntegerField()
+    created = models.DateField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name_plural = 'Cobros'
+
+    def __str__(self):
+        return self.user.username
+    

@@ -1,0 +1,14 @@
+.navbar {
+  background-color: #f77fbe;
+  color: rgb(6, 6, 6);
+}
+
+.panel-derecho .navbar .container-fluid {
+  background-color: #f77fbe;
+  padding: 20;
+  color: rgb(5, 5, 5);
+}
+.panel-derecho .navbar .container-fluid p {
+  font-size: 30px;
+  font-weight: 200;
+}

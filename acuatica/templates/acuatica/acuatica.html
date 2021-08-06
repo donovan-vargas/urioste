@@ -164,20 +164,21 @@ Principal
                         aria-label="Close"
                     ></button>
                 </div>
-                <div class="modal-body">
-                    <form class="contenedor-pop">
+                <form class="contenedor-pop" action="{% url 'acuatica.clientes' %}" method="POST">
+                    {% csrf_token %}
+                <div class="modal-body">                    
                         <div class="row">
                             <div class="col-md-4">
                                 <label for="nombre-Cliente" class="col-form-label"
                                     >Nombre:</label
-                                >
-                                <input type="text" class="form-control" id="nombre-Cliente" placeholder="Nombre" />
+                                >                                
+                                {{ form.name }}
                             </div>
                             <div class="col-md-4 ms-auto">
                                 <label for="sangre" class="col-form-label"
                                     >Tipo de sangre:</label
                                 >
-                                <input type="text" class="form-control" id="sangre" placeholder="Tipo de sangre" />
+                                {{ form.blood }}
                             </div>
                         </div>
                         <div class="row">
@@ -185,13 +186,13 @@ Principal
                                 <label for="apellido-Paterno" class="col-form-label"
                                     >Apellido Paterno:</label
                                 >
-                                <input type="text" class="form-control" id="apellido-Paterno" placeholder="Apellido Paterno" />
+                                {{ form.last_name }}
                             </div>
                             <div class="col-md-4 ms-auto">
                                 <label for="avisar-emergencia" class="col-form-label"
                                     >En caso de emergencia avisar:</label
                                 >
-                                <input type="text" class="form-control" id="avisar-emergencia" placeholder="Nombre completo" />
+                                {{ form.emergency_contact }}
                             </div>
                         </div>
                         <div class="row">
@@ -199,13 +200,13 @@ Principal
                                 <label for="apellido-Materno" class="col-form-label"
                                     >Apellido Materno:</label
                                 >
-                                <input type="text" class="form-control" id="apellido-Materno" placeholder="Apellido materno"/>
+                                {{ form.second_last_name }}
                             </div>
                             <div class="col-md-4 ms-auto">
                                 <label for="cel-emergencia" class="col-form-label"
                                     >Telefono de emergencia:</label
                                 >
-                                <input type="text" class="form-control" id="cel-emergencia" placeholder="Num." />
+                                {{ form.emergency_phone }}
                             </div>
                         </div>
                         <div class="row">
@@ -213,13 +214,13 @@ Principal
                                <label for="fecha-Nacimiento" class="col-form-label"
                                     >Fecha Nacimiento:</label
                                 >
-                                <input type="date" class="form-control" id="fecha-Nacimiento" />
+                                {{ form.birth_date }}
                             </div>
                             <div class="col-md-4 ms-auto">
                                 <label for="Dia-de-pago" class="col-form-label"
                                     >Día de pago:</label
                                 >
-                                <textarea class="form-control" id="dia-pago"></textarea>
+                                {{ form.pay_day }}
                             </div>
                         </div>
                         <div class="row">
@@ -227,17 +228,13 @@ Principal
                                <label for="genero" class="col-form-label"
                                     >Genero:</label
                                 >
-                                <select class="form-control">
-                                    <option value></option>
-                                    <option value>M</option>
-                                    <option value>F</option>
-                                </select>
+                                {{ form.gender }}
                             </div>
                             <div class="col-md-4 ms-auto">
                                 <label for="condicion-Medica" class="col-form-label"
                                     >Condición médica:</label
                                 >
-                                <textarea class="form-control" id="condicion-Medica"></textarea>
+                                {{ form.medical_condition }}
                             </div>
                         </div>
                         <div class="row">
@@ -245,17 +242,17 @@ Principal
                                 <label for="direccion" class="col-form-label"
                                     >Dirección:</label
                                 >
-                                <input type="text" class="form-control" id="direccion" placeholder="Dirección" />
+                                {{ form.address }}
+                                <label for="suburb" class="col-form-label"
+                                    >colonia:</label
+                                >
+                                {{ form.suburb }}
                             </div>
                             <div class="col-md-4 ms-auto">
                                 <label for="nivel" class="col-form-label"
                                     >Nivel:</label
                                 >
-                                <select class="form-control">
-                                    <option value></option>
-                                    <option value>M</option>
-                                    <option value>F</option>
-                                </select>
+                                {{ form.level }}
                             </div>
                         </div>
                         <div class="row">
@@ -263,13 +260,13 @@ Principal
                                 <label for="codigo-postal" class="col-form-label"
                                     >C.P:</label
                                 >
-                                <input type="text" class="form-control" id="Código-Postal" placeholder="Código Postal" />
+                                {{ form.postal_code}}
                             </div>
                             <div class="col-md-4 ms-auto">
                                 <label for="horario" class="col-form-label"
                                     >Horario:</label
                                 >
-                                <textarea class="form-control" id="horario"></textarea>
+                                {{ form.schedule }}
                             </div>
                         </div>
                         <div class="row">
@@ -277,13 +274,13 @@ Principal
                                <label for="celular" class="col-form-label"
                                     >Celular:</label
                                 >
-                                <input type="text" class="form-control" id="celular" placeholder="Celular" />
+                                {{ form.cel }}
                             </div>
                             <div class="col-md-4 ms-auto">
                                 <label for="email" class="col-form-label"
                                     >Email:</label
                                 >
-                                <input type="email" class="form-control" id="email" placeholder="Email" />
+                                {{ form.email }}
                             </div>
                         </div>
                         <div class="row">
@@ -291,34 +288,22 @@ Principal
                                <label for="estado-civil" class="col-form-label"
                                     >Estado Civil:</label
                                 >
-                                <select class="form-control">
-                                    <option value></option>
-                                    <option value>Soltero</option>
-                                    <option value>Casado</option>
-                                    <option value>Divorciado</option>
-                                    <option value>Union Libre</option>
-                                </select>
+                                {{ form.civil_status }}
                             </div>
                             <div class="col-md-4 ms-auto">
                                 <label for="entero" class="col-form-label"
                                     >¿Cómo se entero?:</label
                                 >
-                                <select class="form-control">
-                                    <option value></option>
-                                    <option value>Facebook</option>
-                                    <option value>Instagram</option>
-                                    <option value>Recomendación</option>
-                                    <option value>otro</option>
-                                </select>
+                                {{ form.heard_from }}
                             </div>
                         </div>
                         
                         
-                        <div class="mb-3">
+                        <!--<div class="mb-3">
                         <label for="message-text" class="col-form-label">Message:</label>
                         <textarea class="form-control" id="message-text"></textarea>
-                        </div>
-                    </form>
+                        </div>-->
+                    
                 </div>
                 <div class="modal-footer">
                     <button
@@ -328,8 +313,184 @@ Principal
                     >
                         Cerrar
                     </button>
-                    <button type="button" class="btn btn-dark">Agregar Cliente</button>
+                    <button type="submit" class="btn btn-dark">Agregar Cliente</button>                
                 </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+    <div
+        class="modal fade"
+        id="clientUpdateModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Datos de Cliente</h5>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+                </div>
+                <form class="contenedor-pop" action="{% url 'acuatica.clientes' %}" method="POST">
+                    {% csrf_token %}
+                <div class="modal-body">                    
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="nombre-Cliente" class="col-form-label"
+                                    >Nombre:</label
+                                >
+                                <input value="{{ cli.pk }}" type="hidden" name="id" />
+                                {{ form.name }}
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="sangre" class="col-form-label"
+                                    >Tipo de sangre:</label
+                                >
+                                {{ form.blood }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="apellido-Paterno" class="col-form-label"
+                                    >Apellido Paterno:</label
+                                >
+                                {{ form.last_name }}
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="avisar-emergencia" class="col-form-label"
+                                    >En caso de emergencia avisar:</label
+                                >
+                                {{ form.emergency_contact }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="apellido-Materno" class="col-form-label"
+                                    >Apellido Materno:</label
+                                >
+                                {{ form.second_last_name }}
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="cel-emergencia" class="col-form-label"
+                                    >Telefono de emergencia:</label
+                                >
+                                {{ form.emergency_phone }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                               <label for="fecha-Nacimiento" class="col-form-label"
+                                    >Fecha Nacimiento:</label
+                                >
+                                {{ form.birth_date }}
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="Dia-de-pago" class="col-form-label"
+                                    >Día de pago:</label
+                                >
+                                {{ form.pay_day }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                               <label for="genero" class="col-form-label"
+                                    >Genero:</label
+                                >
+                                {{ form.gender }}
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="condicion-Medica" class="col-form-label"
+                                    >Condición médica:</label
+                                >
+                                {{ form.medical_condition }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="direccion" class="col-form-label"
+                                    >Dirección:</label
+                                >
+                                {{ form.address }}
+                                <label for="suburb" class="col-form-label"
+                                    >colonia:</label
+                                >
+                                {{ form.suburb }}
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="nivel" class="col-form-label"
+                                    >Nivel:</label
+                                >
+                                {{ form.level }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="codigo-postal" class="col-form-label"
+                                    >C.P:</label
+                                >
+                                {{ form.postal_code}}
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="horario" class="col-form-label"
+                                    >Horario:</label
+                                >
+                                {{ form.schedule }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                               <label for="celular" class="col-form-label"
+                                    >Celular:</label
+                                >
+                                {{ form.cel }}
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="email" class="col-form-label"
+                                    >Email:</label
+                                >
+                                {{ form.email }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                               <label for="estado-civil" class="col-form-label"
+                                    >Estado Civil:</label
+                                >
+                                {{ form.civil_status }}
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="entero" class="col-form-label"
+                                    >¿Cómo se entero?:</label
+                                >
+                                {{ form.heard_from }}
+                            </div>
+                        </div>
+                        
+                        
+                        <!--<div class="mb-3">
+                        <label for="message-text" class="col-form-label">Message:</label>
+                        <textarea class="form-control" id="message-text"></textarea>
+                        </div>-->
+                    
+                </div>
+                <div class="modal-footer">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                    >
+                        Cerrar
+                    </button>
+                    <button type="submit" class="btn btn-dark">Agregar Cliente</button>                
+                </div>
+            </form>
             </div>
         </div>
     </div>
@@ -356,144 +517,13 @@ Principal
                     
                 ></button>
                 </div>
+                <form class="contenedor-pop" action="{% url 'acuatica.inv-save' %}" method="POST">
                 <div class="modal-body">
-                    <form class="contenedor-pop">
-                        <div class="mb-3">
-                            <label for="codigo" class="col-form-label">Codigo:</label>
-                            <input type="text" class="form-control" id="codigo" placeholder="Código">
-                        </div>
-                        <div class="mb-3">
-                            <label for="cat-A" class="col-form-label">Categoria A:</label>
-                            <select id="cat-A" class="form-select" placeholder="Elegir">
-                                <option></option>
-                                <option>opcion</option>                                
-                                <option>opcion</option>
-                                <option>opcion</option>
-
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="cat-B" class="col-form-label">Categoria B:</label>
-                            <select id="cat-B" class="form-select" placeholder="Elegir">
-                                <option></option>
-                                <option>opcion</option>                                
-                                <option>opcion</option>
-                                <option>opcion</option>
-
-                            </select>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="nombre-catalogo" class="col-form-label">Nombre:</label>
-                            <textarea class="form-control" id="nombre-catalogo"></textarea>
-                        </div>
-
-                        <div class="form-check mb-3">
-                            <input type="checkbox" class="form-check-input" id="validationFormCheck1" required>
-                            <label class="form-check-label" for="validationFormCheck1">Visible</label>
-                            <div class="invalid-feedback">Example invalid feedback text</div>
-                        </div>
-                        
-                        <div class="mb-3">
-
-                            <label for="tamano-producto" class="form-label">Tamaño</label>
-                            <select class="form-select" id="tamano-catalogo" required>
-                                <option selected disabled value="">Elegir.....</option>
-                                <option>...</option>
-                            </select>
-                            <div class="invalid-tooltip">
-                                Porfavor Ingresa una opción valida
-                            </div>   
-                            
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="medidas-catalogo" class="col-form-label">Medidas:</label>
-                            <input  class="form-control" type="text" placeholder="Ancho,Largo,Alto en cm" id="medidas-catalogo">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="nombre-corto" class="col-form-label">Nombre corto:</label>
-                            <input  class="form-control" type="text" placeholder="Nombre corto" id="medidas-catalogo">
-                        </div>
-
-                        <div class="form-check mb-3">
-                            <input type="checkbox" class="form-check-input" id="inventario-limitado-catalogo" required>
-                            <label class="form-check-label" for="validationFormCheck1">Inventario limitado</label>
-                            <div class="invalid-feedback">Elige una opción correcta</div>
-                        </div>
-
-                        <div class="mb-3">
-                        
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="">
-                                <label class="form-check-label" for="acuatica-catalogo">
-                                    Acuatica Urioste
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="" checked>
-                                <label class="form-check-label" for="ajustes-contables">
-                                    Ajustes Contables
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="" checked>
-                                <label class="form-check-label" for="mantenimiento-catalogo">
-                                    Mantenimiento
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="" checked>
-                                <label class="form-check-label" for="tiendita-catalogo">
-                                    tiendita
-                                </label>
-                            </div>
-
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="producto-contenido-catalogo" class="col-form-label">Producto Contendido:</label>
-                            <input type="text" class="form-control" id="producto-contenido-catalogo" placeholder="Producto contenido">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="cantidad-minima-catalogo" class="col-form-label">Cantidad mínima:</label>
-                            <input type="text" class="form-control" id="cantidad-minima-catalogo" placeholder="Cantidad mínima">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="cantidad-maxima-catalogo" class="col-form-label">Cantidad máxima:</label>
-                            <input type="text" class="form-control" id="cantidad-maxima-catalogo" placeholder="Cantidad máxima">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="colores-catalogo" class="col-form-label">Colores:</label>
-                            <input type="text" class="form-control" id="colores-catalogo" placeholder="Colores">
-                        </div>
-                        <div class="mb-3">
-                            <label for="descripcion-buscador-catalogo" class="col-form-label">Descripción buscador:</label>
-                            <input type="text" class="form-control" id="descripcion-buscador-catalogo" placeholder="Descripción buscador">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="palabras-clave-catalogo" class="col-form-label">Palabras clave:</label>
-                            <input type="text" class="form-control" id="palabras-clave-catalogo" placeholder="Palabras Clave">
-                        </div>
-                        <div class="mb-3">
-                            <label for="titulo-buscador-catalogo" class="col-form-label">Titulo de Buscador:</label>
-                            <input type="text" class="form-control" id="titulo-buscador-catalogo" placeholder="Titulo de Buscador">
-                        </div>
-                        <div class="mb-3">
-                            <label for="url-catalogo" class="col-form-label">URL amigable:</label>
-                            <input type="text" class="form-control" id="url-catalogo" placeholder="URL amigable">
-                        </div>
-                        
-                        
-                        
-                        
-                        
-                    </form>
+                    
+                        {% csrf_token %}
+                        {{inv_form.as_p}}
+                    
+                    
                 </div>
                 <div class="modal-footer">
                     <button
@@ -504,6 +534,7 @@ Principal
                         Cerrar
                     </button>
                     <button type="submit" class="btn btn-dark">Guardar</button>
+                </form>
                 </div>
             </div>
         </div>

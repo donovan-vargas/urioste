@@ -1,0 +1,150 @@
+.panel-derecho .sale-information {
+  background-color: red;
+  width: 100%;
+  border-radius: 5px 5px 0 0;
+}
+
+.panel-derecho .sale-information .datos-venta {
+  padding: 10px;
+  background-color: #d02d89;
+  border-radius: 5px 5px 0 0;
+}
+.panel-derecho .sale-information .datos-venta .ventas {
+  padding: 5px 10px;
+  display: inline-block;
+  margin-left: 10px;
+  border-radius: 5px;
+  opacity: 1;
+  color: #848484;
+  font-family: "Poppins", sans-serif;
+  background: rgb(255, 255, 255);
+}
+
+.panel-derecho .sale-description {
+  display: flex;
+  flex-direction: row;
+  background-color: #14122f;
+  align-items: center;
+  color: white;
+  font-weight: 300;
+}
+.panel-derecho .sale-description p {
+  display: inline-block;
+  padding: 0 15px;
+  font-size: 20px;
+  font-family: "Poppins", sans-serif;
+  border-right: 1px solid white;
+  margin: 0;
+}
+.panel-derecho .comment {
+  position: absolute;
+  bottom: 10%;
+  left: 25%;
+  width: 100%;
+  align-items: center;
+  align-content: center;
+  height: 20%;
+}
+.panel-derecho .comment textarea {
+  width: 45%;
+  margin: 0 auto;
+  align-content: center;
+  height: 100%;
+  background: rgb(239, 239, 239);
+  text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 5px;
+  border: none;
+}
+
+.panel-derecho .checkout {
+  background: #212529;
+  width: 20%;
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  right: 0;
+  height: 40%;
+  border-radius: 0 0 5px 5px;
+}
+
+.panel-derecho .checkout table {
+  display: inline-block;
+  width: 95%;
+
+  color: white;
+  font-family: "Poppins", sans-serif;
+  padding: 10px;
+}
+
+.panel-derecho .checkout table {
+  margin-top: 5px;
+}
+
+.panel-derecho .checkout .tabla .elemento-cobro .input-cobro {
+  width: 100%;
+  margin-left: 5px;
+  margin-top: 15px;
+}
+.panel-derecho .checkout table .brake-line {
+  width: 120%;
+  border-bottom: 1px solid white;
+}
+
+.panel-derecho .checkout .tabla .elemento-cobro p {
+  display: inline-block;
+  margin-top: 15px;
+}
+.cancel {
+  text-decoration: none;
+}
+
+.bg-pay {
+  background-color: #eee;
+  border-radius: 2px;
+}
+
+.com-color {
+  color: #8f37aa !important;
+}
+
+.radio {
+  cursor: pointer;
+}
+
+label.radio input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+label.radio div {
+  padding: 7px 14px;
+  border: 2px solid #8f37aa;
+  display: inline-block;
+  color: #8f37aa;
+  border-radius: 3px;
+  text-transform: uppercase;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+label.radio input:checked + div {
+  border-color: #8f37aa;
+  background-color: #8f37aa;
+  color: #fff;
+}
+
+.fw-500 {
+  font-weight: 400;
+}
+
+.lh-16 {
+  line-height: 16px;
+}

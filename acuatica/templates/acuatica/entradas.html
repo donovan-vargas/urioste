@@ -1,8 +1,9 @@
 {% extends "acuatica/acuatica.html" %} {% load static %} {% block title%}
 Entradas{% endblock %} {%block right_content %}
 <div class="panel-derecho">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 0">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 0">    
     <div class="container-fluid" style="padding: 4px 15px 4px 15px">
+      <form class="d-flex" action="{% url 'acuatica.inputs' %}" method="GET">
       <p style="margin-right: 20px">Entradas</p>
       <button
         class="navbar-toggler"
@@ -18,7 +19,7 @@ Entradas{% endblock %} {%block right_content %}
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li style="margin-right: 20px">
-            <label for="sucursalDataList" class="form-label">Sucursal:</label>
+            <!--<label for="sucursalDataList" class="form-label">Sucursal:</label>
             <input
               class="form-control"
               list="sucursallistOptions"
@@ -31,11 +32,11 @@ Entradas{% endblock %} {%block right_content %}
               <option value="Seattle"></option>
               <option value="Los Angeles"></option>
               <option value="Chicago"></option>
-            </datalist>
+            </datalist>-->
           </li>
           <li class="nav-item" style="margin-right: 20px">
             <label for="cantidad-entradas" class="form-label">Cantidad:</label>
-            <input class="form-control" type="text" placeholder="Cantidad..." />
+            <input class="form-control" type="number" placeholder="Cantidad..." id="quantity" name="quantity" required/>
           </li>
           <li class="nav-item dropdown">
             <label for="sucursalDataList" class="form-label">Producto:</label>
@@ -44,23 +45,21 @@ Entradas{% endblock %} {%block right_content %}
               list="productolistOptions"
               id="productoDataList"
               placeholder="Elegir..."
+              autocomplete="off"
+              name="product"
+              required
             />
             <datalist id="productolistOptions">
-              <option value="San Francisco"></option>
-              <option value="New York"></option>
-              <option value="Seattle"></option>
-              <option value="Los Angeles"></option>
-              <option value="Chicago"></option>
+              {% for i in inv %}
+              <option value="{{i.id}} {{i.name}}"></option>              
+              {% endfor %}
             </datalist>
           </li>
-        </ul>
-        <form class="d-flex">
+        </ul>        
           <button
-            type="button"
-            class="btn btn-dark"
-            data-bs-toggle="modal"
-            data-bs-whatever="@mdo"
-            style="font-size: 12px"
+            type="submit"
+            class="btn btn-dark"            
+            style="font-size: 12px"            
           >
             Hacer entrada
           </button>
@@ -68,20 +67,40 @@ Entradas{% endblock %} {%block right_content %}
       </div>
     </div>
   </nav>
-
-  <div class="sale-description">
-    <p>Cantidad</p>
-    <p>Codigo</p>
-    <p>Producto</p>
-  </div>
-  <div class="comment">
-    <textarea
-      id="title"
-      type="text "
-      onkeyup="Allow()"
-      placeholder="Escribe algun comentario......"
-    ></textarea>
-  </div>
+  <form action="{% url 'acuatica.inputs' %}" method="post">
+    {% csrf_token %}
+    <div class="sale-description">
+      <p>Cantidad</p>
+      <p>Codigo</p>
+      <p>Producto</p>
+    </div>
+    
+    <table id="productTable" class="table table-bordered table-condensed table-striped">
+      {% for data in data_table %}      
+      <tr>
+        <td>{{data.quantity}}</td>
+        <td>{{data.id}}</td>
+        <td>{{data.name}}</td>
+      </tr>
+      <input type="hidden" name="data" value='{{data_table}}'>
+      {% endfor %}
+    </table>
+    <div class="comment">
+      <textarea
+        id="title"
+        type="text "
+        onkeyup="Allow()"
+        placeholder="Escribe algun comentario......"
+      ></textarea>
+      <button
+        type="submit"
+        class="btn btn-dark"                        
+        style="font-size: 12px"
+      >
+        Crear entrada
+      </button>
+    </div>
+  </form>
 </div>
 
 {% endblock%}

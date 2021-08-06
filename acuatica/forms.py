@@ -5,8 +5,15 @@ from django.contrib.auth.models import User
 from django.contrib import admin
 from django.contrib.admin.widgets import AdminDateWidget
 from datetime import datetime
-from acuatica.models import Inventario, Inputs
+from acuatica.models import Inventario, Inputs, Clients
 from django.contrib.auth.forms import UserCreationForm
+
+
+class StylishForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs.update({'class': 'form-control'})
 
 
 class LoginForm(forms.Form):
@@ -32,6 +39,19 @@ class InputsForm(forms.ModelForm):
             'inventario': AutocompleteSelect(
                 Inputs._meta.get_field('inventario').remote_field,
                 admin.site,
-                attrs={'placeholder': 'Seleccionar...'},
+                attrs={'placeholder': 'Seleccionar...', 'class': 'form-control'},
             )
         }
+
+class InventarioForm(forms.ModelForm):
+
+    class Meta:
+        model = Inventario
+        fields = '__all__'
+
+
+class ClientsForm(StylishForm):
+
+    class Meta:
+        model = Clients
+        fields = '__all__'

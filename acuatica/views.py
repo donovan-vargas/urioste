@@ -148,8 +148,10 @@ def clients(request):
     return render(request, 'acuatica/clientes.html', context)
 
 
-def catalogo(request):
-    return render(request, 'acuatica/catalogo.html')
+def catalogo(request):    
+    context = {"inv_form": InventarioForm}
+
+    return render(request, 'acuatica/catalogo.html', context)
 
 
 def inputs(request):

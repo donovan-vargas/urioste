@@ -1,5 +1,7 @@
 {% extends "acuatica/acuatica.html" %} {% load static %} {% block title%}
-Ventas{% endblock %} {%block right_content %}
+Ventas{% endblock %}
+ 
+{%block right_content %}
 <div class="panel-derecho">
   <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 0">
     <div class="container-fluid" style="padding: 4px 15px 4px 15px">
@@ -60,62 +62,29 @@ Ventas{% endblock %} {%block right_content %}
             </datalist>
           </li>
           <li class="nav-item" style="margin-right: 20px">
-            <label for="formaPago" class="form-label">Forma Pago:</label>
+            <label for="formaPago" class="form-label">Fecha:</label>
             <input
+              type="date"
               class="form-control"
-              id="formaPago"
-              list="formaPagoReportes"
-              placeholder="cantidad..."
+              id="fechaVenta"
+              
+              
             />
-            <datalist id="formaPagoReportes">
-              <option value="Efectivo"></option>
-              <option value="Tarjeta credito"></option>
-              <option value="Banco"></option>
-            </datalist>
           </li>
-          <li class="nav-item" style="margin-right: 20px">
-            <label for="sucursalReportes" class="form-label">Sucursal:</label>
-            <input
-              class="form-control"
-              id="sucursalReportes"
-              list="sucursallistaReportes"
-              placeholder="cantidad..."
-            />
-            <datalist id="sucursallistareportes">
-              <option value="Acuatica"></option>
-              <option value="Tiendita"></option>
-              <option value="Mantenimiento"></option>
-              <option value="Ajustes contables"></option>
-            </datalist>
+          <li class="nav-item" style="margin-right: 20px;">
+            <button type="button"
+            type="button"
+                class="btn btn-dark mt-4"
+                data-bs-toggle="modal"
+                data-bs-target="#rangedate"
+                data-bs-whatever="@mdo"
+                style="font-size: 15px"
+            >Periodo de Tiempo</button>
           </li>
-          <li class="nav-item" style="margin-right: 20px">
-            <label for="categoriaA" class="form-label">Categoria A:</label>
-            <input
-              class="form-control"
-              id="categoriaA"
-              list="categoriaAReportes"
-              placeholder="cantidad..."
-            />
-            <datalist id="categoriaAReportes">
-              <option value="elemento 1"></option>
-              <option value="elemento 2"></option>
-              <option value="elemento 3"></option>
-            </datalist>
-          </li>
-          <li class="nav-item" style="margin-right: 20px">
-            <label for="categoriaB" class="form-label">Categoria B:</label>
-            <input
-              class="form-control"
-              id="categoriaB"
-              list="categoriaBReportes"
-              placeholder="cantidad..."
-            />
-            <datalist id="categoriaBReportes">
-              <option value="elemento 1"></option>
-              <option value="elemento 2"></option>
-              <option value="elemento 3"></option>
-            </datalist>
-          </li>
+          
+          
+          
+          
         </ul>
         <form class="d-flex">
           <button

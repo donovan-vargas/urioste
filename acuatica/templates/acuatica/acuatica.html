@@ -15,6 +15,8 @@ Principal
 <link rel="stylesheet" href="{% static 'styles/entradas.css' %}"></link>
 <link rel="stylesheet" href="{% static 'styles/reporteventas.css' %}"></link>
 
+
+
 {% endblock %}
 {% block site_js %}
 
@@ -522,6 +524,55 @@ Principal
                     
                         {% csrf_token %}
                         {{inv_form.as_p}}
+                    
+                    
+                </div>
+                <div class="modal-footer">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                    >
+                        Cerrar
+                    </button>
+                    <button type="submit" class="btn btn-dark">Guardar</button>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div
+        class="modal fade"
+        id="rangedate"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="periodo">Periodo de Ventas</h5>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                        
+                    ></button>
+                </div>
+                <form class="contenedor-pop" action="" method="POST">
+                <div class="modal-body">
+                    
+                        {% csrf_token %}
+                        <label for="firstDate" class="form-label">De:</label>
+                        <input type="date"
+                        class="form-control">
+
+                        <label style="margin-top: 10px;" for="secondDate" class="form-label">A:</label>
+                        <input type="date"
+                        class="form-control">
+                        
+
                     
                     
                 </div>

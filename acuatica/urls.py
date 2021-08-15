@@ -16,7 +16,8 @@ urlpatterns = [
     url(r'^catalogo/$', views.catalogo, name='acuatica.catalogo'),
     url(r'^entradas/$', views.inputs, name='acuatica.inputs'),
     url(r'^reporte-ventas/$', views.sales_report, name='acuatica.sales-report'),
-    url(r'^inv-save/$', views.inv_save, name='acuatica.inv-save'),    
+    url(r'^inv-save/$', views.inv_save, name='acuatica.inv-save'),
     url(r'^sales-charge/$', views.sales_charge, name='acuatica.sales-charge'),
+    url(r'^sale-ticket/$', views.ticket, name='acuatica.sales-ticket'),
 
 ]

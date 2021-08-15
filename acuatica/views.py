@@ -77,13 +77,13 @@ def logoutUser(request):
     messages = "Hasta pronto"
     return redirect('acuatica.login')
 
+
 def calculate_sales(data):
     total = 0
     for d in data:
         item_subtotal = int(d.get('quantity', 1)) * int(d.get('cost', 0))
         total += item_subtotal
     return total
-    
 
 
 def sales(request):
@@ -93,17 +93,18 @@ def sales(request):
     data = []
     data_sale = f"{request.user.username}_sales_total"
     data = cache.get(data_sale, [])
-    if request.method == 'POST':        
+    if request.method == 'POST':
         quantity = request.POST.get('quantity', 1)
-        inventario = request.POST.get('inventario')        
-        model_product = Inventario.objects.filter(pk=inventario, total_cuantity__gte=quantity).values('id', 'name', 'cost')
+        inventario = request.POST.get('inventario')
+        model_product = Inventario.objects.filter(
+            pk=inventario, total_cuantity__gte=quantity).values('id', 'name', 'cost')
         if model_product.count() > 0:
             product = list(model_product)
             product = product[0]
-            product['quantity'] = quantity            
-            data.append(product)            
+            product['quantity'] = quantity
+            data.append(product)
             cache.set(data_sale, data, 300)
-    
+
     total = calculate_sales(data)
     clients = Clients.objects.all()
     context['form'] = form
@@ -113,19 +114,20 @@ def sales(request):
     context['clients'] = clients
     return render(request, 'acuatica/venta_normal.html', context)
 
+
 class SalesView(CreateView):
-    model = Inputs    
+    model = Inputs
     form_class = InputsForm
     template_name = "acuatica/venta_normal.html"
     success_url = reverse_lazy("acuatica.sales")
 
 
-def clients(request):    
+def clients(request):
     form = ClientsForm()
-    context = {'form': form}        
+    context = {'form': form}
     if request.method == 'POST':
         pk = request.POST.get("id")
-        if pk:            
+        if pk:
             cli = Clients.objects.get(pk=pk)
             form = ClientsForm(request.POST, instance=cli)
         else:
@@ -136,19 +138,19 @@ def clients(request):
     client = request.GET.get('client')
     if client:
         client = client.split()
-        try:        
+        try:
             cli = Clients.objects.get(pk=client[0])
-        except Exception as e:            
-            messages.error(request, "Escoja un usario de la lista")            
+        except Exception as e:
+            messages.error(request, "Escoja un usario de la lista")
         else:
             context['cli'] = cli
-            context['form'] = ClientsForm(instance=cli)    
+            context['form'] = ClientsForm(instance=cli)
     clients = Clients.objects.all()
     context['clients'] = clients
     return render(request, 'acuatica/clientes.html', context)
 
 
-def catalogo(request):    
+def catalogo(request):
     context = {"inv_form": InventarioForm}
 
     return render(request, 'acuatica/catalogo.html', context)
@@ -160,29 +162,30 @@ def inputs(request):
     context['inv'] = Inventario.objects.all().values('name', 'id')
     cache_data = f"{request.user.username}_inputs"
     if request.method == 'GET':
-        id = request.GET.get('product', "0 0")        
+        id = request.GET.get('product', "0 0")
         data = cache.get(cache_data, [])
         try:
             id = int(id.split()[0])
         except Exception as e:
             messages.error(request, "Revise los datos")
-        else:            
-            model_product = Inventario.objects.filter(pk=id).values('id', 'name', 'cost')
-            if model_product.count() > 0:            
+        else:
+            model_product = Inventario.objects.filter(
+                pk=id).values('id', 'name', 'cost')
+            if model_product.count() > 0:
                 product = list(model_product)
                 product = product[0]
                 product['quantity'] = request.GET.get("quantity", 1)
-                data.append(product)   
+                data.append(product)
                 cache.set(cache_data, data, 300)
-    if request.method == "POST":        
+    if request.method == "POST":
         data_table = request.POST.get('data')
         data_table = ast.literal_eval(data_table)
-        for d in data_table:            
+        for d in data_table:
             Inputs(
                 inventario=Inventario.objects.get(id=d['id']),
                 cuantity=d['quantity'],
                 comments='',
-                sale=0                
+                sale=0
             ).save()
         cache.delete(cache_data)
         messages.success(request, "Entrada creada")
@@ -195,6 +198,7 @@ def sales_report(request):
     sales_report = Sales.objects.all()
     context['sales'] = sales_report
     return render(request, 'acuatica/reporte-ventas.html', context)
+
 
 def inv_save(request):
     form = InputsForm()
@@ -214,28 +218,30 @@ def inv_save(request):
             inp.save()
             messages.success(request, 'Guardado')
         else:
-            messages.error(request, 'Ocurrio un error')        
+            messages.error(request, 'Ocurrio un error')
     return render(request, 'acuatica/venta_normal.html', context)
+
 
 @transaction.atomic
 def sales_charge(request):
-    data_sale = f"{request.user.username}_sales_total"    
+    data_sale = f"{request.user.username}_sales_total"
     if request.method == 'POST':
         try:
             cash = int(request.POST.get('cash'))
-            total = int(request.POST.get('total'))            
+            total = int(request.POST.get('total'))
             items = request.POST.getlist('inv')
-            client = request.POST.get('client')            
-            client = client.split()        
+            client = request.POST.get('client')
+            client = client.split()
             cli = Clients.objects.get(pk=client[0])
         except Exception as e:
-            messages.error(request, "Algo salio mal valide los datos y vuelva a intentar")
+            messages.error(
+                request, "Algo salio mal valide los datos y vuelva a intentar")
             return redirect('acuatica.sales')
         if cash < total:
             messages.error(request, "Debe ser mayor al total de la compra")
         elif total <= 0:
             messages.error(request, "Nada que cobrar")
-        else:                
+        else:
             sales = Sales()
             sales.user = request.user
             sales.cash = cash
@@ -245,7 +251,7 @@ def sales_charge(request):
             for item in items:
                 x = item.split(',')
                 inv_sales = InvSales()
-                inv_sales.user = request.user                
+                inv_sales.user = request.user
                 inv_sales.sales = sales
                 inv_sales.inventory = Inventario.objects.get(pk=x[0])
                 inv_sales.quantity = x[1]
@@ -253,4 +259,7 @@ def sales_charge(request):
             cache.delete(data_sale)
             messages.success(request, "Venta cobrada")
     return redirect('acuatica.sales')
-    
+
+
+def ticket(request):
+    return render(request, "ticket.html")

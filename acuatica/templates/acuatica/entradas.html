@@ -49,10 +49,13 @@ Entradas{% endblock %} {%block right_content %}
           >
             Hacer Entrada
           </button>
+
           </li>
+          
         </ul>        
           
         </form>
+        
       </div>
     </div>
   </nav>
@@ -61,15 +64,15 @@ Entradas{% endblock %} {%block right_content %}
     <div class="container p-0" style="width: 100%;">
       <table id="" class="table table-bordered table-condensed table-striped">
             
-        <tr>
-          <td>Cantidad</td>
-          <td>Codigo</td>
-          <td>Producto</td>
+        <tr class="border-top-0" style="background-color: #212529;">
+          <td class="border-top-0 text-light">Cantidad</td>
+          <td class="border-top-0 text-light">Codigo</td>
+          <td class="border-top-0 text-light">Producto</td>
         </tr>
-      </table>
+      
     
     
-      <table id="productTable" class="table table-bordered table-condensed table-striped">
+      
         {% for data in data_table %}      
         <tr>
           <td>{{data.quantity}}</td>
@@ -80,17 +83,11 @@ Entradas{% endblock %} {%block right_content %}
         {% endfor %}
       </table>
     </div>
-    <div class="comment">
-      <textarea
-        id="title"
-        type="text "
-        onkeyup="Allow()"
-        placeholder="Escribe algun comentario......"
-      ></textarea>
+    
       <button
         type="submit"
-        class="btn btn-dark"                        
-        style="font-size: 12px"
+        class="btn btn-outline-dark position-absolute bottom-0 start-50 translate-middle-x mb-3 p-2 hover-shadow"                        
+        style="font-size: 20px"
       >
         Crear entrada
       </button>

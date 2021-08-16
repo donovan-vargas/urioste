@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect, resolve_url
 from .forms import LoginForm, CreateUserForm, InputsForm, InventarioForm, ClientsForm
 from django.urls import reverse
 from .models import Inventario, Inputs, Clients, Sales, InvSales
+from django.contrib.auth import get_user_model
+
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.generic import ListView, CreateView, UpdateView, DetailView
 from django.urls import reverse_lazy
@@ -196,7 +198,19 @@ def inputs(request):
 def sales_report(request):
     context = {}
     sales_report = Sales.objects.all()
-    context['sales'] = sales_report
+    if request.method == "POST":
+        client = request.POST.get('client')
+        status = request.POST.get('status')
+        user = request.POST.get('user')
+        init_date = request.POST.get('init_date')
+        end_date = request.POST.get('end_date', init_date)
+        sales_report = Sales.objects.filter(
+            client=client,
+            status=status,
+            user=user,
+            created__range=[init_date, end_date]
+        )    
+    context['sales'] = sales_report    
     return render(request, 'acuatica/reporte-ventas.html', context)
 
 
@@ -256,6 +270,12 @@ def sales_charge(request):
                 inv_sales.inventory = Inventario.objects.get(pk=x[0])
                 inv_sales.quantity = x[1]
                 inv_sales.save()
+                inputs = Inputs()
+                inputs.inventario = Inventario.objects.get(pk=x[0])
+                inputs.cuantity = 0
+                inputs.sale = x[1]
+                inputs.comments = ''
+                inputs.save()
             cache.delete(data_sale)
             messages.success(request, "Venta cobrada")
     return redirect('acuatica.sales')

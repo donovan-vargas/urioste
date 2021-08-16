@@ -169,10 +169,17 @@ post_delete.connect(update_total_cuantity_sale, sender=Inputs)
 
 
 class Sales(models.Model):
+    TERMINADO = 'T'
+    CANCELADO = 'C'    
+    STATUS_CHOICE = (
+        (TERMINADO, 'Terminado'),
+        (CANCELADO, 'Cancelado'),
+    )
     user = models.ForeignKey(User, related_name='cajero', on_delete=models.DO_NOTHING)
     client = models.ForeignKey(Clients, on_delete=models.DO_NOTHING)
     cash = models.FloatField()
     total = models.FloatField()
+    status = models.CharField(max_length=20, choices=STATUS_CHOICE, default=TERMINADO)    
     created = models.DateField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 

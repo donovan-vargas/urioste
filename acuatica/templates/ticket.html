@@ -1,7 +1,7 @@
 {% extends "acuatica/acuatica.html" %}{% load static %}
 {% block title %}ticket{% endblock %}
 {% block right_content %}
-<div class="position-absolute top-200px end-0" style="width: 76mm;">
+<div class="position-absolute top-200px end-0" style="width: 76mm;" id="contenido">
             <div class="bg-pay p-3 text-center">
                 <span class="font-weight-bold" >Resumen de Venta</span>
                 <div class="fecha">
@@ -70,7 +70,9 @@
             </div>
         </div>
 </div>
+<a type="button" id="crearimagen" target="_blank" class="position-absolute top-200px end-0">Imprimir</a>
 
+<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
   <script>
     var f = new Date();
     var hola = document.write(f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear());
@@ -78,5 +80,53 @@
     
     var fecha = document.getElementById("fechaventa").innerHTML ="Fecha de la venta:            "+ f.getDate() + "-" + (f.getMonth() +1) + "-" + f.getFullYear() ;
     var hora = document.getElementById("horaventa").innerHTML = "Hora de la venta:              "+ f.getHours() + ":" + (f.getMinutes() + ":" + f.getSeconds() );
+
+
+
+    $(function() { 
+          $("#crearimagen").click(function() { 
+              html2canvas($("#contenido"), {
+                  onrendered: function(canvas) {
+                      theCanvas = canvas;
+                      canvas.setAttribute('id','canvas')
+                      document.body.appendChild(canvas);
+                      var canvas2 = document.getElementById('canvas');
+                      var img = canvas2.toDataURL("image/png");
+                      console.log(img);
+                      document.body.append(img);
+                      /*
+                      canvas.toBlob(function(blob) {
+                        saveAs(blob, "Dashboard.png"); 
+                      });
+                      */
+                      var w = window.open();
+                      w.document.write("<br><img src='"+img+"'/>");
+                      w.document.close(); // necessary for IE >= 10
+                      w.focus(); // necessary for IE >= 10
+                      w.print();
+                      w.location.reload();
+                  }
+              });
+              
+              
+              //var printContents = document.getElementById('canvas');
+                /*var w = window.open();
+                w.document.write("<br><img src='"+canvas2.toDataURL()+"'/>");
+                //w.document.close(); // necessary for IE >= 10
+                w.focus(); // necessary for IE >= 10
+                w.print();
+                w.location.reload();
+                
+                return true*/
+
+
+              
+          });
+
+
+
+          
+    });
+
     </script>
 {% endblock %}

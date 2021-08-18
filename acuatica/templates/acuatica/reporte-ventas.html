@@ -31,10 +31,11 @@ Ventas{% endblock %}
               id="client"
               name="client"
               placeholder="Cliente..."
+              autocomplete="off"
             />
             <datalist id="reporteclientelistOptions">
               {% for sale in sales %}
-              <option value="{{sale.client.id}}"></option>              
+              <option value="{{sale.client.id}}">{{ sale.client }}</option>              
               {% endfor %}
             </datalist>
           </li>
@@ -45,11 +46,12 @@ Ventas{% endblock %}
               id="status"
               name="status"
               list="estadoReportes"
-              placeholder="cantidad..."
+              placeholder="estatus..."
+              autocomplete="off"
             />
             <datalist id="estadoReportes">
-              <option value="Terminado"></option>
-              <option value="Cancelado"></option>
+              <option value="T"></option>
+              <option value="C"></option>
             </datalist>
           </li>
           <li class="nav-item" style="margin-right: 20px">
@@ -60,10 +62,11 @@ Ventas{% endblock %}
               id="user"
               name="user"
               placeholder="Cliente..."
+              autocomplete="off"
             />
             <datalist id="realizoventa">
               {% for sale in sales %}
-              <option value="{{sale.user.id}}"></option>              
+              <option value="{{sale.user.id}}">{{ sale.user }}</option>              
               {% endfor %}
             </datalist>
           </li>
@@ -74,8 +77,7 @@ Ventas{% endblock %}
               name="init_date"
               class="form-control"
               id="init_date"
-              
-              
+              autocomplete="off"              
             />
           </li>
           <li class="nav-item" style="margin-right: 20px;">
@@ -125,5 +127,6 @@ Ventas{% endblock %}
         {% endfor %}
     </tbody>
   </table>
+  <p>total: {{total.total__sum}}</p>
 </div>
 {% endblock%}

@@ -5,7 +5,8 @@ from .forms import LoginForm, CreateUserForm, InputsForm, InventarioForm, Client
 from django.urls import reverse
 from .models import Inventario, Inputs, Clients, Sales, InvSales
 from django.contrib.auth import get_user_model
-
+from django.db.models import Q
+from django.db.models import Sum
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.generic import ListView, CreateView, UpdateView, DetailView
 from django.urls import reverse_lazy
@@ -198,19 +199,32 @@ def inputs(request):
 def sales_report(request):
     context = {}
     sales_report = Sales.objects.all()
+    if request.method == 'GET':
+        total = Sales.objects.all().aggregate(Sum('total'))
+        sales_report = Sales.objects.all()
     if request.method == "POST":
         client = request.POST.get('client')
         status = request.POST.get('status')
         user = request.POST.get('user')
         init_date = request.POST.get('init_date')
-        end_date = request.POST.get('end_date', init_date)
-        sales_report = Sales.objects.filter(
-            client=client,
-            status=status,
-            user=user,
-            created__range=[init_date, end_date]
-        )    
-    context['sales'] = sales_report    
+        end_date = request.POST.get('end_date')
+        query = Q()
+        if client:
+            query &= Q(client=client)
+        if status:
+            query &= Q(status=status)
+        if user:
+            query &= Q(user=user)
+        if init_date and end_date:
+            query &= Q(created__gte=init_date)
+            query &= Q(created__lte=end_date)
+        elif init_date:
+            query &= Q(created=init_date)            
+            
+        sales_report = Sales.objects.filter(query)
+        total = Sales.objects.filter(query).aggregate(Sum('total'))        
+    context['total'] = total
+    context['sales'] = sales_report        
     return render(request, 'acuatica/reporte-ventas.html', context)
 
 

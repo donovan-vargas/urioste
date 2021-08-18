@@ -125,14 +125,14 @@ Ventas{% endblock %} {%block right_content %}
     <div class="bg-pay p-3">
       <span class="font-weight-bold">Resumen de Venta</span>
       <div class="d-flex justify-content-between mt-2">
-        <span class="fw-500">Subtotal </span> <span>$ precio </span>
+        <span class="fw-500">Subtotal $</span> <span> 0 </span>
       </div>
       <div class="d-flex justify-content-between mt-2">
-        <span class="fw-500">Iva</span> <span>$0.0</span>
+        <span class="fw-500">Iva $ </span> <span>$0.0</span>
       </div>
       <div class="d-flex justify-content-between mt-2">
-        <span class="fw-500">Total </span>
-        <span class="text-success">${{total}}</span>
+        <span class="fw-500">Total $ </span>
+        <span class="text-success" id="sale_total">{{total}}</span>
       </div>
 
       <hr />
@@ -168,6 +168,7 @@ Ventas{% endblock %} {%block right_content %}
                 class="form-control form-control-sm"
                 id="colFormLabelSm"
                 name="cash"
+                oninput="onclickhandler(this)"
               />
             </div>
           </div>
@@ -217,7 +218,7 @@ Ventas{% endblock %} {%block right_content %}
           <hr />
           <div class="d-flex justify-content-between mt-2">
             <span class="fw-500">Cambio </span>
-            <span class="text-danger">$cambio</span>
+            <span class="text-danger" id="coins">$cambio</span>
           </div>
           <button type="submit" class="btn btn-dark" style="font-size: 12px">
             Cobrar

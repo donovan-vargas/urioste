@@ -27,7 +27,7 @@ class LevelAdmin(admin.ModelAdmin):
 
 @admin.register(Sales)
 class SalesAdmin(admin.ModelAdmin):
-    list_display = ('user', 'client', 'cash', 'total')
+    list_display = ('user', 'client', 'cash', 'total', 'created')
 
 @admin.register(InvSales)
 class InvSalesAdmin(admin.ModelAdmin):

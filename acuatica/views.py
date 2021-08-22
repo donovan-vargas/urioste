@@ -219,12 +219,12 @@ def sales_report(request):
             query &= Q(created__gte=init_date)
             query &= Q(created__lte=end_date)
         elif init_date:
-            query &= Q(created=init_date)            
-            
+            query &= Q(created=init_date)
+
         sales_report = Sales.objects.filter(query)
-        total = Sales.objects.filter(query).aggregate(Sum('total'))        
+        total = Sales.objects.filter(query).aggregate(Sum('total'))
     context['total'] = total
-    context['sales'] = sales_report        
+    context['sales'] = sales_report
     return render(request, 'acuatica/reporte-ventas.html', context)
 
 
@@ -296,4 +296,9 @@ def sales_charge(request):
 
 
 def ticket(request):
-    return render(request, "ticket.html")
+    context = {}
+    sales_user = Sales.objects.all()[Sales.objects.count()-1]
+    inv_sale = InvSales.objects.filter(sales=sales_user.pk)
+    context['sales'] = sales_user
+    context['invSales'] = inv_sale
+    return render(request, "ticket.html", context)

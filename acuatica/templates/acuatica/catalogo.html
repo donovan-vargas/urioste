@@ -16,68 +16,22 @@ Catalogo {% endblock %} {% block right_content %}
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li style="margin-right: 20px">
-            <label for="exampleDataList" class="form-label">Categoria A:</label>
-            <input
-              class="form-control"
-              list="datalistOptions"
-              id="exampleDataList"
-              placeholder="Elegir..."
-            />
-            <datalist id="datalistOptions">
-              <option value="San Francisco"></option>
-              <option value="New York"></option>
-              <option value="Seattle"></option>
-              <option value="Los Angeles"></option>
-              <option value="Chicago"></option>
-            </datalist>
-          </li>
-          <li class="nav-item" style="margin-right: 20px">
-            <label for="exampleDataList" class="form-label">Categoria B:</label>
-            <input
-              class="form-control"
-              list="datalistOptions"
-              id="exampleDataList"
-              placeholder="Elegir..."
-            />
-            <datalist id="datalistOptions">
-              <option value="San Francisco"></option>
-              <option value="New York"></option>
-              <option value="Seattle"></option>
-              <option value="Los Angeles"></option>
-              <option value="Chicago"></option>
-            </datalist>
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Sucursal
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Acuatica</a></li>
-              <li><hr class="dropdown-divider" /></li>
-              <li><a class="dropdown-item" href="#">Ajustes Contables</a></li>
-              <li><hr class="dropdown-divider" /></li>
-              <li><a class="dropdown-item" href="#">Tiendita</a></li>
-              <li><hr class="dropdown-divider" /></li>
-              <li><a class="dropdown-item" href="#">Mantenimiento</a></li>
-            </ul>
-          </li>
-        </ul>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
         <form class="d-flex">
           <input
             class="form-control me-2"
-            type="search"
-            placeholder=""
+            list="datalistCatalogOptions"
+            id="catalogDataList"
+            placeholder="Buscar Producto"
             aria-label="Search"
+            autocomplete="off"
+            name="inventory"
           />
+          <datalist id="datalistCatalogOptions">
+            {% for i in inventory %}
+            <option value="{{i.name}}{{i.total_cuantity}}"></option>
+            {% endfor %}
+          </datalist>
           <button
             type="button"
             class="btn btn-dark"
@@ -92,5 +46,24 @@ Catalogo {% endblock %} {% block right_content %}
       </div>
     </div>
   </nav>
+  {% if inv %}
+  <div class="card text-white bg-secondary mb-3" style="max-width: 18rem">
+    <div class="card-header">{{inv.name}}</div>
+    <div class="card-body">
+      <h5 class="card-title"></h5>
+      <p class="card-text">Dia de pago:</p>
+      <p class="card-text">Telefono:</p>
+      <button
+        type="button"
+        class="btn btn-dark"
+        data-bs-toggle="modal"
+        data-bs-target="#clientUpdateModal"
+        data-bs-whatever="@mdo"
+      >
+        Actualizar
+      </button>
+    </div>
+  </div>
+  {% endif %}
 </div>
 {% endblock %}

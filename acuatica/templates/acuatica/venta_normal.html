@@ -112,7 +112,7 @@ Ventas{% endblock %} {%block right_content %}
         {% endfor %}
       </tbody>
     </table>
-  </div>  
+  </div>
   <div class="position-absolute top-200px end-0">
     <div class="bg-pay p-3">
       <span class="font-weight-bold">Resumen de Venta</span>
@@ -207,20 +207,24 @@ Ventas{% endblock %} {%block right_content %}
               {%endfor%}
             </datalist>
           </div>
+          <div class="row mb-3 d-flex justify-content-between mt-2">
+            <input
+              class="form-control"
+              list="datalistClientOptions"
+              id="title"
+              placeholder="Comentarios..."
+              style="margin-right: 20px"
+              name="comentario"
+              onkeyup="Allow()"
+              autocomplete="off"
+            />
+          </div>
           <hr />
           <div class="d-flex justify-content-between mt-2">
             <span class="fw-500">Cambio </span>
             <span class="text-danger" id="coins">$cambio</span>
           </div>
-          <div class="comment">
-            <textarea
-              id="title"
-              type="text "
-              onkeyup="Allow()"
-              name="comments"
-              placeholder="Escribe algun comentario......"
-            ></textarea>
-          </div>
+
           <button type="submit" class="btn btn-dark" style="font-size: 12px">
             Cobrar
           </button>

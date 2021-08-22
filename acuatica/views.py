@@ -1,7 +1,7 @@
 import ast
 from datetime import date
 from django.shortcuts import render, redirect, resolve_url
-from .forms import LoginForm, CreateUserForm, InputsForm, InventarioForm, ClientsForm
+from .forms import LoginForm, CreateUserForm, InputsForm, InventarioForm, ClientsForm, InventoryForm
 from django.urls import reverse
 from .models import Inventario, Inputs, Clients, Sales, InvSales
 from django.contrib.auth import get_user_model
@@ -154,8 +154,32 @@ def clients(request):
 
 
 def catalogo(request):
-    context = {"inv_form": InventarioForm}
+    form = InventoryForm()
+    context = {"inv_form": form}
 
+    if request.method == 'POST':
+        pk = request.POST.get("id")
+        if pk:
+            inv = Inventario.objects.get(pk=pk)
+            form = InventoryForm(request.POST, instance=inv)
+        else:
+            form = InventoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Prodcuto agregado")
+    inventory = request.GET.get('inventory')
+    if inventory:
+        inventory = inventory.split()
+        try:
+            inv = Inventario.objects.get(pk=inventory[0])
+        except Exception as e:
+            messages.error(request, "Escoja un producto de la lista")
+        else:
+            context['inv'] = inv
+            context['inv_form'] = InventoryForm(instance=inv)
+
+    inventorys = Inventario.objects.all()
+    context['inventory'] = inventorys
     return render(request, 'acuatica/catalogo.html', context)
 
 
@@ -259,7 +283,7 @@ def sales_charge(request):
             total = int(request.POST.get('total'))
             items = request.POST.getlist('inv')
             client = request.POST.get('client')
-            comments = request.POST.get('comments')            
+            comments = request.POST.get('comments')
             client = client.split()
             cli = Clients.objects.get(pk=client[0])
         except Exception as e:

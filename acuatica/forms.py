@@ -39,11 +39,20 @@ class InputsForm(forms.ModelForm):
             'inventario': AutocompleteSelect(
                 Inputs._meta.get_field('inventario').remote_field,
                 admin.site,
-                attrs={'placeholder': 'Seleccionar...', 'class': 'form-control'},
+                attrs={'placeholder': 'Seleccionar...',
+                       'class': 'form-control'},
             )
         }
 
+
 class InventarioForm(forms.ModelForm):
+
+    class Meta:
+        model = Inventario
+        fields = '__all__'
+
+
+class InventoryForm(StylishForm):
 
     class Meta:
         model = Inventario

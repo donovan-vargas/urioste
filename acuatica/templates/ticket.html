@@ -1,5 +1,6 @@
-{% extends "acuatica/acuatica.html" %}{% load static %} {% block
-title%}ticket{%endblock %} {% block right_content %}
+{% extends "acuatica/acuatica.html" %}{% load static %} 
+{% block title%}ticket{%endblock %} 
+{% block right_content %}
 <div
   class="position-absolute top-200px end-0 contenido"
   style="width: 76mm"
@@ -56,8 +57,8 @@ title%}ticket{%endblock %} {% block right_content %}
     </div>
 
     <hr />
-    <div class="d-flex justify-content-between mt-2">
-      <div class="row mb-3 d-flex justify-content-between mt-2">
+    
+      <div class="d-flex justify-content-between mt-2">
         {% if sales %}
         <label
           for="colFormLabelSm"
@@ -69,31 +70,21 @@ title%}ticket{%endblock %} {% block right_content %}
           <span class="text-success" id="efectivo">$ {{sales.cash}}</span>
           {% endif %}
         </div>
-
+      </div>
         <hr />
         <div class="d-flex justify-content-between mt-2">
           <span class="fw-500">Cambio </span>
           <span class="text-danger" id="coins">$cambio</span>
         </div>
-        <div class="container">
+        <div class="d-flex justify-content-between mt-2">
           <span class="font-weight-bold">Comentarios: </span
-          ><span
-            >Proximo cargo <br />
-            fecha tal con descuento<br />
-            tal</span
+          ><span>{{sales.comments}}</span
           >
         </div>
-      </div>
-    </div>
+      </div>    
   </div>
 </div>
-<a
-  type="button"
-  id="crearimagen"
-  target="_blank"
-  class="position-absolute top-200px end-0"
-  >Imprimir</a
->
+
 <style type="text/css">
   @media print {
     body * {
@@ -141,7 +132,7 @@ title%}ticket{%endblock %} {% block right_content %}
   var cash = document.getElementById("efectivo").textContent;
 
   total = total.replace("$", "");
-  cash = cash.replace("$");
+  cash = cash.replace("$", "");
 
   var coins = parseInt(cash) - parseInt(total);
   console.log(coins);

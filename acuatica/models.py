@@ -179,6 +179,7 @@ class Sales(models.Model):
     client = models.ForeignKey(Clients, on_delete=models.DO_NOTHING)
     cash = models.FloatField()
     total = models.FloatField()
+    comments = models.TextField(blank=True, null=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICE, default=TERMINADO)    
     created = models.DateField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)

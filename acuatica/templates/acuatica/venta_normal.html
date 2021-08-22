@@ -112,15 +112,7 @@ Ventas{% endblock %} {%block right_content %}
         {% endfor %}
       </tbody>
     </table>
-  </div>
-  <div class="comment">
-    <textarea
-      id="title"
-      type="text "
-      onkeyup="Allow()"
-      placeholder="Escribe algun comentario......"
-    ></textarea>
-  </div>
+  </div>  
   <div class="position-absolute top-200px end-0">
     <div class="bg-pay p-3">
       <span class="font-weight-bold">Resumen de Venta</span>
@@ -219,6 +211,15 @@ Ventas{% endblock %} {%block right_content %}
           <div class="d-flex justify-content-between mt-2">
             <span class="fw-500">Cambio </span>
             <span class="text-danger" id="coins">$cambio</span>
+          </div>
+          <div class="comment">
+            <textarea
+              id="title"
+              type="text "
+              onkeyup="Allow()"
+              name="comments"
+              placeholder="Escribe algun comentario......"
+            ></textarea>
           </div>
           <button type="submit" class="btn btn-dark" style="font-size: 12px">
             Cobrar

@@ -259,6 +259,7 @@ def sales_charge(request):
             total = int(request.POST.get('total'))
             items = request.POST.getlist('inv')
             client = request.POST.get('client')
+            comments = request.POST.get('comments')            
             client = client.split()
             cli = Clients.objects.get(pk=client[0])
         except Exception as e:
@@ -275,6 +276,7 @@ def sales_charge(request):
             sales.cash = cash
             sales.client = cli
             sales.total = total
+            sales.comments = comments
             sales.save()
             for item in items:
                 x = item.split(',')

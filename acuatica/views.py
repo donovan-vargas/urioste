@@ -155,28 +155,24 @@ def clients(request):
 
 def catalogo(request):
     form = InventoryForm()
-    context = {"inv_form": form}
-
+    context = {'form': form}
     if request.method == 'POST':
-        pk = request.POST.get("id")
-        if pk:
-            inv = Inventario.objects.get(pk=pk)
-            form = InventoryForm(request.POST, instance=inv)
-        else:
-            form = InventoryForm(request.POST)
+
+        form = InventoryForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, "Prodcuto agregado")
     inventory = request.GET.get('inventory')
     if inventory:
-        inventory = inventory.split()
+
         try:
-            inv = Inventario.objects.get(pk=inventory[0])
+            inv = Inventario.objects.get(name=inventory)
+
         except Exception as e:
             messages.error(request, "Escoja un producto de la lista")
         else:
             context['inv'] = inv
-            context['inv_form'] = InventoryForm(instance=inv)
+            context['form'] = InventoryForm(instance=inv)
 
     inventorys = Inventario.objects.all()
     context['inventory'] = inventorys

@@ -4,42 +4,23 @@ Catalogo {% endblock %} {% block right_content %}
   <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 0">
     <div class="container-fluid" style="padding: 4px 15px 4px 15px">
       <p style="margin-right: 20px">Catalogo</p>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
         <form class="d-flex">
-          <input
-            class="form-control me-2"
-            list="datalistCatalogOptions"
-            id="catalogDataList"
-            placeholder="Buscar Producto"
-            aria-label="Search"
-            autocomplete="off"
-            name="inventory"
-          />
+          {% csrf_token %}
+          <input class="form-control me-2" list="datalistCatalogOptions" id="catalogDataList"
+            placeholder="Buscar Producto" aria-label="Search" autocomplete="off" name="inventory" />
           <datalist id="datalistCatalogOptions">
             {% for i in inventory %}
-            <option value="{{i.name}}{{i.total_cuantity}}"></option>
+            <option value="{{i.name}}"></option>
             {% endfor %}
           </datalist>
-          <button
-            type="button"
-            class="btn btn-dark"
-            data-bs-toggle="modal"
-            data-bs-target="#catalogModal"
-            data-bs-whatever="@mdo"
-            style="font-size: 12px"
-          >
+          <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#catalogModal"
+            data-bs-whatever="@mdo" style="font-size: 12px">
             Agregar
           </button>
         </form>
@@ -51,17 +32,13 @@ Catalogo {% endblock %} {% block right_content %}
     <div class="card-header">{{inv.name}}</div>
     <div class="card-body">
       <h5 class="card-title"></h5>
-      <p class="card-text">Dia de pago:</p>
-      <p class="card-text">Telefono:</p>
-      <button
-        type="button"
-        class="btn btn-dark"
-        data-bs-toggle="modal"
-        data-bs-target="#clientUpdateModal"
-        data-bs-whatever="@mdo"
-      >
+      <p class="card-text">Costo: {{inv.cost}}</p>
+      <p class="card-text">Cantidad: {{inv.total_cuantity}}</p>
+      <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#updatecatalogModal"
+        data-bs-whatever="@mdo">
         Actualizar
       </button>
+
     </div>
   </div>
   {% endif %}

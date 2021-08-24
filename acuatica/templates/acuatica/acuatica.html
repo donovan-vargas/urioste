@@ -353,7 +353,7 @@ Principal
                             </div>
                             <div class="col-md-4 ms-auto">
                                 <label for="sangre" class="col-form-label"
-                                    >Tipo de sangre:</label
+                                    >Tipo de sange:</label
                                 >
                                 {{ form.blood }}
                             </div>
@@ -519,12 +519,164 @@ Principal
                     
                 ></button>
                 </div>
-                <form class="contenedor-pop" action="{% url 'acuatica.inv-save' %}" method="POST">
+                <form class="contenedor-pop" action="{% url 'acuatica.inv-save' %}"method="POST">
                 <div class="modal-body">
                     
                         {% csrf_token %}
                         {{inv_form.as_p}}
                     
+                    
+                </div>
+                <div class="modal-footer">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                    >
+                        Cerrar
+                    </button>
+                    <button type="submit" class="btn btn-dark">Guardar</button>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div
+        class="modal fade"
+        id="updatecatalogModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Datos del Producto</h5>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                    
+                ></button>
+                </div>
+                <form class="contenedor-pop" action="{% url 'acuatica.catalogo' %}" method="POST">
+                <div class="modal-body">
+                    
+                        {% csrf_token %}
+                <div class="modal-body">                    
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="nombre-Cliente" class="col-form-label"
+                                    >Nombre:</label
+                                >                                
+                                {{ form.name }}
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="NumCode" class="col-form-label"
+                                    >Num code:</label
+                                >
+                                {{ form.numcode }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="Visible" class="col-form-label"
+                                    >Visible:</label
+                                >
+                                {{ form.visible }}
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="Medidas" class="col-form-label"
+                                    >Medidas:</label
+                                >
+                                {{ form.measures }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="NombreCorto" class="col-form-label"
+                                    >Nombre Corto:</label
+                                >
+                                {{ form.short_name }}
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="branches" class="col-form-label"
+                                    >Sucursales:</label
+                                >
+                                {{ form.branches }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                               <label for="limited-inventory" class="col-form-label"
+                                    >Inventario Limitado:</label
+                                >
+                                {{ form.limited_inventory }}
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="contained_products" class="col-form-label"
+                                    >Productos Contenidos:</label
+                                >
+                                {{ form.contained_products }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                               <label for="minimum_amount" class="col-form-label"
+                                    >Cantidad Minima:</label
+                                >
+                                {{ form.minimum_amount }}
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="max_amount" class="col-form-label"
+                                    >Cantidad Maxima:</label
+                                >
+                                {{ form.max_amount }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="colors" class="col-form-label"
+                                    >Colores:</label
+                                >
+                                {{ form.colors }}
+                                <label for="browserdescription" class="col-form-label"
+                                    >Descripcion de buscador:</label
+                                >
+                                {{ form.browserdescription }}
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="browserTitle" class="col-form-label"
+                                    >Titulo de Buscador:</label
+                                >
+                                {{ form.browserTitle }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            
+                            <div class="col-md-4 ms-auto">
+                                <label for="friendly_url" class="col-form-label"
+                                    >URL Amigable:</label
+                                >
+                                {{ form.friendly_url}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                               <label for="cost" class="col-form-label"
+                                    >Precio:</label
+                                >
+                                {{ form.cost }}
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="total_cuantity" class="col-form-label"
+                                    >Cantidad Total:</label
+                                >
+                                {{ form.total_cuantity }}
+                            </div>
+                        </div>
+                        
                     
                 </div>
                 <div class="modal-footer">

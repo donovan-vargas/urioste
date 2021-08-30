@@ -46,7 +46,7 @@ Principal
                     <div class="collapse " id="home-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                             <li><a href="{% url 'acuatica.sales'%}" class="link-dark rounded text-light">Normal</a></li>
-                            <li><a href="#" class="link-dark rounded text-light">Programada</a></li>
+                            
                             
                         </ul>
                     </div>
@@ -81,8 +81,7 @@ Principal
                     <div class="collapse" id="servicios-collapse">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                         <li><a href="{% url 'acuatica.catalogo'%}" class="link-dark rounded text-light">Catalogo</a></li>
-                        <li><a href="#" class="link-dark rounded text-light">Categoria A</a></li>
-                        <li><a href="#" class="link-dark rounded text-light">Categoria B</a></li>
+                        
                         
                     </ul>
                 </li>
@@ -117,7 +116,7 @@ Principal
                     <div class="collapse" id="reportes-collapse">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                         <li><a href="{% url 'acuatica.sales-report'%}" class="link-dark rounded text-light">ventas</a></li>
-                        <li><a href="#" class="link-dark rounded text-light">Venta Periodica</a></li>
+                        
                     </ul>
 
                     
@@ -490,7 +489,7 @@ Principal
                     >
                         Cerrar
                     </button>
-                    <button type="submit" class="btn btn-dark">Agregar Cliente</button>                
+                    <button type="submit" class="btn btn-dark">Actualizar Cliente</button>                
                 </div>
             </form>
             </div>
@@ -579,41 +578,21 @@ Principal
                                 {{ form.numcode }}
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row">                            
                             <div class="col-md-4">
-                                <label for="Visible" class="col-form-label"
-                                    >Visible:</label
-                                >
-                                {{ form.visible }}
-                            </div>
-                            <div class="col-md-4 ms-auto">
                                 <label for="Medidas" class="col-form-label"
                                     >Medidas:</label
                                 >
                                 {{ form.measures }}
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-4 ms-auto">
                                 <label for="NombreCorto" class="col-form-label"
                                     >Nombre Corto:</label
                                 >
                                 {{ form.short_name }}
                             </div>
-                            <div class="col-md-4 ms-auto">
-                                <label for="branches" class="col-form-label"
-                                    >Sucursales:</label
-                                >
-                                {{ form.branches }}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                               <label for="limited-inventory" class="col-form-label"
-                                    >Inventario Limitado:</label
-                                >
-                                {{ form.limited_inventory }}
-                            </div>
+                        </div>                        
+                        <div class="row">                            
                             <div class="col-md-4 ms-auto">
                                 <label for="contained_products" class="col-form-label"
                                     >Productos Contenidos:</label
@@ -676,7 +655,13 @@ Principal
                                 {{ form.total_cuantity }}
                             </div>
                         </div>
-                        
+                        <div class="" style="display: none">
+                            {{ form.measures}}
+                            {{ form.visible}}
+                            {{ form.branches}}
+                            {{ form.size }}
+                            <input type="hidden" name="pk" value="{{ inv.pk }}">
+                        </div>
                     
                 </div>
                 <div class="modal-footer">

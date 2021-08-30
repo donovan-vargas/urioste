@@ -14,6 +14,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.core.cache import cache
 from django.db import transaction
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 
 
@@ -88,7 +89,7 @@ def calculate_sales(data):
         total += item_subtotal
     return total
 
-
+@login_required(login_url='/acuatica/login/')
 def sales(request):
     form = InputsForm()
     inv_form = InventarioForm()
@@ -125,6 +126,7 @@ class SalesView(CreateView):
     success_url = reverse_lazy("acuatica.sales")
 
 
+@login_required(login_url='/acuatica/login/')
 def clients(request):
     form = ClientsForm()
     context = {'form': form}
@@ -137,7 +139,7 @@ def clients(request):
             form = ClientsForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, "Cliente agregado")
+            messages.success(request, "Cliente actualizado")
     client = request.GET.get('client')
     if client:
         client = client.split()
@@ -153,15 +155,18 @@ def clients(request):
     return render(request, 'acuatica/clientes.html', context)
 
 
+@login_required(login_url='/acuatica/login/')
 def catalogo(request):
     form = InventoryForm()
     context = {'form': form}
     if request.method == 'POST':
-
-        form = InventoryForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Prodcuto agregado")
+        pk = request.POST.get("pk")
+        if pk:
+            cli = Inventario.objects.get(pk=pk)
+            form = InventoryForm(request.POST, instance=cli)            
+            if form.is_valid():
+                form.save()
+                messages.success(request, "Prodcuto actualizado")
     inventory = request.GET.get('inventory')
     if inventory:
 
@@ -179,6 +184,7 @@ def catalogo(request):
     return render(request, 'acuatica/catalogo.html', context)
 
 
+@login_required(login_url='/acuatica/login/')
 def inputs(request):
     context = {}
     data = []
@@ -216,6 +222,7 @@ def inputs(request):
     return render(request, 'acuatica/entradas.html', context)
 
 
+@login_required(login_url='/acuatica/login/')
 def sales_report(request):
     context = {}
     sales_report = Sales.objects.all()
@@ -248,6 +255,7 @@ def sales_report(request):
     return render(request, 'acuatica/reporte-ventas.html', context)
 
 
+@login_required(login_url='/acuatica/login/')
 def inv_save(request):
     form = InputsForm()
     inv_form = InventarioForm()
@@ -270,6 +278,7 @@ def inv_save(request):
     return render(request, 'acuatica/venta_normal.html', context)
 
 
+@login_required(login_url='/acuatica/login/')
 @transaction.atomic
 def sales_charge(request):
     data_sale = f"{request.user.username}_sales_total"
@@ -317,6 +326,7 @@ def sales_charge(request):
     return redirect('acuatica.sales')
 
 
+@login_required(login_url='/acuatica/login/')
 def ticket(request):
     context = {}
     sales_user = Sales.objects.all()[Sales.objects.count()-1]

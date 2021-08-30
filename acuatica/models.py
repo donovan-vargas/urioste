@@ -110,7 +110,7 @@ class Inventario(models.Model):
     numcode = models.CharField(max_length=100)
     # categoria A
     # categoria B
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     visible = models.BooleanField()
     size = models.CharField(max_length=20, choices=SIZE_CHOICE)
     measures = models.CharField(max_length=200)

@@ -7,6 +7,7 @@
   id="contenido"
 >
   <div class="bg-pay p-3 text-center">
+    <img src="https://media.cylex.mx/companies/1141/0836/logo/logo.jpg" alt="">
     <span class="font-weight-bold">Resumen de Venta</span>
     <div class="fecha">
       <p class="font-weight-bold" id="fechaventa">Fecha</p>
@@ -23,7 +24,7 @@
     <div class="d-flex justify-content-between mt-2">
       {% if sales %}
       <span class="fw-500 .fs-6 text">Cliente</span
-      ><span>{{sales.client}}</span>
+      ><span>{{sales.client}} {{sales.client.last_name}} {{sales.client.second_last_name}}</span>
       {% endif %}
     </div>
     <hr />

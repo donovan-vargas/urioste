@@ -261,7 +261,7 @@ def inv_save(request):
     inv_form = InventarioForm()
     context = {'form': form, 'inv_form': inv_form}
     if request.method == 'POST':
-        form = InventarioForm(request.POST)
+        form = InventarioForm(request.POST, request.FILES)
         if form.is_valid():
             inv = form.save()
             total_cuantity = request.POST.get('total_cuantity')

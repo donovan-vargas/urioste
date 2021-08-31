@@ -53,6 +53,7 @@ Clientes {% endblock %} {% block right_content %}
       <p class="card-text">Dia de pago: {{ cli.pay_day}}</p>
       <p class="card-text">Telefono: {{ cli.cel }}</p>
       <button
+            onclick="get_photo()"
             type="button"
             class="btn btn-dark"
             data-bs-toggle="modal"

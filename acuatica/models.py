@@ -112,21 +112,22 @@ class Inventario(models.Model):
     # categoria B
     name = models.CharField(max_length=100, unique=True)
     visible = models.BooleanField()
-    size = models.CharField(max_length=20, choices=SIZE_CHOICE)
-    measures = models.CharField(max_length=200)
+    size = models.CharField(max_length=20, choices=SIZE_CHOICE, default="0000")
+    measures = models.CharField(max_length=200, default="medidas para algunos productos")
     # descripcion cuadro bien complejo, creo que seria mejor hacerlo en el front end
     short_name = models.CharField(max_length=60)
     branches = MultiSelectField(choices=BRANCH_CHOICES, blank=True, null=True)
-    limited_inventory = models.BooleanField()
-    contained_products = models.CharField(max_length=50)
+    limited_inventory = models.BooleanField(default=True)
+    contained_products = models.CharField(max_length=50, default="ProductosContenidos")
     minimum_amount = models.CharField(max_length=200)
     max_amount = models.CharField(max_length=100)
-    colors = models.CharField(max_length=100)
-    browserdescription = models.CharField(max_length=100)
-    browserTitle = models.CharField(max_length=50)
-    friendly_url = models.CharField(max_length=100)
+    colors = models.CharField(max_length=100, default="colores")
+    browserdescription = models.CharField(max_length=100, default="descripcionBuscador")
+    browserTitle = models.CharField(max_length=50, default="tituloBrowser")
+    friendly_url = models.CharField(max_length=100, default="url")
     cost = models.IntegerField(default=0)
     total_cuantity = models.IntegerField(default=0)
+    picture = models.ImageField(upload_to='images/', blank=True, null=True)
 
     class Meta(object):
         verbose_name_plural = 'Inventario'

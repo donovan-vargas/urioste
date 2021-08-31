@@ -6,3 +6,7 @@
 .navbar a {
   color: black;
 }
+
+#id_image_source {
+  display: none;
+}

@@ -5,7 +5,6 @@ from django.db.models import Sum
 from django.db.models.signals import post_save, post_delete
 
 
-
 class UserExtends(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,
                              related_name='user_extend', verbose_name='usuario')
@@ -59,6 +58,7 @@ class Clients(models.Model):
 
     name = models.CharField(max_length=50)
     #picture = models.ImageField(verbose_name='foto', null=True, blank=True)
+    image_source = models.TextField()
     last_name = models.CharField(max_length=50)
     second_last_name = models.CharField(max_length=50)
     birth_date = models.DateField(blank=True, null=True)
@@ -128,7 +128,6 @@ class Inventario(models.Model):
     cost = models.IntegerField(default=0)
     total_cuantity = models.IntegerField(default=0)
 
-
     class Meta(object):
         verbose_name_plural = 'Inventario'
 
@@ -142,7 +141,6 @@ class Inputs(models.Model):
     date = models.DateField(auto_now_add=True)
     sale = models.IntegerField()
     comments = models.TextField()
-    
 
     class Meta(object):
         verbose_name_plural = 'Entradas y Salidas'
@@ -152,35 +150,38 @@ class Inputs(models.Model):
 
 
 def update_total_cuantity(sender, instance, **kwargs):
-  count = instance.inventario.inputs_set.all().aggregate(Sum("cuantity"))  
-  instance.inventario.total_cuantity = count.get('cuantity__sum')
-  instance.inventario.save()
+    count = instance.inventario.inputs_set.all().aggregate(Sum("cuantity"))
+    instance.inventario.total_cuantity = count.get('cuantity__sum')
+    instance.inventario.save()
+
 
 def update_total_cuantity_sale(sender, instance, **kwargs):
-  count = instance.inventario.inputs_set.all().aggregate(Sum("sale"))  
-  instance.inventario.total_cuantity -= count.get('sale__sum')
-  instance.inventario.save()
+    count = instance.inventario.inputs_set.all().aggregate(Sum("sale"))
+    instance.inventario.total_cuantity -= count.get('sale__sum')
+    instance.inventario.save()
 
 
 post_save.connect(update_total_cuantity, sender=Inputs)
-post_delete.connect(update_total_cuantity, sender=Inputs) 
+post_delete.connect(update_total_cuantity, sender=Inputs)
 post_save.connect(update_total_cuantity_sale, sender=Inputs)
-post_delete.connect(update_total_cuantity_sale, sender=Inputs) 
+post_delete.connect(update_total_cuantity_sale, sender=Inputs)
 
 
 class Sales(models.Model):
     TERMINADO = 'T'
-    CANCELADO = 'C'    
+    CANCELADO = 'C'
     STATUS_CHOICE = (
         (TERMINADO, 'Terminado'),
         (CANCELADO, 'Cancelado'),
     )
-    user = models.ForeignKey(User, related_name='cajero', on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(User, related_name='cajero',
+                             on_delete=models.DO_NOTHING)
     client = models.ForeignKey(Clients, on_delete=models.DO_NOTHING)
     cash = models.FloatField()
     total = models.FloatField()
     comments = models.TextField(blank=True, null=True)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICE, default=TERMINADO)    
+    status = models.CharField(
+        max_length=20, choices=STATUS_CHOICE, default=TERMINADO)
     created = models.DateField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
@@ -191,7 +192,7 @@ class Sales(models.Model):
         return self.user.username
 
 
-class InvSales(models.Model):    
+class InvSales(models.Model):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     inventory = models.ForeignKey(Inventario, on_delete=models.DO_NOTHING)
     sales = models.ForeignKey(Sales, on_delete=models.DO_NOTHING)
@@ -204,4 +205,3 @@ class InvSales(models.Model):
 
     def __str__(self):
         return self.user.username
-    

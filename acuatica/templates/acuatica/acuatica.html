@@ -1,19 +1,25 @@
 {% extends "acuatica/base.html" %}
 
-{% load static %} 
+{% load static %}
 
 {% block title%} Sistema
-Principal 
+Principal
 {% endblock %}
 
 {% block site_css %}
-<link rel="stylesheet" href="{% static 'styles/acuatica.css' %}"></link>
+<link rel="stylesheet" href="{% static 'styles/acuatica.css' %}">
+</link>
 <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-<link rel="stylesheet" href="{% static 'styles/ventas.css' %}"></link>
-<link rel="stylesheet" href="{% static 'styles/clientes.css' %}"></link>
-<link rel="stylesheet" href="{% static 'styles/catalogo.css' %}"></link>
-<link rel="stylesheet" href="{% static 'styles/entradas.css' %}"></link>
-<link rel="stylesheet" href="{% static 'styles/reporteventas.css' %}"></link>
+<link rel="stylesheet" href="{% static 'styles/ventas.css' %}">
+</link>
+<link rel="stylesheet" href="{% static 'styles/clientes.css' %}">
+</link>
+<link rel="stylesheet" href="{% static 'styles/catalogo.css' %}">
+</link>
+<link rel="stylesheet" href="{% static 'styles/entradas.css' %}">
+</link>
+<link rel="stylesheet" href="{% static 'styles/reporteventas.css' %}">
+</link>
 
 
 
@@ -28,630 +34,514 @@ Principal
     <div class="container p-0 ml-0" style="width: 230px;">
         <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="height: 100vh;">
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+                <svg class="bi me-2" width="40" height="32">
+                    <use xlink:href="#bootstrap" />
+                </svg>
                 <span class="fs-4">Acuatica Urioste</span>
             </a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li class="nav-item">
-                    <button
-                    class="btn btn-toggle align-items-center rounded collapsed text-light"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#home-collapse"
-                    aria-expanded="true"
-                    style="color:white"
-                    >
-                    ventas
+                    <button class="btn btn-toggle align-items-center rounded collapsed text-light"
+                        data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true"
+                        style="color:white">
+                        ventas
                     </button>
                     <div class="collapse " id="home-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                             <li><a href="{% url 'acuatica.sales'%}" class="link-dark rounded text-light">Normal</a></li>
-                            
-                            
+
+
                         </ul>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <button
-                    class="btn btn-toggle align-items-center rounded collapsed text-light"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#clientes-collapse"
-                    aria-expanded="true"
-                    style="color:white"
-                    >
-                    Clientes
+                    <button class="btn btn-toggle align-items-center rounded collapsed text-light"
+                        data-bs-toggle="collapse" data-bs-target="#clientes-collapse" aria-expanded="true"
+                        style="color:white">
+                        Clientes
                     </button>
                     <div class="collapse" id="clientes-collapse">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                            <li><a href="{% url 'acuatica.clientes'%}" class="link-dark rounded text-light">Clientes</a></li>
-                            
+                            <li><a href="{% url 'acuatica.clientes'%}" class="link-dark rounded text-light">Clientes</a>
+                            </li>
+
                         </ul>
                     </div>
                 </li>
                 <li>
-                    <button
-                    class="btn btn-toggle align-items-center rounded collapsed text-light"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#servicios-collapse"
-                    aria-expanded="true"
-                    style="color:white"
-                    >
-                    Servicios
+                    <button class="btn btn-toggle align-items-center rounded collapsed text-light"
+                        data-bs-toggle="collapse" data-bs-target="#servicios-collapse" aria-expanded="true"
+                        style="color:white">
+                        Servicios
                     </button>
                     <div class="collapse" id="servicios-collapse">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="{% url 'acuatica.catalogo'%}" class="link-dark rounded text-light">Catalogo</a></li>
-                        
-                        
-                    </ul>
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="{% url 'acuatica.catalogo'%}" class="link-dark rounded text-light">Catalogo</a>
+                            </li>
+
+
+                        </ul>
                 </li>
                 <li>
-                    <button
-                    class="btn btn-toggle align-items-center rounded collapsed text-light"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#inventario-collapse"
-                    aria-expanded="true"
-                    style="color:white"
-                    >
-                    Inventario
+                    <button class="btn btn-toggle align-items-center rounded collapsed text-light"
+                        data-bs-toggle="collapse" data-bs-target="#inventario-collapse" aria-expanded="true"
+                        style="color:white">
+                        Inventario
                     </button>
                     <div class="collapse" id="inventario-collapse">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="{% url 'acuatica.inputs'%}" class="link-dark rounded text-light">Entradas</a></li>
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="{% url 'acuatica.inputs'%}" class="link-dark rounded text-light">Entradas</a>
+                            </li>
 
-                    </ul>
-                    
+                        </ul>
+
                 </li>
                 <li>
 
-                    <button
-                    class="btn btn-toggle align-items-center rounded collapsed text-light"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#reportes-collapse"
-                    aria-expanded="true"
-                    style="color:white"
-                    >
-                    Reportes
+                    <button class="btn btn-toggle align-items-center rounded collapsed text-light"
+                        data-bs-toggle="collapse" data-bs-target="#reportes-collapse" aria-expanded="true"
+                        style="color:white">
+                        Reportes
                     </button>
                     <div class="collapse" id="reportes-collapse">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="{% url 'acuatica.sales-report'%}" class="link-dark rounded text-light">ventas</a></li>
-                        
-                    </ul>
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="{% url 'acuatica.sales-report'%}"
+                                    class="link-dark rounded text-light">ventas</a></li>
 
-                    
+                        </ul>
+
+
                 </li>
-                
+
             </ul>
             <hr />
 
-                
-                
+
+
             <div class="dropdown">
-                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://media.cylex.mx/companies/1141/0836/logo/logo.jpg" alt="" width="32" height="32" class="rounded-circle me-2">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                    id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://media.cylex.mx/companies/1141/0836/logo/logo.jpg" alt="" width="32" height="32"
+                        class="rounded-circle me-2">
                     <strong>Usuario</strong>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
                     <li><a class="dropdown-item" href="#">New project...</a></li>
                     <li><a class="dropdown-item" href="#">Settings</a></li>
                     <li><a class="dropdown-item" href="#">Profile</a></li>
-                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
                     <li><a class="dropdown-item" href="{% url 'acuatica.logout' %}">Cerrar sesión</a></li>
                 </ul>
             </div>
         </div>
     </div>
-    
+
     {% block right_content %}
     {% endblock %}
- 
 
-    <div
-        class="modal fade"
-        id="clientModal"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-    >
+
+    <div class="modal fade" id="clientModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Datos de Cliente</h5>
-                    <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                    ></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form class="contenedor-pop" action="{% url 'acuatica.clientes' %}" method="POST">
+                <form class="contenedor-pop" action="{% url 'acuatica.clientes' %}" method="POST"
+                    entctype=multipart/form-data>
                     {% csrf_token %}
-                <div class="modal-body">                    
+                    <div class="modal-body">
                         <div class="row">
                             <div class="col-md-4">
-                                <label for="nombre-Cliente" class="col-form-label"
-                                    >Nombre:</label
-                                >                                
+                                <label for="nombre-Cliente" class="col-form-label">Nombre:</label>
                                 {{ form.name }}
                             </div>
                             <div class="col-md-4 ms-auto">
-                                <label for="sangre" class="col-form-label"
-                                    >Tipo de sangre:</label
-                                >
+                                <label for="sangre" class="col-form-label">Tipo de sangre:</label>
                                 {{ form.blood }}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <label for="apellido-Paterno" class="col-form-label"
-                                    >Apellido Paterno:</label
-                                >
+                                <label for="apellido-Paterno" class="col-form-label">Apellido Paterno:</label>
                                 {{ form.last_name }}
                             </div>
                             <div class="col-md-4 ms-auto">
-                                <label for="avisar-emergencia" class="col-form-label"
-                                    >En caso de emergencia avisar:</label
-                                >
+                                <label for="avisar-emergencia" class="col-form-label">En caso de emergencia
+                                    avisar:</label>
                                 {{ form.emergency_contact }}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <label for="apellido-Materno" class="col-form-label"
-                                    >Apellido Materno:</label
-                                >
+                                <label for="apellido-Materno" class="col-form-label">Apellido Materno:</label>
                                 {{ form.second_last_name }}
                             </div>
                             <div class="col-md-4 ms-auto">
-                                <label for="cel-emergencia" class="col-form-label"
-                                    >Telefono de emergencia:</label
-                                >
+                                <label for="cel-emergencia" class="col-form-label">Telefono de emergencia:</label>
                                 {{ form.emergency_phone }}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                               <label for="fecha-Nacimiento" class="col-form-label"
-                                    >Fecha Nacimiento:</label
-                                >
+                                <label for="fecha-Nacimiento" class="col-form-label">Fecha Nacimiento:</label>
                                 {{ form.birth_date }}
                             </div>
                             <div class="col-md-4 ms-auto">
-                                <label for="Dia-de-pago" class="col-form-label"
-                                    >Día de pago:</label
-                                >
+                                <label for="Dia-de-pago" class="col-form-label">Día de pago:</label>
                                 {{ form.pay_day }}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                               <label for="genero" class="col-form-label"
-                                    >Genero:</label
-                                >
+                                <label for="genero" class="col-form-label">Genero:</label>
                                 {{ form.gender }}
                             </div>
                             <div class="col-md-4 ms-auto">
-                                <label for="condicion-Medica" class="col-form-label"
-                                    >Condición médica:</label
-                                >
+                                <label for="condicion-Medica" class="col-form-label">Condición médica:</label>
                                 {{ form.medical_condition }}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <label for="direccion" class="col-form-label"
-                                    >Dirección:</label
-                                >
+                                <label for="direccion" class="col-form-label">Dirección:</label>
                                 {{ form.address }}
-                                <label for="suburb" class="col-form-label"
-                                    >colonia:</label
-                                >
+                                <label for="suburb" class="col-form-label">colonia:</label>
                                 {{ form.suburb }}
                             </div>
                             <div class="col-md-4 ms-auto">
-                                <label for="nivel" class="col-form-label"
-                                    >Nivel:</label
-                                >
+                                <label for="nivel" class="col-form-label">Nivel:</label>
                                 {{ form.level }}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <label for="codigo-postal" class="col-form-label"
-                                    >C.P:</label
-                                >
+                                <label for="codigo-postal" class="col-form-label">C.P:</label>
                                 {{ form.postal_code}}
                             </div>
                             <div class="col-md-4 ms-auto">
-                                <label for="horario" class="col-form-label"
-                                    >Horario:</label
-                                >
+                                <label for="horario" class="col-form-label">Horario:</label>
                                 {{ form.schedule }}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                               <label for="celular" class="col-form-label"
-                                    >Celular:</label
-                                >
+                                <label for="celular" class="col-form-label">Celular:</label>
                                 {{ form.cel }}
                             </div>
                             <div class="col-md-4 ms-auto">
-                                <label for="email" class="col-form-label"
-                                    >Email:</label
-                                >
+                                <label for="email" class="col-form-label">Email:</label>
                                 {{ form.email }}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                               <label for="estado-civil" class="col-form-label"
-                                    >Estado Civil:</label
-                                >
+                                <label for="estado-civil" class="col-form-label">Estado Civil:</label>
                                 {{ form.civil_status }}
                             </div>
                             <div class="col-md-4 ms-auto">
-                                <label for="entero" class="col-form-label"
-                                    >¿Cómo se entero?:</label
-                                >
+                                <label for="entero" class="col-form-label">¿Cómo se entero?:</label>
                                 {{ form.heard_from }}
                             </div>
+
                         </div>
-                        
-                        
+                        <div class="row">
+                            <div class="col-md-4 mt-4 ">
+                                <button class="btn  mb-4 btn-dark" data-bs-target="#exampleModalToggle2"
+                                    data-bs-toggle="modal" data-bs-dismiss="modal">Tomar fotografia</button>
+
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <img alt="" id="fotodecliente" width="300" height="175">
+                                {{form.image_source}}
+
+                            </div>
+                        </div>
+
+
                         <!--<div class="mb-3">
                         <label for="message-text" class="col-form-label">Message:</label>
                         <textarea class="form-control" id="message-text"></textarea>
                         </div>-->
-                    
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Cerrar
+                        </button>
+                        <button type="submit" class="btn btn-dark">Agregar Cliente</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalToggleLabel2">Fotografia</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <video src="" id="webCam" autoplay playsinline width="400" height="250"></video>
+                    <canvas id="canvas"></canvas>
+                    </canvas>
+                    <button id="startbitch" onclick="startpicture()">start camera</button>
+                    <a onclick="take_snapshot()" id="snaper" href="">snap</a>
+                    <div id="resultado">
+                        <img href="" id=results style="display: none;"></img>
+
+                    </div>
+
                 </div>
                 <div class="modal-footer">
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-bs-dismiss="modal"
-                    >
-                        Cerrar
-                    </button>
-                    <button type="submit" class="btn btn-dark">Agregar Cliente</button>                
+                    <button class="btn btn-primary" data-bs-target="#clientModal" data-bs-toggle="modal"
+                        data-bs-dismiss="modal">Agregar fotografia</button>
                 </div>
-            </form>
             </div>
         </div>
     </div>
 
-    <div
-        class="modal fade"
-        id="clientUpdateModal"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-    >
+
+
+
+    <div class="modal fade" id="clientUpdateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Datos de Cliente</h5>
-                    <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                    ></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form class="contenedor-pop" action="{% url 'acuatica.clientes' %}" method="POST">
                     {% csrf_token %}
-                <div class="modal-body">                    
+                    <div class="modal-body">
                         <div class="row">
                             <div class="col-md-4">
-                                <label for="nombre-Cliente" class="col-form-label"
-                                    >Nombre:</label
-                                >
+                                <label for="nombre-Cliente" class="col-form-label">Nombre:</label>
                                 <input value="{{ cli.pk }}" type="hidden" name="id" />
                                 {{ form.name }}
                             </div>
                             <div class="col-md-4 ms-auto">
-                                <label for="sangre" class="col-form-label"
-                                    >Tipo de sange:</label
-                                >
+                                <label for="sangre" class="col-form-label">Tipo de sange:</label>
                                 {{ form.blood }}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <label for="apellido-Paterno" class="col-form-label"
-                                    >Apellido Paterno:</label
-                                >
+                                <label for="apellido-Paterno" class="col-form-label">Apellido Paterno:</label>
                                 {{ form.last_name }}
                             </div>
                             <div class="col-md-4 ms-auto">
-                                <label for="avisar-emergencia" class="col-form-label"
-                                    >En caso de emergencia avisar:</label
-                                >
+                                <label for="avisar-emergencia" class="col-form-label">En caso de emergencia
+                                    avisar:</label>
                                 {{ form.emergency_contact }}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <label for="apellido-Materno" class="col-form-label"
-                                    >Apellido Materno:</label
-                                >
+                                <label for="apellido-Materno" class="col-form-label">Apellido Materno:</label>
                                 {{ form.second_last_name }}
                             </div>
                             <div class="col-md-4 ms-auto">
-                                <label for="cel-emergencia" class="col-form-label"
-                                    >Telefono de emergencia:</label
-                                >
+                                <label for="cel-emergencia" class="col-form-label">Telefono de emergencia:</label>
                                 {{ form.emergency_phone }}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                               <label for="fecha-Nacimiento" class="col-form-label"
-                                    >Fecha Nacimiento:</label
-                                >
+                                <label for="fecha-Nacimiento" class="col-form-label">Fecha Nacimiento:</label>
                                 {{ form.birth_date }}
                             </div>
                             <div class="col-md-4 ms-auto">
-                                <label for="Dia-de-pago" class="col-form-label"
-                                    >Día de pago:</label
-                                >
+                                <label for="Dia-de-pago" class="col-form-label">Día de pago:</label>
                                 {{ form.pay_day }}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                               <label for="genero" class="col-form-label"
-                                    >Genero:</label
-                                >
+                                <label for="genero" class="col-form-label">Genero:</label>
                                 {{ form.gender }}
                             </div>
                             <div class="col-md-4 ms-auto">
-                                <label for="condicion-Medica" class="col-form-label"
-                                    >Condición médica:</label
-                                >
+                                <label for="condicion-Medica" class="col-form-label">Condición médica:</label>
                                 {{ form.medical_condition }}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <label for="direccion" class="col-form-label"
-                                    >Dirección:</label
-                                >
+                                <label for="direccion" class="col-form-label">Dirección:</label>
                                 {{ form.address }}
-                                <label for="suburb" class="col-form-label"
-                                    >colonia:</label
-                                >
+                                <label for="suburb" class="col-form-label">colonia:</label>
                                 {{ form.suburb }}
                             </div>
                             <div class="col-md-4 ms-auto">
-                                <label for="nivel" class="col-form-label"
-                                    >Nivel:</label
-                                >
+                                <label for="nivel" class="col-form-label">Nivel:</label>
                                 {{ form.level }}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <label for="codigo-postal" class="col-form-label"
-                                    >C.P:</label
-                                >
+                                <label for="codigo-postal" class="col-form-label">C.P:</label>
                                 {{ form.postal_code}}
                             </div>
                             <div class="col-md-4 ms-auto">
-                                <label for="horario" class="col-form-label"
-                                    >Horario:</label
-                                >
+                                <label for="horario" class="col-form-label">Horario:</label>
                                 {{ form.schedule }}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                               <label for="celular" class="col-form-label"
-                                    >Celular:</label
-                                >
+                                <label for="celular" class="col-form-label">Celular:</label>
                                 {{ form.cel }}
                             </div>
                             <div class="col-md-4 ms-auto">
-                                <label for="email" class="col-form-label"
-                                    >Email:</label
-                                >
+                                <label for="email" class="col-form-label">Email:</label>
                                 {{ form.email }}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                               <label for="estado-civil" class="col-form-label"
-                                    >Estado Civil:</label
-                                >
+                                <label for="estado-civil" class="col-form-label">Estado Civil:</label>
                                 {{ form.civil_status }}
                             </div>
                             <div class="col-md-4 ms-auto">
-                                <label for="entero" class="col-form-label"
-                                    >¿Cómo se entero?:</label
-                                >
+                                <label for="entero" class="col-form-label">¿Cómo se entero?:</label>
                                 {{ form.heard_from }}
                             </div>
                         </div>
-                        
-                        
+                        <div class="row">
+                            <div class="col-md-4">
+
+
+                            </div>
+
+                        </div>
+
+
                         <!--<div class="mb-3">
                         <label for="message-text" class="col-form-label">Message:</label>
                         <textarea class="form-control" id="message-text"></textarea>
                         </div>-->
-                    
-                </div>
-                <div class="modal-footer">
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-bs-dismiss="modal"
-                    >
-                        Cerrar
-                    </button>
-                    <button type="submit" class="btn btn-dark">Actualizar Cliente</button>                
-                </div>
-            </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Cerrar
+                        </button>
+                        <button type="submit" class="btn btn-dark">Actualizar Cliente</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
-    
 
 
-    <div
-        class="modal fade"
-        id="catalogModal"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-    >
+
+    <div class="modal fade" id="catalogModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Datos del Producto</h5>
-                <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                    
-                ></button>
+                    <h5 class="modal-title" id="exampleModalLabel">Datos del Producto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form class="contenedor-pop" action="{% url 'acuatica.inv-save' %}"method="POST">
-                <div class="modal-body">
-                    
+                <form class="contenedor-pop" action="{% url 'acuatica.inv-save' %}" method="POST">
+                    <div class="modal-body">
+
                         {% csrf_token %}
                         {{inv_form.as_p}}
-                    
-                    
-                </div>
-                <div class="modal-footer">
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-bs-dismiss="modal"
-                    >
-                        Cerrar
-                    </button>
-                    <button type="submit" class="btn btn-dark">Guardar</button>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Cerrar
+                        </button>
+                        <button type="submit" class="btn btn-dark">Guardar</button>
                 </form>
-                </div>
             </div>
         </div>
     </div>
-    <div
-        class="modal fade"
-        id="updatecatalogModal"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-    >
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
+</div>
+<div class="modal fade" id="updatecatalogModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Datos del Producto</h5>
-                <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                    
-                ></button>
-                </div>
-                <form class="contenedor-pop" action="{% url 'acuatica.catalogo' %}" method="POST">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class="contenedor-pop" action="{% url 'acuatica.catalogo' %}" method="POST">
                 <div class="modal-body">
-                    
-                        {% csrf_token %}
-                <div class="modal-body">                    
+
+                    {% csrf_token %}
+                    <div class="modal-body">
                         <div class="row">
                             <div class="col-md-4">
-                                <label for="nombre-Cliente" class="col-form-label"
-                                    >Nombre:</label
-                                >                                
+                                <label for="nombre-Cliente" class="col-form-label">Nombre:</label>
                                 {{ form.name }}
                             </div>
                             <div class="col-md-4 ms-auto">
-                                <label for="NumCode" class="col-form-label"
-                                    >Num code:</label
-                                >
+                                <label for="NumCode" class="col-form-label">Num code:</label>
                                 {{ form.numcode }}
                             </div>
                         </div>
-                        <div class="row">                            
+                        <div class="row">
                             <div class="col-md-4">
-                                <label for="Medidas" class="col-form-label"
-                                    >Medidas:</label
-                                >
+                                <label for="Medidas" class="col-form-label">Medidas:</label>
                                 {{ form.measures }}
                             </div>
                             <div class="col-md-4 ms-auto">
-                                <label for="NombreCorto" class="col-form-label"
-                                    >Nombre Corto:</label
-                                >
+                                <label for="NombreCorto" class="col-form-label">Nombre Corto:</label>
                                 {{ form.short_name }}
                             </div>
-                        </div>                        
-                        <div class="row">                            
+                        </div>
+                        <div class="row">
                             <div class="col-md-4 ms-auto">
-                                <label for="contained_products" class="col-form-label"
-                                    >Productos Contenidos:</label
-                                >
+                                <label for="contained_products" class="col-form-label">Productos Contenidos:</label>
                                 {{ form.contained_products }}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                               <label for="minimum_amount" class="col-form-label"
-                                    >Cantidad Minima:</label
-                                >
+                                <label for="minimum_amount" class="col-form-label">Cantidad Minima:</label>
                                 {{ form.minimum_amount }}
                             </div>
                             <div class="col-md-4 ms-auto">
-                                <label for="max_amount" class="col-form-label"
-                                    >Cantidad Maxima:</label
-                                >
+                                <label for="max_amount" class="col-form-label">Cantidad Maxima:</label>
                                 {{ form.max_amount }}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <label for="colors" class="col-form-label"
-                                    >Colores:</label
-                                >
+                                <label for="colors" class="col-form-label">Colores:</label>
                                 {{ form.colors }}
-                                <label for="browserdescription" class="col-form-label"
-                                    >Descripcion de buscador:</label
-                                >
+                                <label for="browserdescription" class="col-form-label">Descripcion de buscador:</label>
                                 {{ form.browserdescription }}
                             </div>
                             <div class="col-md-4 ms-auto">
-                                <label for="browserTitle" class="col-form-label"
-                                    >Titulo de Buscador:</label
-                                >
+                                <label for="browserTitle" class="col-form-label">Titulo de Buscador:</label>
                                 {{ form.browserTitle }}
                             </div>
                         </div>
                         <div class="row">
-                            
+
                             <div class="col-md-4 ms-auto">
-                                <label for="friendly_url" class="col-form-label"
-                                    >URL Amigable:</label
-                                >
+                                <label for="friendly_url" class="col-form-label">URL Amigable:</label>
                                 {{ form.friendly_url}}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                               <label for="cost" class="col-form-label"
-                                    >Precio:</label
-                                >
+                                <label for="cost" class="col-form-label">Precio:</label>
                                 {{ form.cost }}
                             </div>
                             <div class="col-md-4 ms-auto">
-                                <label for="total_cuantity" class="col-form-label"
-                                    >Cantidad Total:</label
-                                >
+                                <label for="total_cuantity" class="col-form-label">Cantidad Total:</label>
                                 {{ form.total_cuantity }}
                             </div>
                         </div>
@@ -662,99 +552,119 @@ Principal
                             {{ form.size }}
                             <input type="hidden" name="pk" value="{{ inv.pk }}">
                         </div>
-                    
-                </div>
-                <div class="modal-footer">
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-bs-dismiss="modal"
-                    >
-                        Cerrar
-                    </button>
-                    <button type="submit" class="btn btn-dark">Guardar</button>
-                </form>
-                </div>
-            </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Cerrar
+                        </button>
+                        <button type="submit" class="btn btn-dark">Guardar</button>
+            </form>
         </div>
     </div>
-    <div
-        class="modal fade"
-        id="rangedate"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-    >
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="periodo">Periodo de Ventas</h5>
-                    <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                        
-                    ></button>
-                </div>
-                <form class="contenedor-pop" action="" method="POST">
+</div>
+</div>
+<div class="modal fade" id="rangedate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="periodo">Periodo de Ventas</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class="contenedor-pop" action="" method="POST">
                 <div class="modal-body">
-                    
-                        {% csrf_token %}
-                        <label for="firstDate" class="form-label">De:</label>
-                        <input type="date" name="init_date"
-                        class="form-control">
 
-                        <label style="margin-top: 10px;" for="secondDate" class="form-label">A:</label>
-                        <input type="date" name="end_date"
-                        class="form-control">
-                        
+                    {% csrf_token %}
+                    <label for="firstDate" class="form-label">De:</label>
+                    <input type="date" name="init_date" class="form-control">
 
-                    
-                    
+                    <label style="margin-top: 10px;" for="secondDate" class="form-label">A:</label>
+                    <input type="date" name="end_date" class="form-control">
+
+
+
+
                 </div>
                 <div class="modal-footer">
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-bs-dismiss="modal"
-                    >
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                         Cerrar
                     </button>
                     <button type="submit" class="btn btn-dark">Guardar</button>
-                </form>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
+</div>
+</div>
 
 
-    
 
 
 
-    
+
+
 </div>
 <script>
     let arrow = document.querySelectorAll(".arrow");
-    
-    for (var i = 0; i < arrow.length; i++){
-        arrow[i].addEventListener("click", (e)=>{
-            
-        let arrowParent = e.target.parentElement.parentElement;
-        console.log(arrowParent);
-        arrowParent.classList.toggle("showMenu")
+
+    for (var i = 0; i < arrow.length; i++) {
+        arrow[i].addEventListener("click", (e) => {
+
+            let arrowParent = e.target.parentElement.parentElement;
+            console.log(arrowParent);
+            arrowParent.classList.toggle("showMenu")
         });
     }
 
 
     (function () {
-    'use strict'
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    tooltipTriggerList.forEach(function (tooltipTriggerEl) {
-        new bootstrap.Tooltip(tooltipTriggerEl)
-    })
+        'use strict'
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+            new bootstrap.Tooltip(tooltipTriggerEl)
+        })
     })()
+
+    const webcamElement = document.getElementById('webCam');
+    const canvasElement = document.getElementById('canvas');
+    const startcam = document.getElementById("startbitch");
+
+
+    const webcam = new Webcam(webcamElement, 'user', canvasElement);
+    webcam.set({
+        width: 320,
+        height: 240,
+        image_format: 'jpeg',
+        jpeg_quality: 90
+    });
+
+
+    function startpicture() {
+        webcam.start();
+    };
+
+
+    function take_snapshot() {
+        // play sound effect
+
+        let picture = webcam.snap();
+
+        document.getElementById("results").src = picture;
+        document.getElementById("snaper").href = picture;
+
+
+        document.getElementById("fotodecliente").src = picture;
+        document.getElementById("id_image_source").value = picture
+        //document.getElementById("id_image_source").value = picture;
+        ocultar = document.getElementById("id_image_source");
+        //ocultar.style.display = "none";
+
+        webcam.stop();
+        // take snapshot and get image data
+
+
+    };
+
+
 
 </script>
 

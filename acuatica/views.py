@@ -225,10 +225,11 @@ def inputs(request):
 @login_required(login_url='/acuatica/login/')
 def sales_report(request):
     context = {}
-    sales_report = Sales.objects.all()
+    fechahoy = date.today()
+    # sales_report = Sales.objects.filter(created = date.today())
     if request.method == 'GET':
-        total = Sales.objects.all().aggregate(Sum('total'))
-        sales_report = Sales.objects.all()
+        total = Sales.objects.filter(created = date.today(), status = 'T').aggregate(Sum('total'))
+        sales_report = Sales.objects.filter(created=date.today())
     if request.method == "POST":
         client = request.POST.get('client')
         status = request.POST.get('status')
@@ -250,9 +251,13 @@ def sales_report(request):
 
         sales_report = Sales.objects.filter(query)
         total = Sales.objects.filter(query).aggregate(Sum('total'))
+
+        
+
     context['total'] = total
     context['sales'] = sales_report
     return render(request, 'acuatica/reporte-ventas.html', context)
+
 
 
 @login_required(login_url='/acuatica/login/')
@@ -334,3 +339,14 @@ def ticket(request):
     context['sales'] = sales_user
     context['invSales'] = inv_sale
     return render(request, "ticket.html", context)
+
+
+
+@login_required(login_url='/acuatica/login/')
+def cancel_sale(request,pk):
+    sales = Sales.objects.get(pk=pk)
+    sales.status = 'C'
+    
+    sales.save()
+    messages.success(request, "Venta Cancelada")
+    return redirect('acuatica.sales-report')

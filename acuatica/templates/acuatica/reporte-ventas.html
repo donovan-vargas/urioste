@@ -114,6 +114,7 @@ Ventas{% endblock %}
         <tr>
           <td>Realizo Venta</td>
           <td>Cliente</td>
+          <td>Estatus</td>
           <td>Efectivo</td>
           <td>Total</td>
           <td>Fecha</td>
@@ -122,9 +123,18 @@ Ventas{% endblock %}
           <tr>
             <td>{{sale.user}}</td>
             <td>{{sale.client}}</td>
+            <td>{{sale.status}}</td>
             <td>{{sale.cash}}</td>
             <td>{{sale.total}}</td>
-            <td>{{sale.created}}</td>          
+            <td>{{sale.created}}</td>
+            {% if sale.status == 'T'%}
+            <td><a href="{% url 'acuatica.cancel-sale' pk=sale.pk %}" type="button">Cancelar</a></td>
+            {% endif %}
+            <!--<td><button type="button"
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#cancelar"
+              data-bs-whatever="@mdo" >Cancelar Venta</button></td>>-->
             {% for detail in sale.invsales_set.all %}          
             <tr>
               <td>{{detail.inventory}}</td>

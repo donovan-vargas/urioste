@@ -14,7 +14,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.core.cache import cache
 from django.db import transaction
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required 
+
+
 from django.contrib.auth.forms import UserCreationForm
 
 
@@ -219,14 +221,25 @@ def inputs(request):
         cache.delete(cache_data)
         messages.success(request, "Entrada creada")
     context['data_table'] = data
+
+    #jefesito = request.user
+
+    #if jefesito.has_perm('acuatica.is_admin'):
     return render(request, 'acuatica/entradas.html', context)
+    #elif jefesito.has_perm('acuatica.is_cashier'):
+        #messages.error(request,'Tienes que ser administrador para realizar Entradas :)')
+        #return redirect(reverse('acuatica.index'))
 
 
 @login_required(login_url='/acuatica/login/')
+#@permission_required('acuatica.is_admin')
 def sales_report(request):
     context = {}
     fechahoy = date.today()
     # sales_report = Sales.objects.filter(created = date.today())
+    
+    
+        
     if request.method == 'GET':
         total = Sales.objects.filter(created = date.today(), status = 'T').aggregate(Sum('total'))
         sales_report = Sales.objects.filter(created=date.today())
@@ -252,11 +265,19 @@ def sales_report(request):
         sales_report = Sales.objects.filter(query)
         total = Sales.objects.filter(query).aggregate(Sum('total'))
 
-        
-
     context['total'] = total
     context['sales'] = sales_report
-    return render(request, 'acuatica/reporte-ventas.html', context)
+
+    eljefesito  = request.user
+    
+    if eljefesito.has_perm('acuatica.is_admin'):
+        
+        return render(request, 'acuatica/reporte-ventas.html', context)
+
+    elif eljefesito.has_perm('acuatica.is_cashier'):
+        messages.error(request,'Tienes que ser administrador para ver los reportes')
+        return redirect(reverse('acuatica.index'))
+
 
 
 

@@ -33,9 +33,10 @@
     </div>
 
     <div class="d-flex justify-content-between mt-2">
+      <span class="fw-500 .fs-6 text">Productos</span>
       {% for invsale in invSales%}
-      <span class="fw-500 .fs-6 text">Producto </span>
-      <span> {{invsale.inventory}} </span>
+      
+      <span> {{invsale.inventory}} {{invsale.}}</span>
       {% endfor %}
     </div>
 

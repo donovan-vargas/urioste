@@ -19,5 +19,5 @@ urlpatterns = [
     url(r'^inv-save/$', views.inv_save, name='acuatica.inv-save'),
     url(r'^sales-charge/$', views.sales_charge, name='acuatica.sales-charge'),
     url(r'^sale-ticket/$', views.ticket, name='acuatica.sales-ticket'),
-    url(r'^cancela-venta/<int:pk>/', views.cancel_sale, name='acuatica.cancel-sale'),
+    url(r'^cancela-venta/(?P<pk>\d+)/$', views.cancel_sale, name='acuatica.cancel-sale'),
 ]

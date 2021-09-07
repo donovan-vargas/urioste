@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from multiselectfield import MultiSelectField
 from django.db.models import Sum
 from django.db.models.signals import post_save, post_delete
+from django.utils.translation import ugettext_lazy as _
 
 
 class UserExtends(models.Model):
@@ -14,7 +15,13 @@ class UserExtends(models.Model):
 
     class Meta(object):
         verbose_name_plural = 'Usuario'
+        permissions = {
+            ('is_cashier', _('Es cajero')),
+            ('is_admin', _('Es admin')),
+        }
 
+
+   
     def __str__(self):
         return str(self.name)
 

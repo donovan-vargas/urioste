@@ -9,6 +9,11 @@
   <div class="bg-pay p-3 text-center">
     <img src="https://media.cylex.mx/companies/1141/0836/logo/logo.jpg" alt="">
     <span class="font-weight-bold">Resumen de Venta</span>
+    {% if sales %}
+    <div>
+      <span class="font-weight-bold">Folio de la venta:</span> {{sales.id}}
+    </div>
+    {% endif %}
     <div class="fecha">
       <p class="font-weight-bold" id="fechaventa">Fecha</p>
     </div>
@@ -17,8 +22,8 @@
     </div>
     <div class="d-flex justify-content-between mt-2">
       {% if sales %}
-      <span class="fw-500 .fs-6 text">Realizo venta</span
-      ><span>{{sales.user}}</span>
+      <span class="fw-500 .fs-6 text">Realizo venta: {{sales.user}}</span
+      ><span> </span>
       {% endif %}
     </div>
     <div class="d-flex justify-content-between mt-2">

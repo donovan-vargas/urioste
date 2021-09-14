@@ -192,6 +192,7 @@ class Sales(models.Model):
         max_length=20, choices=STATUS_CHOICE, default=TERMINADO)
     created = models.DateField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+    
 
     class Meta:
         verbose_name_plural = 'Ventas'
@@ -207,6 +208,7 @@ class InvSales(models.Model):
     quantity = models.IntegerField()
     created = models.DateField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+    
 
     class Meta:
         verbose_name_plural = 'Cobros'

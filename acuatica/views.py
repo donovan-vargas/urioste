@@ -110,6 +110,9 @@ def sales(request):
             product['quantity'] = quantity
             data.append(product)
             cache.set(data_sale, data, 300)
+        elif model_product.count() <= 0:
+            messages.error(request,"No hay mas inventario de este Producto")
+            return redirect(reverse('acuatica.sales'))
 
     total = calculate_sales(data)
     clients = Clients.objects.all()
@@ -249,6 +252,7 @@ def sales_report(request):
         user = request.POST.get('user')
         init_date = request.POST.get('init_date')
         end_date = request.POST.get('end_date')
+        folio = request.POST.get('folio')
         query = Q()
         if client:
             query &= Q(client=client)
@@ -261,6 +265,8 @@ def sales_report(request):
             query &= Q(created__lte=end_date)
         elif init_date:
             query &= Q(created=init_date)
+        if folio:
+            query &= Q(pk=folio)
 
         sales_report = Sales.objects.filter(query)
         total = Sales.objects.filter(query).aggregate(Sum('total'))
@@ -270,13 +276,11 @@ def sales_report(request):
 
     eljefesito  = request.user
     
-    if eljefesito.has_perm('acuatica.is_admin'):
+    
         
-        return render(request, 'acuatica/reporte-ventas.html', context)
+    return render(request, 'acuatica/reporte-ventas.html', context)
 
-    elif eljefesito.has_perm('acuatica.is_cashier'):
-        messages.error(request,'Tienes que ser administrador para ver los reportes')
-        return redirect(reverse('acuatica.index'))
+    
 
 
 
@@ -364,10 +368,16 @@ def ticket(request):
 
 
 @login_required(login_url='/acuatica/login/')
+#@permission_required('acuatica.is_admin')
 def cancel_sale(request,pk):
-    sales = Sales.objects.get(pk=pk)
-    sales.status = 'C'
-    
-    sales.save()
-    messages.success(request, "Venta Cancelada")
-    return redirect('acuatica.sales-report')
+    user = request.user
+    if user.has_perm('acuatica.is_admin'):
+        sales = Sales.objects.get(pk=pk)
+        sales.status = 'C'
+        
+        sales.save()
+        messages.success(request, "Venta Cancelada")
+        return redirect('acuatica.sales-report')
+    elif user.has_perm('acuatica.is_cashier'):
+        messages.error(request,"Tienes que ser administrador para esta acción")
+        return redirect(reverse('acuatica.sales-report'))

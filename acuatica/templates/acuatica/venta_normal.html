@@ -86,152 +86,153 @@ Ventas{% endblock %} {%block right_content %}
       </div>
     </div>
   </nav>
-
-  <div class="position-relative">
-    <table>
-      <thead>
-        <tr>
-          <th>Cant.</th>
-          <th>Producto</th>
-          <th>Precio</th>
-          <th>Imp.</th>
-          <th>Descuento</th>
-          <th>Recargo</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for x in products %}
-        <tr>
-          <td>{{x.quantity}}</td>
-          <td>{{x.name}}</td>
-          <td>{{x.cost}}</td>
-          <td>0</td>
-          <td>0</td>
-          <td>0</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
-  <div class="position-absolute top-200px end-0">
-    <div class="bg-pay p-3">
-      <span class="font-weight-bold">Resumen de Venta</span>
-      <div class="d-flex justify-content-between mt-2">
-        <span class="fw-500">Subtotal $</span> <span> 0 </span>
-      </div>
-      <div class="d-flex justify-content-between mt-2">
-        <span class="fw-500">Iva $ </span> <span>$0.0</span>
-      </div>
-      <div class="d-flex justify-content-between mt-2">
-        <span class="fw-500">Total $ </span>
-        <span class="text-success" id="sale_total">{{total}}</span>
-      </div>
-
-      <hr />
-      <div class="d-flex justify-content-between mt-2">
-        <form class="" action="{% url 'acuatica.sales-charge' %}" method="POST">
-          {% csrf_token %}
-          <input
-            type="hidden"
-            class="form-control form-control-sm"
-            id="colFormLabelSm"
-            name="total"
-            value="{{total}}"
-          />
-          {% for item in products %}
-          <input
-            type="hidden"
-            class="form-control form-control-sm"
-            id="colFormLabelSm"
-            name="inv"
-            value="{{item.id}},{{item.quantity}}"
-          />
+  <div class="d-flex justify-content-between mt-2">
+    <div class="position-relative">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Cant.</th>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Imp.</th>
+            <th>Descuento</th>
+            <th>Recargo</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for x in products %}
+          <tr>
+            <td>{{x.quantity}}</td>
+            <td>{{x.name}}</td>
+            <td>{{x.cost}}</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
           {% endfor %}
-          <div class="row mb-3 d-flex justify-content-between mt-2">
-            <label
-              for="colFormLabelSm"
-              class="col-sm-2 col-form-label col-form-label-sm"
-              style="margin-right: 0"
-              >Efectivo</label
-            >
-            <div class="col-sm-auto">
-              <input
-                type="number"
-                class="form-control form-control-sm"
-                id="colFormLabelSm"
-                name="cash"
-                oninput="onclickhandler(this)"
-              />
-            </div>
-          </div>
-          <div class="row mb-3 d-flex justify-content-between mt-2">
-            <label for="colFormLabel" class="col-sm-2 col-form-label"
-              >T.Credito</label
-            >
-            <div class="col-sm-auto">
-              <input
-                type="number"
-                class="form-control form-control-sm"
-                id="colFormLabel"
-              />
-            </div>
-          </div>
-          <div class="row mb-3 d-flex justify-content-between mt-2">
-            <label for="colFormLabel" class="col-sm-2 col-form-label"
-              >Banco</label
-            >
-            <div class="col-sm-auto">
-              <input
-                type="number"
-                class="form-control form-control-sm"
-                id="colFormLabel"
-              />
-            </div>
-          </div>
-          <div class="row mb-3 d-flex justify-content-between mt-2">
-            <input
-              class="form-control"
-              list="datalistClientOptions"
-              id="clientDataList"
-              placeholder="Buscar Cliente..."
-              style="margin-right: 20px"
-              name="client"
-              autocomplete="off"
-            />
-            <datalist id="datalistClientOptions">
-              {% for client in clients %}
-              <option
-                value="{{client.pk}} {{client.name}} {{client.last_name}} {{client.second_last_name}}"
-                label="{{client.first_name}}"
-              ></option>
-              {%endfor%}
-            </datalist>
-          </div>
-          <div class="row mb-3 d-flex justify-content-between mt-2">
-            <input
-              class="form-control"
-              
-              id="title"
-              placeholder="Comentarios..."
-              style="margin-right: 20px"
-              name="comments"
-              onkeyup="Allow()"
-              autocomplete="off"
-            />
-          </div>
-          <hr />
-          <div class="d-flex justify-content-between mt-2">
-            <span class="fw-500">Cambio </span>
-            <span class="text-danger" id="coins">$cambio</span>
-          </div>
+        </tbody>
+      </table>
+    </div>
+    <div class="">
+      <div class="bg-pay p-3">
+        <span class="font-weight-bold">Resumen de Venta</span>
+        <div class="d-flex justify-content-between mt-2">
+          <span class="fw-500">Subtotal $</span> <span> 0 </span>
+        </div>
+        <div class="d-flex justify-content-between mt-2">
+          <span class="fw-500">Iva $ </span> <span>$0.0</span>
+        </div>
+        <div class="d-flex justify-content-between mt-2">
+          <span class="fw-500">Total $ </span>
+          <span class="text-success" id="sale_total">{{total}}</span>
+        </div>
 
-          <button type="submit" class="btn btn-dark" style="font-size: 12px">
-            Cobrar
-          </button>
-          <a href="{% url 'acuatica.sales-ticket' %}" target="_blank"
-            >Imprimir</a
-          >
-        </form>
+        <hr />
+        <div class="d-flex justify-content-between mt-2">
+          <form class="" action="{% url 'acuatica.sales-charge' %}" method="POST">
+            {% csrf_token %}
+            <input
+              type="hidden"
+              class="form-control form-control-sm"
+              id="colFormLabelSm"
+              name="total"
+              value="{{total}}"
+            />
+            {% for item in products %}
+            <input
+              type="hidden"
+              class="form-control form-control-sm"
+              id="colFormLabelSm"
+              name="inv"
+              value="{{item.id}},{{item.quantity}}"
+            />
+            {% endfor %}
+            <div class="row mb-3 d-flex justify-content-between mt-2">
+              <label
+                for="colFormLabelSm"
+                class="col-sm-2 col-form-label col-form-label-sm"
+                style="margin-right: 0"
+                >Efectivo</label
+              >
+              <div class="col-sm-auto">
+                <input
+                  type="number"
+                  class="form-control form-control-sm"
+                  id="colFormLabelSm"
+                  name="cash"
+                  oninput="onclickhandler(this)"
+                />
+              </div>
+            </div>
+            <div class="row mb-3 d-flex justify-content-between mt-2">
+              <label for="colFormLabel" class="col-sm-2 col-form-label"
+                >T.Credito</label
+              >
+              <div class="col-sm-auto">
+                <input
+                  type="number"
+                  class="form-control form-control-sm"
+                  id="colFormLabel"
+                />
+              </div>
+            </div>
+            <div class="row mb-3 d-flex justify-content-between mt-2">
+              <label for="colFormLabel" class="col-sm-2 col-form-label"
+                >Banco</label
+              >
+              <div class="col-sm-auto">
+                <input
+                  type="number"
+                  class="form-control form-control-sm"
+                  id="colFormLabel"
+                />
+              </div>
+            </div>
+            <div class="row mb-3 d-flex justify-content-between mt-2">
+              <input
+                class="form-control"
+                list="datalistClientOptions"
+                id="clientDataList"
+                placeholder="Buscar Cliente..."
+                style="margin-right: 20px"
+                name="client"
+                autocomplete="off"
+              />
+              <datalist id="datalistClientOptions">
+                {% for client in clients %}
+                <option
+                  value="{{client.pk}} {{client.name}} {{client.last_name}} {{client.second_last_name}}"
+                  label="{{client.first_name}}"
+                ></option>
+                {%endfor%}
+              </datalist>
+            </div>
+            <div class="row mb-3 d-flex justify-content-between mt-2">
+              <input
+                class="form-control"
+                
+                id="title"
+                placeholder="Comentarios..."
+                style="margin-right: 20px"
+                name="comments"
+                onkeyup="Allow()"
+                autocomplete="off"
+              />
+            </div>
+            <hr />
+            <div class="d-flex justify-content-between mt-2">
+              <span class="fw-500">Cambio </span>
+              <span class="text-danger" id="coins">$cambio</span>
+            </div>
+
+            <button type="submit" class="btn btn-dark" style="font-size: 12px">
+              Cobrar
+            </button>
+            <a href="{% url 'acuatica.sales-ticket' %}" target="_blank"
+              >Imprimir</a
+            >
+          </form>
+        </div>
       </div>
     </div>
   </div>

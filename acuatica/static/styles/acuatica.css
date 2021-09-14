@@ -6,14 +6,16 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+
+
 .main-content {
   width: 100%;
   display: flex;
   justify-content: flex-end;
   flex-wrap: nowrap;
   overflow-x: auto;
-  overflow-y: hidden;
-  height: 100vh;
+  overflow-y: scroll;
+  height: 100%;
   height: -webkit-fill-available;
 }
 
@@ -21,7 +23,7 @@
   position: fixed;
   left: 0;
   background-color: #0e1837;
-  height: 100%;
+  height: 100vh;
   width: 19%;
   max-width: 260px;
   z-index: 1;
@@ -57,7 +59,7 @@ main {
   height: -webkit-fill-available;
   max-height: 100vh;
   overflow-x: auto;
-  overflow-y: hidden;
+  
 }
 
 .b-example-divider {

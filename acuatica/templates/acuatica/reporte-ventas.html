@@ -113,7 +113,7 @@ Ventas{% endblock %}
   </nav>
   </form>
   <div class="container2">
-    <p class="font-weight-bold ml-2" style="font-size:20px;">Total: {{total.total__sum}}</p>
+    <p class="font-weight-bold ml-2" style="font-size:20px;">Total: ${{total.total__sum}}</p>
     <table class="table table-light table-striped">
       <tbody>
         <tr>
@@ -131,8 +131,8 @@ Ventas{% endblock %}
             <td>{{sale.user}}</td>
             <td>{{sale.client}}</td>
             <td>{{sale.status}}</td>
-            <td>{{sale.cash}}</td>
-            <td>{{sale.total}}</td>
+            <td>${{sale.cash}}</td>
+            <td>${{sale.total}}</td>
             <td>{{sale.created}}</td>
             {% if sale.status == 'T'%}
             <td><a href="{% url 'acuatica.cancel-sale' pk=sale.pk %}" type="button">Cancelar</a></td>
@@ -160,4 +160,13 @@ Ventas{% endblock %}
   </div> 
   
 </div>
+<style>
+  .container2 {
+    box-shadow: 4px 0px 0px 8px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+</style>
 {% endblock%}

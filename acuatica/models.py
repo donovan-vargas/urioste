@@ -20,8 +20,6 @@ class UserExtends(models.Model):
             ('is_admin', _('Es admin')),
         }
 
-
-   
     def __str__(self):
         return str(self.name)
 
@@ -118,18 +116,22 @@ class Inventario(models.Model):
     # categoria A
     # categoria B
     name = models.CharField(max_length=100, unique=True)
-    visible = models.BooleanField()
+    visible = models.BooleanField(default=True)
     size = models.CharField(max_length=20, choices=SIZE_CHOICE, default="0000")
-    measures = models.CharField(max_length=200, default="medidas para algunos productos")
+    measures = models.CharField(
+        max_length=200, default="medidas para algunos productos")
     # descripcion cuadro bien complejo, creo que seria mejor hacerlo en el front end
     short_name = models.CharField(max_length=60)
-    branches = MultiSelectField(choices=BRANCH_CHOICES, blank=True, null=True)
+    branches = MultiSelectField(
+        choices=BRANCH_CHOICES, blank=True, null=True, default=True)
     limited_inventory = models.BooleanField(default=True)
-    contained_products = models.CharField(max_length=50, default="ProductosContenidos")
+    contained_products = models.CharField(
+        max_length=50, default="ProductosContenidos")
     minimum_amount = models.CharField(max_length=200)
     max_amount = models.CharField(max_length=100)
     colors = models.CharField(max_length=100, default="colores")
-    browserdescription = models.CharField(max_length=100, default="descripcionBuscador")
+    browserdescription = models.CharField(
+        max_length=100, default="descripcionBuscador")
     browserTitle = models.CharField(max_length=50, default="tituloBrowser")
     friendly_url = models.CharField(max_length=100, default="url")
     cost = models.IntegerField(default=0)
@@ -192,7 +194,6 @@ class Sales(models.Model):
         max_length=20, choices=STATUS_CHOICE, default=TERMINADO)
     created = models.DateField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    
 
     class Meta:
         verbose_name_plural = 'Ventas'
@@ -208,7 +209,6 @@ class InvSales(models.Model):
     quantity = models.IntegerField()
     created = models.DateField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    
 
     class Meta:
         verbose_name_plural = 'Cobros'

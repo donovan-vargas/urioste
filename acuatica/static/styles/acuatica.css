@@ -7,6 +7,98 @@
   font-family: "Poppins", sans-serif;
 }
 
+label[for="id_visible"]{
+  display: none;
+  visibility: hidden;
+}
+label[for="id_size"]{
+  display: none;
+  visibility: hidden;
+}
+label[for="id_measures"]{
+  display: none;
+  visibility: hidden;
+}
+label[for="id_branches"]{
+  display: none;
+  visibility: hidden;
+}
+label[for="id_limited_inventory"]{
+  display: none;
+  visibility: hidden;
+}
+label[for="id_contained_products"]{
+  display: none;
+  visibility: hidden;
+}
+label[for="id_colors"]{
+  display: none;
+  visibility: hidden;
+}
+label[for="id_browserdescription"]{
+  display: none;
+  visibility: hidden;
+}
+label[for="id_browserTitle"]{
+  display: none;
+  visibility: hidden;
+}
+label[for="id_friendly_url"]{
+  display: none;
+  visibility: hidden;
+}
+label[for="NombreCorto"]{
+  display: none;
+  visibility: hidden;
+}
+label[for="contained_products"]{
+  display: none;
+  visibility: hidden;
+}
+label[for="Medidas"]{
+  display: none;
+  visibility: hidden;
+}
+label[for="browserTitle"]{
+  display: none;
+  visibility: hidden;
+}
+
+label[for="browserdescription"]{
+  display: none;
+  visibility: hidden;
+}
+
+label[for="friendly_url"]{
+  display: none;
+  visibility: hidden;
+}
+
+label[for="colors"]{
+  display: none;
+  visibility: hidden;
+}
+
+#id_short_name{
+  display: none;
+}
+
+#id_contained_products{
+  display: none;
+}
+#id_browserTitle{
+  display: none;
+}
+#id_friendly_url{
+  display: none;
+}
+#id_colors{
+  display: none;
+}
+
+#id_browserdescription{
+  display: none;
+}
 
 .main-content {
   width: 100%;

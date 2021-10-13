@@ -45,7 +45,7 @@ class InputsForm(forms.ModelForm):
         }
 
 
-class InventarioForm(forms.ModelForm):
+class InventarioForm(StylishForm):
 
     class Meta:
         model = Inventario

@@ -23,6 +23,7 @@ Principal
 
 
 
+
 {% endblock %}
 {% block site_js %}
 
@@ -256,7 +257,7 @@ Principal
                                     data-bs-toggle="modal" data-bs-dismiss="modal">Tomar fotografia</button>
 
                             </div>
-                            <div class="col-md-4 ms-auto"style="border:none;">
+                            <div class="col-md-4 ms-auto" style="border:none;">
                                 <img alt="" id="fotodecliente" width="300" height="175" style="border:none;">
                                 {{form.image_source}}
 
@@ -469,175 +470,254 @@ Principal
             </div>
         </div>
     </div>
-    </div>
-    
+</div>
 
-    <div class="modal fade" id="updatecatalogModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Datos del Producto</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form class="contenedor-pop" action="{% url 'acuatica.catalogo' %}" method="POST">
-                    <div class="modal-body">
 
-                        {% csrf_token %}
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label for="nombre-Cliente" class="col-form-label">Nombre:</label>
-                                    {{ form.name }}
-                                </div>
-                                <div class="col-md-4 ms-auto">
-                                    <label for="NumCode" class="col-form-label">Num code:</label>
-                                    {{ form.numcode }}
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label for="Medidas" class="col-form-label">Medidas:</label>
-                                    {{ form.measures }}
-                                </div>
-                                <div class="col-md-4 ms-auto">
-                                    <label for="NombreCorto" class="col-form-label">Nombre Corto:</label>
-                                    {{ form.short_name }}
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4 ms-auto">
-                                    <label for="contained_products" class="col-form-label">Productos Contenidos:</label>
-                                    {{ form.contained_products }}
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label for="minimum_amount" class="col-form-label">Cantidad Minima:</label>
-                                    {{ form.minimum_amount }}
-                                </div>
-                                <div class="col-md-4 ms-auto">
-                                    <label for="max_amount" class="col-form-label">Cantidad Maxima:</label>
-                                    {{ form.max_amount }}
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label for="colors" class="col-form-label">Colores:</label>
-                                    {{ form.colors }}
-                                    <label for="browserdescription" class="col-form-label">Descripcion de buscador:</label>
-                                    {{ form.browserdescription }}
-                                </div>
-                                <div class="col-md-4 ms-auto">
-                                    <label for="browserTitle" class="col-form-label">Titulo de Buscador:</label>
-                                    {{ form.browserTitle }}
-                                </div>
-                            </div>
-                            <div class="row">
-
-                                <div class="col-md-4 ms-auto">
-                                    <label for="friendly_url" class="col-form-label">URL Amigable:</label>
-                                    {{ form.friendly_url}}
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label for="cost" class="col-form-label">Precio:</label>
-                                    {{ form.cost }}
-                                </div>
-                                <div class="col-md-4 ms-auto">
-                                    <label for="total_cuantity" class="col-form-label">Cantidad Total:</label>
-                                    {{ form.total_cuantity }}
-                                </div>
-                            </div>
-                            <div class="" style="display: none">
-                                {{ form.measures}}
-                                {{ form.visible}}
-                                {{ form.branches}}
-                                {{ form.size }}
-                                <input type="hidden" name="pk" value="{{ inv.pk }}">
-                            </div>
-
-                        </div>
-
-                        <!--FOTOFOTOFOTOFOTOFOTOFOTOFOTOFOTOFOTOFOTOFOTOFOTO-->
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                {{form.picture}}
-                            </div>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                Cerrar
-                            </button>
-                            <button type="submit" class="btn btn-dark">Guardar</button>
-                        </div>
-                </form>
+<!--xxxxxxxxxx REPETICION DE BLOQUE DE ARRIBA xxxxxxxxx-->
+<div class="modal fade" id="catalogModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Datos del Producto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <form class="contenedor-pop" action="{% url 'acuatica.clientes' %}" method="POST"
+                entctype=multipart/form-data>
+                {% csrf_token %}
+                <div class="modal-body">
+
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="numcode" class="col-form-label">Num Code:</label>
+                            {{ form.numcode }}
+                        </div>
+                        <div class="col-md-4 ms-auto">
+                            <label for="name" class="col-form-label">Nombre:</label>
+                            {{ form.name }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="short_name" class="col-form-label">Nombre Corto:</label>
+                            {{form.short_name}}
+                        </div>
+                        <div class="col-md-4 ms-auto">
+                            <label for="minimum_amount" class="col-form-label">Cantidad minima:</label>
+                            {{ form.minimum_amount }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="maximum_amount" class="col-form-label">Cantidad Máxima:</label>
+                            {{ form.max_amount}}
+                        </div>
+                        <div class="col-md-4 ms-auto">
+                            <label for="cost" class="col-form-label">Costo:</label>
+                            {{ form.cost }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="maximum_amount" class="col-form-label">Cantidad Máxima:</label>
+                            {{form.max_amount}}
+                        </div>
+                        <div class="col-md-4 ms-auto">
+                            <label for="cost" class="col-form-label">Costo:</label>
+                            {{ form.cost }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="total_cuantity" class="col-form-label">Cantidad Total:</label>
+                            {{form.total_cuantity}}
+                        </div>
+                        <div class="col-md-4 ms-auto">
+                            <label for="picture" class="col-form-label">Foto:</label>
+                            {{ form.picture }}
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Cerrar
+                    </button>
+                    <button type="submit" class="btn btn-dark">Guardar</button>
+            </form>
         </div>
     </div>
-    </div>
+</div>
+</div>
 
-    <div class="modal fade" id="periodo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="periodo">Periodo de Ventas</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form class="contenedor-pop" action="" method="POST">
+
+<div class="modal fade" id="updatecatalogModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Datos del Producto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class="contenedor-pop" action="{% url 'acuatica.catalogo' %}" method="POST">
+                <div class="modal-body">
+
+                    {% csrf_token %}
                     <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="nombre-Cliente" class="col-form-label">Nombre:</label>
+                                {{ form.name }}
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="NumCode" class="col-form-label">Num code:</label>
+                                {{ form.numcode }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="Medidas" class="col-form-label">Medidas:</label>
+                                {{ form.measures }}
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="NombreCorto" class="col-form-label">Nombre Corto:</label>
+                                {{ form.short_name }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 ms-auto">
+                                <label for="contained_products" class="col-form-label">Productos Contenidos:</label>
+                                {{ form.contained_products }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="minimum_amount" class="col-form-label">Cantidad Minima:</label>
+                                {{ form.minimum_amount }}
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="max_amount" class="col-form-label">Cantidad Maxima:</label>
+                                {{ form.max_amount }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="colors" class="col-form-label">Colores:</label>
+                                {{ form.colors }}
+                                <label for="browserdescription" class="col-form-label">Descripcion de buscador:</label>
+                                {{ form.browserdescription }}
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="browserTitle" class="col-form-label">Titulo de Buscador:</label>
+                                {{ form.browserTitle }}
+                            </div>
+                        </div>
+                        <div class="row">
 
-                        {% csrf_token %}
-                        <label for="firstDate" class="form-label">De:</label>
-                        <input type="date" name="init_date" class="form-control">
-
-                        <label style="margin-top: 10px;" for="secondDate" class="form-label">A:</label>
-                        <input type="date" name="end_date" class="form-control">
-
-
-
+                            <div class="col-md-4 ms-auto">
+                                <label for="friendly_url" class="col-form-label">URL Amigable:</label>
+                                {{ form.friendly_url}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="cost" class="col-form-label">Precio:</label>
+                                {{ form.cost }}
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <label for="total_cuantity" class="col-form-label">Cantidad Total:</label>
+                                {{ form.total_cuantity }}
+                            </div>
+                        </div>
+                        <div class="" style="display: none">
+                            {{ form.measures}}
+                            {{ form.visible}}
+                            {{ form.branches}}
+                            {{ form.size }}
+                            <input type="hidden" name="pk" value="{{ inv.pk }}">
+                        </div>
 
                     </div>
+
+                    <!--FOTOFOTOFOTOFOTOFOTOFOTOFOTOFOTOFOTOFOTOFOTOFOTO-->
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            {{form.picture}}
+                        </div>
+                    </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                             Cerrar
                         </button>
                         <button type="submit" class="btn btn-dark">Guardar</button>
                     </div>
-                </form>
-            </div>
+            </form>
         </div>
     </div>
+</div>
+</div>
 
-    <div class="modal fade" id="cancelar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="titulocancelar">Cancelación</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="modal fade" id="periodo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="periodo">Periodo de Ventas</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class="contenedor-pop" action="" method="POST">
+                <div class="modal-body">
+
+                    {% csrf_token %}
+                    <label for="firstDate" class="form-label">De:</label>
+                    <input type="date" name="init_date" class="form-control">
+
+                    <label style="margin-top: 10px;" for="secondDate" class="form-label">A:</label>
+                    <input type="date" name="end_date" class="form-control">
+
+
+
+
                 </div>
-                <form class="contenedor-pop" action="" method="POST">
-                    <div class="modal-body">
-
-                        {% csrf_token %}
-                        Estas por cancelar esta venta, ¿Estas seguro?
-
-
-
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                            Cerrar
-                        </button>
-                        <button type="submit" class="btn btn-danger">Cancelar venta</button>
-                    </div>
-                </form>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Cerrar
+                    </button>
+                    <button type="submit" class="btn btn-dark">Guardar</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
+
+<div class="modal fade" id="cancelar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="titulocancelar">Cancelación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form class="contenedor-pop" action="" method="POST">
+                <div class="modal-body">
+
+                    {% csrf_token %}
+                    Estas por cancelar esta venta, ¿Estas seguro?
+
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Cerrar
+                    </button>
+                    <button type="submit" class="btn btn-danger">Cancelar venta</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 
 
@@ -667,6 +747,9 @@ Principal
             new bootstrap.Tooltip(tooltipTriggerEl)
         })
     })()
+
+
+
 
     const webcamElement = document.getElementById('webCam');
     const canvasElement = document.getElementById('canvas');
@@ -705,16 +788,37 @@ Principal
         webcam.stop();
         // take snapshot and get image data
 
-        
+
 
 
 
     };
-    document.getElementById("id_image_source").style.display="none";
+    document.getElementById("id_image_source").style.display = "none";
+    function hidecatalog() {
+        const visi = document.getElementById('id_visible');
+        visi.style.display = "none";
+        const size = document.getElementById('id_size');
+        size.style.display = "none";
+        const measures = document.getElementById('id_measures');
+        measures.style.display = "none";
+        const branches = document.getElementById('id_branches');
+        branches.style.display = "none";
+        const li = document.getElementById('id_limited_inventory');
+        li.style.display = "none";
+        const lo = document.getElementById('id_contained_products');
+        lo.style.display = "none";
+        const co = document.getElementById('id_colors');
+        co.style.display = "none";
+        const bo = document.getElementById('id_browserdescription');
+        bo.style.display = "none";
+        const to = document.getElementById('id_browserTitle');
+        to.style.display = "none";
+        const url = document.getElementById('id_friendly_url');
+        url.style.display = "none";
 
-    
 
- 
+    }
+
 
 </script>
 

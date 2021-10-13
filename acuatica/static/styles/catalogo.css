@@ -12,3 +12,8 @@
   font-size: 30px;
   font-weight: 200;
 }
+
+label[for="medidas"]{
+  display: none;
+  visibility: hidden;
+}

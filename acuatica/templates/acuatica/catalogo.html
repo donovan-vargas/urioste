@@ -18,7 +18,7 @@ Catalogo {% endblock %} {% block right_content %}
             {% for i in inventory %}
             <option value="{{i.name}}"></option>
             {% endfor %}
-          </datalist>          
+          </datalist>
         </form>
       </div>
     </div>
@@ -31,7 +31,7 @@ Catalogo {% endblock %} {% block right_content %}
       <p class="card-text">Costo: {{inv.cost}}</p>
       <p class="card-text">Cantidad: {{inv.total_cuantity}}</p>
       <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#updatecatalogModal"
-        data-bs-whatever="@mdo">
+        data-bs-whatever="@mdo" onclick="hide()">
         Actualizar
       </button>
 
@@ -39,4 +39,28 @@ Catalogo {% endblock %} {% block right_content %}
   </div>
   {% endif %}
 </div>
+<script>
+  function hide() {
+    const visi = document.getElementById('id_visible');
+    visi.style.display = "none";
+    const size = document.getElementById('id_size');
+    size.style.display = "none";
+    const measures = document.getElementById('id_measures');
+    measures.style.display = "none";
+    const branches = document.getElementById('id_branches');
+    branches.style.display = "none";
+    const li = document.getElementById('id_limited_inventory');
+    li.style.display = "none";
+    const lo = document.getElementById('id_contained_products');
+    lo.style.display = "none";
+    const co = document.getElementById('id_colors');
+    co.style.display = "none";
+    const bo = document.getElementById('id_browserdescription');
+    bo.style.display = "none";
+    const to = document.getElementById('id_browserTitle');
+    to.style.display = "none";
+    const url = document.getElementById('id_short_name');
+    url.style.display = "none";
+  }
+</script>
 {% endblock %}

@@ -121,9 +121,9 @@ class Inventario(models.Model):
     measures = models.CharField(
         max_length=200, default="medidas para algunos productos")
     # descripcion cuadro bien complejo, creo que seria mejor hacerlo en el front end
-    short_name = models.CharField(max_length=60)
+    short_name = models.CharField(max_length=60, default="nombrecorto")
     branches = MultiSelectField(
-        choices=BRANCH_CHOICES, blank=True, null=True, default=True)
+        choices=BRANCH_CHOICES, blank=True, null=True, default=1)
     limited_inventory = models.BooleanField(default=True)
     contained_products = models.CharField(
         max_length=50, default="ProductosContenidos")

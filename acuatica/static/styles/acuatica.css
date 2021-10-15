@@ -15,12 +15,17 @@ label[for="id_size"]{
   display: none;
   visibility: hidden;
 }
+label[for="id_short_name"]{
+  display: none;
+  visibility: hidden;
+}
+
 label[for="id_measures"]{
   display: none;
   visibility: hidden;
 }
 label[for="id_branches"]{
-  display: none;
+  
   visibility: hidden;
 }
 label[for="id_limited_inventory"]{

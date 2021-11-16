@@ -96,8 +96,6 @@ Ventas{% endblock %} {%block right_content %}
             <th>Producto</th>
             <th>Precio</th>
             <th>Imp.</th>
-            <th>Descuento</th>
-            <th>Recargo</th>
           </tr>
         </thead>
         <tbody>
@@ -145,6 +143,47 @@ Ventas{% endblock %} {%block right_content %}
               value="{{item.id}},{{item.quantity}}"
             />
             {% endfor %}
+
+            <div class="row mb-3 d-flex justify-content-between mt-2">
+              <label
+                for="colFormLabelSm"
+                class="col-sm-2 col-form-label col-form-label-sm font-weight-bold"
+                style="margin-right: 10; font-size: 18px;"
+                >Descuento</label
+              >
+              <div class="col-sm-auto">
+                <input
+                  type="number"
+                  class="form-control form-control-sm"
+                  id="descuento"
+                  name="descuento"
+                  placeholder="Ingresa monto"
+                />
+              </div>
+            </div>
+
+
+
+            <div class="row mb-3 d-flex justify-content-between mt-2">
+              <label
+                for="colFormLabelSm"
+                class="col-sm-2 col-form-label col-form-label-sm font-weight-bold"
+                style="margin-right: 10; font-size: 18px;"
+                >Cargo Extra</label
+              >
+              <div class="col-sm-auto">
+                <input
+                  type="number"
+                  class="form-control form-control-sm"
+                  id="charge"
+                  name="ExtraCharge"
+                  placeholder="Ingresa monto"
+                />
+              </div>
+            </div>
+
+
+
             <div class="row mb-3 d-flex justify-content-between mt-2">
               <label
                 for="colFormLabelSm"
@@ -163,6 +202,10 @@ Ventas{% endblock %} {%block right_content %}
                 />
               </div>
             </div>
+
+
+            
+
 
 
             <div class="row mb-3 d-flex justify-content-between mt-2">
@@ -249,5 +292,6 @@ Ventas{% endblock %} {%block right_content %}
     </div>
   </div>
 </div>
+
 
 {% endblock%}

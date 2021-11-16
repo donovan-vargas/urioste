@@ -318,6 +318,7 @@ def sales_charge(request):
             total = int(request.POST.get('total'))
             items = request.POST.getlist('inv')
             client = request.POST.get('client')
+            payForm = request.POST.get('pago')
             comments = request.POST.get('comments')
             client = client.split()
             cli = Clients.objects.get(pk=client[0])
@@ -335,6 +336,7 @@ def sales_charge(request):
             sales.cash = cash
             sales.client = cli
             sales.total = total
+            sales.payForm = payForm
             sales.comments = comments
             sales.save()
             for item in items:
@@ -350,6 +352,7 @@ def sales_charge(request):
                 inputs.cuantity = 0
                 inputs.sale = x[1]
                 inputs.comments = ''
+                inputs.payForm = ''
                 inputs.save()
             cache.delete(data_sale)
             messages.success(request, "Venta cobrada")

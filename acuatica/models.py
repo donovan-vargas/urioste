@@ -189,6 +189,7 @@ class Sales(models.Model):
     client = models.ForeignKey(Clients, on_delete=models.DO_NOTHING)
     cash = models.FloatField()
     total = models.FloatField()
+    payForm = models.CharField(max_length=100)
     comments = models.TextField(blank=True, null=True)
     status = models.CharField(
         max_length=20, choices=STATUS_CHOICE, default=TERMINADO)

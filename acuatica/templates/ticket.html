@@ -8,42 +8,39 @@
 >
   <div class="bg-pay p-3 text-center">
     <img src="https://media.cylex.mx/companies/1141/0836/logo/logo.jpg" alt="">
-    <span class="font-weight-bold">Resumen de Venta</span>
+    <span class="font-weight-bold">Comprobante de pago</span>
     {% if sales %}
     <div>
-      <span class="font-weight-bold">Folio de la venta:</span> {{sales.id}}
+      <span class="font-weight-bold">Folio:</span> {{sales.id}}
     </div>
     {% endif %}
     <div class="fecha">
-      <p class="font-weight-bold" id="fechaventa">Fecha</p>
-    </div>
-    <div class="hora">
-      <p class="font-weight-bold" id="horaventa">Hora</p>
+      <span class="font-weight-bold" id="fechaventa">Fecha</span>
+      <span class="font-weight-bold" id="horaventa">Hora</span>
     </div>
     <div class="d-flex justify-content-between mt-2">
       {% if sales %}
-      <span class="fw-500 .fs-6 text">Realizo venta: {{sales.user}}</span
-      ><span> </span>
+      <span class="fw-500 .fs-6 text font-weight-bold">Realizo: </span
+      ><span>{{sales.user}}</span>
       {% endif %}
     </div>
     <div class="d-flex justify-content-between mt-2">
       {% if sales %}
-      <span class="fw-500 .fs-6 text">Cliente</span
+      <span class="fw-500 .fs-6 text font-weight-bold">Cliente</span
       ><span>{{sales.client}} {{sales.client.last_name}} {{sales.client.second_last_name}}</span>
       {% endif %}
     </div>
     <hr />
-    <div class="bg-pay p-3 text-center">
-      <span class="font-weight-bold">Descripción de Productos</span>
-    </div>
+    
+    <span class="font-weight-bold">Descripción de Productos</span>
+    
 
     
       
       {% for invsale in invSales%}
     <div class="d-flex justify-content-between mt-2">
-        <span class="fw-500 .fs-6 text">Producto </span>
-        <span> {{invsale.inventory}}</span><span class="ml-1 mr-1">  ${{invsale.inventory.cost}} </span>
-        <span> Cantidad: {{invsale.quantity}}</span>
+        <span> {{invsale.inventory}}</span><span>{{invsale.quantity}}</span><span class="ml-1 mr-1">  ${{invsale.inventory.cost}} C/U</span>
+        
     </div>
       
       {% endfor %}
@@ -58,26 +55,19 @@
       {% endif %}
     </div>
     <div class="d-flex justify-content-between mt-2">
-      <span class="fw-500 .fs-6 text">Iva</span> <span>$0.0</span>
-    </div>
-    <div class="d-flex justify-content-between mt-2">
       {% if sales %}
       <span class="fw-500 .fs-6 text">Total </span>
       <span class="text-success" id="sale_total">$ {{sales.total}}</span>
       {% endif %}
     </div>
-
-    <hr />
     
       <div class="d-flex justify-content-between mt-2">
         {% if sales %}
-        <span class="fw-500 .fs-6 text">Efectivo </span>
-        <div class="col-sm-auto">
-          <span class="text-success" id="efectivo">$ {{sales.cash}}</span>
-          {% endif %}
-        </div>
+        <span class="fw-500 .fs-6 text">Efectivo </span><span class="text-success" id="efectivo">$ {{sales.cash}}</span>
+        
+        {% endif %}
+        
       </div>
-        <hr />
         <div class="d-flex justify-content-between mt-2">
           <span class="fw-500">Cambio </span>
           <span class="text-danger" id="coins">$cambio</span>
@@ -108,9 +98,9 @@
     }
   }
   @page {
-    size: 76mm 200mm; /* landscape */
+    size: 76mm 155mm; /* landscape */
     /* you can also specify margins here: */
-    margin: 5mm;
+    margin: 2mm;
     margin-right: 5mm; /* for compatibility with both A4 and Letter */
   }
 </style>
@@ -124,17 +114,17 @@
   var f = new Date();
 
   var fecha = (document.getElementById("fechaventa").innerHTML =
-    "Fecha de la venta:            " +
+    "Fecha:            " +
     f.getDate() +
     "-" +
     (f.getMonth() + 1) +
     "-" +
     f.getFullYear());
   var hora = (document.getElementById("horaventa").innerHTML =
-    "Hora de la venta:              " +
+    "Hora:              " +
     f.getHours() +
     ":" +
-    (f.getMinutes() + ":" + f.getSeconds()));
+    (f.getMinutes() + ":" ));
 
   var total = document.getElementById("sale_total").textContent;
   var cash = document.getElementById("efectivo").textContent;

@@ -121,7 +121,8 @@ Ventas{% endblock %}
           <td class="font-weight-bold">Realizó Venta</td>
           <td class="font-weight-bold">Cliente</td>
           <td class="font-weight-bold">Estatus</td>
-          <td class="font-weight-bold">Efectivo</td>
+          <td class="font-weight-bold">Caja</td>
+          <td class="font-weight-bold">Tipo de Pago</td>
           <td class="font-weight-bold">Total</td>
           <td class="font-weight-bold">Fecha</td>
         </tr>
@@ -132,6 +133,7 @@ Ventas{% endblock %}
             <td>{{sale.client}}</td>
             <td>{{sale.status}}</td>
             <td>${{sale.cash}}</td>
+            <td>{{sale.payForm}}</td>
             <td>${{sale.total}}</td>
             <td>{{sale.created}}</td>
             {% if sale.status == 'T'%}

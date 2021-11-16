@@ -121,9 +121,6 @@ Ventas{% endblock %} {%block right_content %}
           <span class="fw-500">Subtotal $</span> <span> 0 </span>
         </div>
         <div class="d-flex justify-content-between mt-2">
-          <span class="fw-500">Iva $ </span> <span>$0.0</span>
-        </div>
-        <div class="d-flex justify-content-between mt-2">
           <span class="fw-500">Total $ </span>
           <span class="text-success" id="sale_total">{{total}}</span>
         </div>
@@ -151,9 +148,9 @@ Ventas{% endblock %} {%block right_content %}
             <div class="row mb-3 d-flex justify-content-between mt-2">
               <label
                 for="colFormLabelSm"
-                class="col-sm-2 col-form-label col-form-label-sm"
-                style="margin-right: 0"
-                >Efectivo</label
+                class="col-sm-2 col-form-label col-form-label-sm font-weight-bold"
+                style="margin-right: 10; font-size: 18px;"
+                >Caja</label
               >
               <div class="col-sm-auto">
                 <input
@@ -162,33 +159,47 @@ Ventas{% endblock %} {%block right_content %}
                   id="colFormLabelSm"
                   name="cash"
                   oninput="onclickhandler(this)"
+                  placeholder="Ingresa cantidad pagada"
                 />
               </div>
             </div>
+
+
             <div class="row mb-3 d-flex justify-content-between mt-2">
-              <label for="colFormLabel" class="col-sm-2 col-form-label"
-                >T.Credito</label
+              <label
+                for="colFormLabelSm"
+                class="col-sm-2 col-form-label col-form-label-sm font-weight-bold"
+                style="margin-right: 10; font-size: 18px;"
+                >Forma de Pago</label
               >
               <div class="col-sm-auto">
                 <input
-                  type="number"
-                  class="form-control form-control-sm"
-                  id="colFormLabel"
+                class="form-control form-control-sm"
+                list="formaPagoList"
+                id="pago"
+                placeholder="Forma de Pago"..."
+                name="pago"
+                autocomplete="off"
                 />
+                <datalist id="formaPagoList">
+                  
+                  <option
+                    value="Efecivo"
+                  ></option>
+                  <option
+                    value="Tarjeta"
+                  ></option>
+                  
+                </datalist>
+                
               </div>
             </div>
-            <div class="row mb-3 d-flex justify-content-between mt-2">
-              <label for="colFormLabel" class="col-sm-2 col-form-label"
-                >Banco</label
-              >
-              <div class="col-sm-auto">
-                <input
-                  type="number"
-                  class="form-control form-control-sm"
-                  id="colFormLabel"
-                />
-              </div>
-            </div>
+
+
+
+
+            
+            
             <div class="row mb-3 d-flex justify-content-between mt-2">
               <input
                 class="form-control"

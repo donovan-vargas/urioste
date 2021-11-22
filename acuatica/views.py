@@ -319,6 +319,8 @@ def sales_charge(request):
             items = request.POST.getlist('inv')
             client = request.POST.get('client')
             payForm = request.POST.get('pago')
+            discount = request.POST.get('descuento')
+            charge = request.POST.get('charge')
             comments = request.POST.get('comments')
             client = client.split()
             cli = Clients.objects.get(pk=client[0])
@@ -337,7 +339,10 @@ def sales_charge(request):
             sales.client = cli
             sales.total = total
             sales.payForm = payForm
+            sales.discount = discount
+            sales.charge = charge
             sales.comments = comments
+            sales.total = float(total) + float(charge) -float(discount)
             sales.save()
             for item in items:
                 x = item.split(',')

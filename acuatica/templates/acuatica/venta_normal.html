@@ -120,7 +120,7 @@ Ventas{% endblock %} {%block right_content %}
         </div>
         <div class="d-flex justify-content-between mt-2">
           <span class="fw-500">Total $ </span>
-          <span class="text-success" id="sale_total">{{total}}</span>
+          <span class="text-success" id="sale_total" name="sale_total">{{total}}</span>
         </div>
 
         <hr />
@@ -176,7 +176,7 @@ Ventas{% endblock %} {%block right_content %}
                   type="number"
                   class="form-control form-control-sm"
                   id="charge"
-                  name="ExtraCharge"
+                  name="charge"
                   placeholder="Ingresa monto"
                 />
               </div>
@@ -195,9 +195,9 @@ Ventas{% endblock %} {%block right_content %}
                 <input
                   type="number"
                   class="form-control form-control-sm"
-                  id="colFormLabelSm"
+                  id="caja"
                   name="cash"
-                  oninput="onclickhandler(this)"
+                  onchange="MyFunction(this)"
                   placeholder="Ingresa cantidad pagada"
                 />
               </div>
@@ -292,6 +292,5 @@ Ventas{% endblock %} {%block right_content %}
     </div>
   </div>
 </div>
-
 
 {% endblock%}

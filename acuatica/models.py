@@ -189,6 +189,8 @@ class Sales(models.Model):
     client = models.ForeignKey(Clients, on_delete=models.DO_NOTHING)
     cash = models.FloatField()
     total = models.FloatField()
+    discount = models.FloatField()
+    charge = models.IntegerField()
     payForm = models.CharField(max_length=100)
     comments = models.TextField(blank=True, null=True)
     status = models.CharField(

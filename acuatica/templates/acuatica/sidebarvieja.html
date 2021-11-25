@@ -1,0 +1,132 @@
+<link rel="stylesheet" href="{% static 'styles/acuatica.css' %}">
+</link>
+<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="{% static 'styles/ventas.css' %}">
+</link>
+<link rel="stylesheet" href="{% static 'styles/clientes.css' %}">
+</link>
+<link rel="stylesheet" href="{% static 'styles/catalogo.css' %}">
+</link>
+<link rel="stylesheet" href="{% static 'styles/entradas.css' %}">
+</link>
+<link rel="stylesheet" href="{% static 'styles/reporteventas.css' %}">
+</link>
+
+
+
+
+{% endblock %}
+{% block site_js %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="main-content">
+    <div class="container p-0 ml-0" style="width: 230px;">
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="height: 100vh;">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32">
+                    <use xlink:href="#bootstrap" />
+                </svg>
+                <span class="fs-4">Acuatica Urioste</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <button class="btn btn-toggle align-items-center rounded collapsed text-light"
+                        data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true"
+                        style="color:white">
+                        ventas
+                    </button>
+                    <div class="collapse " id="home-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="{% url 'acuatica.sales'%}" class="link-dark rounded text-light">Normal</a></li>
+
+
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-toggle align-items-center rounded collapsed text-light"
+                        data-bs-toggle="collapse" data-bs-target="#clientes-collapse" aria-expanded="true"
+                        style="color:white">
+                        Clientes
+                    </button>
+                    <div class="collapse" id="clientes-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="{% url 'acuatica.clientes'%}" class="link-dark rounded text-light">Clientes</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <button class="btn btn-toggle align-items-center rounded collapsed text-light"
+                        data-bs-toggle="collapse" data-bs-target="#servicios-collapse" aria-expanded="true"
+                        style="color:white">
+                        Servicios
+                    </button>
+                    <div class="collapse" id="servicios-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="{% url 'acuatica.catalogo'%}" class="link-dark rounded text-light">Catàlogo</a>
+                            </li>
+
+
+                        </ul>
+                </li>
+                <li>
+                    <button class="btn btn-toggle align-items-center rounded collapsed text-light"
+                        data-bs-toggle="collapse" data-bs-target="#inventario-collapse" aria-expanded="true"
+                        style="color:white">
+                        Inventario
+                    </button>
+                    <div class="collapse" id="inventario-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="{% url 'acuatica.inputs'%}" class="link-dark rounded text-light">Entradas</a>
+                            </li>
+
+                        </ul>
+
+                </li>
+                <li>
+
+                    <button class="btn btn-toggle align-items-center rounded collapsed text-light"
+                        data-bs-toggle="collapse" data-bs-target="#reportes-collapse" aria-expanded="true"
+                        style="color:white">
+                        Reportes
+                    </button>
+                    <div class="collapse" id="reportes-collapse">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            <li><a href="{% url 'acuatica.sales-report'%}"
+                                    class="link-dark rounded text-light">ventas</a></li>
+
+                        </ul>
+
+
+                </li>
+
+            </ul>
+            <hr />
+
+
+
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                    id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://media.cylex.mx/companies/1141/0836/logo/logo.jpg" alt="" width="32" height="32"
+                        class="rounded-circle me-2">
+                    <strong>Usuario</strong>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                    <li><a class="dropdown-item" href="#">New project...</a></li>
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="{% url 'acuatica.logout' %}">Cerrar sesión</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>

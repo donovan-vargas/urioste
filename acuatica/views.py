@@ -43,6 +43,27 @@ def index_view(request):
     return render(request, 'acuatica/index.html', {'form': form})
 
 
+def new_sidebar(request):
+    if request.user.is_authenticated:
+        return render(request, 'acuatica/new_sidebar.html')
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            user = request.POST['user']
+            password = request.POST['password']
+            user = authenticate(username=user, password=password)
+            if user is not None:
+                if user.is_active:
+                    login(request, user, backend=None)
+                    return render(request, 'acuatica/new_sidebar.html')
+                else:
+                    messages.error(request, 'Usuario inactivo')
+            else:
+                messages.error(request, 'Usuario o contraseña incorrecto')
+    else:
+        form = LoginForm()
+    return render(request, 'acuatica/index.html', {'form': form})
+
 def register_view(request):
     form = CreateUserForm()
 

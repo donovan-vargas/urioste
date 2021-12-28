@@ -1,0 +1,132 @@
+{% extends "acuatica/acuatica.html" %} {% load static %} {% block title%}
+Ventas{% endblock %}
+
+{%block right_content %}
+<div class="container mt-5">
+    <form action="{% url 'acuatica.sales-report' %}" method="post">
+        {% csrf_token %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:#e3f2fd">
+        <div class="container-fluid" style="padding: 4px 15px 4px 15px">
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li style="margin-right:20px ;">
+                        <label for="folio">Folio</label>
+                        <input class="form-control" id="folio" name="folio" placeholder="Folio" autocomplete="off">
+                    </li>
+                    <li style="margin-right: 20px">
+                        <label for="reporteClienteDataList" class="form-label">Cliente:</label>
+                        <input class="form-control" list="reporteclientelistOptions" id="client" name="client"
+                            placeholder="Cliente..." autocomplete="off" />
+                        <datalist id="reporteclientelistOptions">
+                            {% for sale in sales %}
+                            <option value="{{sale.client.id}}">{{ sale.client }}</option>
+                            {% endfor %}
+                        </datalist>
+                    </li>
+                    <li class="nav-item" style="margin-right: 20px">
+                        <label for="cantidadventa" class="form-label">Estado:</label>
+                        <input class="form-control" id="status" name="status" list="estadoReportes"
+                            placeholder="estatus..." autocomplete="off" />
+                        <datalist id="estadoReportes">
+                            <option value="T"></option>
+                            <option value="C"></option>
+                        </datalist>
+                    </li>
+                    <li class="nav-item" style="margin-right: 20px">
+                        <label for="realizoventa" class="form-label">Realizò:</label>
+                        <input class="form-control" list="realizoventa" id="user" name="user" placeholder="Cajero..."
+                            autocomplete="off" />
+                        <datalist id="realizoventa">
+                            {% for sale in sales %}
+                            <option value="{{sale.user.id}}">{{ sale.user }}</option>
+                            {% endfor %}
+                        </datalist>
+                    </li>
+                    <li class="nav-item" style="margin-right: 20px">
+                        <label for="formaPago" class="form-label">Fecha:</label>
+                        <input type="date" name="init_date" class="form-control" id="init_date" autocomplete="off" />
+                    </li>
+                    <li class="nav-item" style="margin-right: 20px;">
+                        <button type="button" type="button" class="btn btn-dark mt-4" data-bs-toggle="modal"
+                            data-bs-target="#periodo" data-bs-whatever="@mdo" style="font-size: 15px">Periodo de
+                            Tiempo</button>
+                    </li>
+
+
+
+
+                </ul>
+                <button type="submit" class="btn btn-dark" data-bs-toggle="modal" data-bs-whatever="@mdo"
+                    style="font-size: 12px">
+                    Buscar
+                </button>
+            </div>
+        </div>
+    </nav>
+</form>
+</div>
+<div class="container mt-2">
+    <div class="row">
+
+
+        <div class="col-md-12">
+            <h4>Reporte de ventas: ${{total.total__sum}}</h4>
+            <div class="table-responsive">
+
+
+                <table id="mytable" class="table table-bordred table-striped">
+
+                    <thead>
+                        <th class="font-weight-bold">Folio</th>
+                        <th class="font-weight-bold">Realizó</th>
+                        <th class="font-weight-bold">Cliente</th>
+                        <th class="font-weight-bold">Estatus</th>
+                        <th class="font-weight-bold">Caja</th>
+                        <th class="font-weight-bold">Tipo de Pago</th>
+                        <th class="font-weight-bold">Total</th>
+                        <th class="font-weight-bold">Fecha</th>
+                    </thead>
+                    <tbody>
+
+                        {% for sale in sales %}
+                        <tr>
+
+                            <td>{{sale.id}}</td>
+                            <td>{{sale.user}}</td>
+                            <td>{{sale.client}}</td>
+                            <td>{{sale.status}}</td>
+                            <td>${{sale.cash}}</td>
+                            <td>{{sale.payForm}}</td>
+                            <td>${{sale.total}}</td>
+                            <td>{{sale.created}}</td>
+                            <td>
+                                <p data-placement="top" data-toggle="tooltip" title="Delete"><a href="{% url 'acuatica.cancel-sale' pk=sale.pk %}" type="button">Cancelar</a>
+                                </p>
+                            </td>
+                        </tr>
+                        {% for detail in sale.invsales_set.all %}
+                        <tr>
+                            <td>{{detail.inventory}}</td>
+                            <td>{{detail.quantity}}</td>
+
+                        </tr>
+                        {% endfor %}
+                        <tr>
+                            <td>Comentario: </td>
+                            <td>{{sale.comments}}</td>
+
+                        </tr>
+
+
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+            {% endblock%}

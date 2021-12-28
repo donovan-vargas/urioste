@@ -14,7 +14,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.core.cache import cache
 from django.db import transaction
-from django.contrib.auth.decorators import login_required, permission_required 
+from django.contrib.auth.decorators import login_required, permission_required
 
 
 from django.contrib.auth.forms import UserCreationForm
@@ -64,6 +64,7 @@ def new_sidebar(request):
         form = LoginForm()
     return render(request, 'acuatica/index.html', {'form': form})
 
+
 def register_view(request):
     form = CreateUserForm()
 
@@ -112,6 +113,7 @@ def calculate_sales(data):
         total += item_subtotal
     return total
 
+
 @login_required(login_url='/acuatica/login/')
 def sales(request):
     form = InputsForm()
@@ -132,7 +134,7 @@ def sales(request):
             data.append(product)
             cache.set(data_sale, data, 300)
         elif model_product.count() <= 0:
-            messages.error(request,"No hay mas inventario de este Producto")
+            messages.error(request, "No hay mas inventario de este Producto")
             return redirect(reverse('acuatica.sales'))
 
     total = calculate_sales(data)
@@ -189,7 +191,7 @@ def catalogo(request):
         pk = request.POST.get("pk")
         if pk:
             cli = Inventario.objects.get(pk=pk)
-            form = InventoryForm(request.POST, instance=cli)            
+            form = InventoryForm(request.POST, instance=cli)
             if form.is_valid():
                 form.save()
                 messages.success(request, "Prodcuto actualizado")
@@ -248,24 +250,23 @@ def inputs(request):
 
     #jefesito = request.user
 
-    #if jefesito.has_perm('acuatica.is_admin'):
+    # if jefesito.has_perm('acuatica.is_admin'):
     return render(request, 'acuatica/entradas.html', context)
-    #elif jefesito.has_perm('acuatica.is_cashier'):
-        #messages.error(request,'Tienes que ser administrador para realizar Entradas :)')
-        #return redirect(reverse('acuatica.index'))
+    # elif jefesito.has_perm('acuatica.is_cashier'):
+    #messages.error(request,'Tienes que ser administrador para realizar Entradas :)')
+    # return redirect(reverse('acuatica.index'))
 
 
 @login_required(login_url='/acuatica/login/')
-#@permission_required('acuatica.is_admin')
+# @permission_required('acuatica.is_admin')
 def sales_report(request):
     context = {}
     fechahoy = date.today()
     # sales_report = Sales.objects.filter(created = date.today())
-    
-    
-        
+
     if request.method == 'GET':
-        total = Sales.objects.filter(created = date.today(), status = 'T').aggregate(Sum('total'))
+        total = Sales.objects.filter(
+            created=date.today(), status='T').aggregate(Sum('total'))
         sales_report = Sales.objects.filter(created=date.today())
     if request.method == "POST":
         client = request.POST.get('client')
@@ -295,15 +296,53 @@ def sales_report(request):
     context['total'] = total
     context['sales'] = sales_report
 
-    eljefesito  = request.user
-    
-    
-        
-    return render(request, 'acuatica/reporte-ventas.html', context)
+    eljefesito = request.user
 
-    
+    return render(request, 'acuatica/reporteventasnew.html', context)
 
 
+@login_required(login_url='/acuatica/login/')
+# @permission_required('acuatica.is_admin')
+def sales_report2(request):
+    context = {}
+    fechahoy = date.today()
+    # sales_report = Sales.objects.filter(created = date.today())
+
+    if request.method == 'GET':
+        total = Sales.objects.filter(
+            created=date.today(), status='T').aggregate(Sum('total'))
+        sales_report = Sales.objects.filter(created=date.today())
+    if request.method == "POST":
+        client = request.POST.get('client')
+        status = request.POST.get('status')
+        user = request.POST.get('user')
+        init_date = request.POST.get('init_date')
+        end_date = request.POST.get('end_date')
+        folio = request.POST.get('folio')
+        query = Q()
+        if client:
+            query &= Q(client=client)
+        if status:
+            query &= Q(status=status)
+        if user:
+            query &= Q(user=user)
+        if init_date and end_date:
+            query &= Q(created__gte=init_date)
+            query &= Q(created__lte=end_date)
+        elif init_date:
+            query &= Q(created=init_date)
+        if folio:
+            query &= Q(pk=folio)
+
+        sales_report = Sales.objects.filter(query)
+        total = Sales.objects.filter(query).aggregate(Sum('total'))
+
+    context['total'] = total
+    context['sales'] = sales_report
+
+    eljefesito = request.user
+
+    return render(request, 'acuatica/reporteventasnew.html', context)
 
 
 @login_required(login_url='/acuatica/login/')
@@ -363,7 +402,7 @@ def sales_charge(request):
             sales.discount = discount
             sales.charge = charge
             sales.comments = comments
-            sales.total = float(total) + float(charge) -float(discount)
+            sales.total = float(total) + float(charge) - float(discount)
             sales.save()
             for item in items:
                 x = item.split(',')
@@ -395,18 +434,18 @@ def ticket(request):
     return render(request, "ticket.html", context)
 
 
-
 @login_required(login_url='/acuatica/login/')
-#@permission_required('acuatica.is_admin')
-def cancel_sale(request,pk):
+# @permission_required('acuatica.is_admin')
+def cancel_sale(request, pk):
     user = request.user
     if user.has_perm('acuatica.is_admin'):
         sales = Sales.objects.get(pk=pk)
         sales.status = 'C'
-        
+
         sales.save()
         messages.success(request, "Venta Cancelada")
         return redirect('acuatica.sales-report')
     elif user.has_perm('acuatica.is_cashier'):
-        messages.error(request,"Tienes que ser administrador para esta acción")
+        messages.error(
+            request, "Tienes que ser administrador para esta acción")
         return redirect(reverse('acuatica.sales-report'))

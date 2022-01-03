@@ -3,7 +3,7 @@ Ventas{% endblock %} {%block right_content %}
 <div class="panel-derecho">
   <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 0">
     <div class="container-fluid" style="padding: 4px 15px 4px 15px">
-      <p style="margin-right: 20px">Ventas</p>
+      <p style="margin-right: 40px">Ventas</p>
       <button
         class="navbar-toggler"
         type="button"
@@ -95,7 +95,6 @@ Ventas{% endblock %} {%block right_content %}
             <th>Cant.</th>
             <th>Producto</th>
             <th>Precio</th>
-            <th>Imp.</th>
           </tr>
         </thead>
         <tbody>
@@ -275,12 +274,12 @@ Ventas{% endblock %} {%block right_content %}
               />
             </div>
             <hr />
-            <div class="d-flex justify-content-between mt-2">
+            <div class="d-flex justify-content-between mt-2 mb-2">
               <span class="fw-500">Cambio </span>
               <span class="text-danger" id="coins">$cambio</span>
             </div>
 
-            <button type="submit" class="btn btn-dark" style="font-size: 12px">
+            <button type="submit" class="btn btn-dark mr-2" style="font-size: 12px">
               Cobrar
             </button>
             <a href="{% url 'acuatica.sales-ticket' %}" target="_blank"

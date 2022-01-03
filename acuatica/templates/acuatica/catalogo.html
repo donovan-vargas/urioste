@@ -25,12 +25,12 @@ Catalogo {% endblock %} {% block right_content %}
   </nav>
   {% if inv %}
   <div class="card text-white bg-secondary m-4" style="max-width: 18rem">
-    <div class="card-header">{{inv.name}}</div>
-    <div class="card-body">
+    <div class="card-header" style="background:#0e1837">{{inv.name}}</div>
+    <div class="card-body" style="background:#0e1837">
       <h5 class="card-title"></h5>
       <p class="card-text">Costo: {{inv.cost}}</p>
       <p class="card-text">Cantidad: {{inv.total_cuantity}}</p>
-      <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#updatecatalogModal"
+      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#updatecatalogModal"
         data-bs-whatever="@mdo" onclick="hide()">
         Actualizar
       </button>

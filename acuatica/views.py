@@ -298,7 +298,7 @@ def sales_report(request):
 
     eljefesito = request.user
 
-    return render(request, 'acuatica/reporteventasnew.html', context)
+    return render(request, 'acuatica/reporte-ventas.html', context)
 
 
 @login_required(login_url='/acuatica/login/')
@@ -311,7 +311,7 @@ def sales_report2(request):
     if request.method == 'GET':
         total = Sales.objects.filter(
             created=date.today(), status='T').aggregate(Sum('total'))
-        sales_report = Sales.objects.filter(created=date.today())
+        sales_report2 = Sales.objects.filter(created=date.today())
     if request.method == "POST":
         client = request.POST.get('client')
         status = request.POST.get('status')
@@ -334,15 +334,15 @@ def sales_report2(request):
         if folio:
             query &= Q(pk=folio)
 
-        sales_report = Sales.objects.filter(query)
+        sales_report2 = Sales.objects.filter(query)
         total = Sales.objects.filter(query).aggregate(Sum('total'))
 
     context['total'] = total
-    context['sales'] = sales_report
+    context['sales'] = sales_report2
 
     eljefesito = request.user
 
-    return render(request, 'acuatica/reporteventasnew.html', context)
+    return render(request, 'acuatica/reporte-ventas2.html', context)
 
 
 @login_required(login_url='/acuatica/login/')

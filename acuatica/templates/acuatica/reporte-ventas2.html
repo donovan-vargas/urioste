@@ -3,7 +3,7 @@ Ventas{% endblock %}
 
 {%block right_content %}
 <div class="container mt-5">
-    <form action="{% url 'acuatica.sales-report' %}" method="post">
+    <form action="{% url 'acuatica.sales-report2' %}" method="POST">
         {% csrf_token %}
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:#e3f2fd">
         <div class="container-fluid" style="padding: 4px 15px 4px 15px">

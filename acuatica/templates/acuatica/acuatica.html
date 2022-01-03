@@ -29,49 +29,48 @@ Principal
 
 {% endblock %}
 
-{% block content %}
+{% block content %} 
 
 <div class="main-content">
-
+    
     <header class="header" id="header" margin-bottom="50px">
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-
     </header>
     <div class="l-navbar" id="nav-bar">
         <nav class="nav">
-            <div> <a href="#" class="nav_logo"> <i class='bx bx-swim nav_logo-iconn'></i> <span
-                        class="nav_logo-name">Acuatica Urioste</span> </a>
-                <div class="nav_list">
-                    <a href="{% url 'acuatica.sales'%}" class="nav_link active">
-                        <i class='bx bx-grid-alt nav_icon'></i>
-                        <span class="nav_name">Ventas</span>
-                    </a>
-                    <a href="{% url 'acuatica.clientes'%}" class="nav_link">
-                        <i class='bx bx-user nav_icon'></i>
-                        <span class="nav_name">Clientes</span>
-                    </a>
-                    <a href="{% url 'acuatica.catalogo'%}" class="nav_link">
-                        <i class='bx bx-message-square-detail nav_icon'></i>
-                        <span class="nav_name">Servicios</span>
+            <div> <a href="#" class="nav_logo"> <i class='bx bx-swim nav_logo-icon'></i> <span class="nav_logo-name">Acuatica Urioste</span> </a>
+                <div class="nav_list"> 
+                    <a href="{% url 'acuatica.sales'%}" class="nav_link active"> 
+                        <i class='bx bx-grid-alt nav_icon'></i> 
+                        <span class="nav_name">Ventas</span> 
+                    </a> 
+                    <a href="{% url 'acuatica.clientes'%}" class="nav_link"> 
+                        <i class='bx bx-user nav_icon'></i> 
+                        <span class="nav_name">Clientes</span> 
+                    </a> 
+                    <a href="{% url 'acuatica.catalogo'%}" class="nav_link"> 
+                        <i class='bx bx-message-square-detail nav_icon'></i> 
+                        <span class="nav_name">Servicios</span> 
                     </a>
                     <a href="{% url 'acuatica.inputs'%}" class="nav_link">
-                        <i class='bx bx-bookmark nav_icon'></i>
-                        <span class="nav_name">Inventario</span>
-                    </a>
-                    <a href="{% url 'acuatica.sales-report'%}" class="nav_link">
-                        <i class='bx bx-folder nav_icon'></i>
-                        <span class="nav_name">Reportes</span>
-                    </a>
+                        <i class='bx bx-bookmark nav_icon'></i> 
+                        <span class="nav_name">Inventario</span> 
+                    </a> 
+                    
+                    <a href="{% url 'acuatica.sales-report2'%}" class="nav_link"> 
+                        <i class='bx bx-folder nav_icon'></i> 
+                        <span class="nav_name">Reportes Ventas</span> 
+                    </a>  
                 </div>
             </div>
             <a href="{% url 'acuatica.logout' %}" class="nav_link">
-                <i class='bx bx-log-out nav_icon'></i>
-                <span class="nav_name">Cerrar Sesión</span>
+                <i class='bx bx-log-out nav_icon'></i> 
+                <span class="nav_name">Cerrar sesión</span> 
             </a>
         </nav>
     </div>
     <!--Container Main start-->
-
+    
 
 
 
@@ -125,8 +124,7 @@ Principal
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <label for="fecha-Nacimiento" class="col-form-label">Fecha
-                                    Nacimiento<br>Ejemplo:2001-09-15</label>
+                                <label for="fecha-Nacimiento" class="col-form-label">Fecha Nacimiento<br>Ejemplo:2001-09-15</label>
                                 {{ form.birth_date }}
                             </div>
                             <div class="col-md-4 ms-auto">
@@ -552,38 +550,6 @@ Principal
     </div>
 </div>
 
-
-<!--DETALLES VENTAS-->
-<div class="modal fade" id="detalle_venta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="detalle_venta">Detalle de la venta</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <label for="firstDate" class="form-label">Productos:</label>
-                {% for sale in sales %}
-                    <p>{{sale.id}}</p>
-                    {% for detail in sale.invsales_set.all %}                                 
-                        <p>{{detail.inventory}}</p>
-                        <p>{{detail.quantity}}</p>       
-                    {% endfor %}
-                {% endfor %}
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    Cerrar
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
 <div class="modal fade" id="cancelar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -711,7 +677,7 @@ Principal
 
 
     }
-
+    
 
 
 </script>

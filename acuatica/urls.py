@@ -16,12 +16,11 @@ urlpatterns = [
     url(r'^catalogo/$', views.catalogo, name='acuatica.catalogo'),
     url(r'^entradas/$', views.inputs, name='acuatica.inputs'),
     url(r'^reporte-ventas/$', views.sales_report, name='acuatica.sales-report'),
+    url(r'^reporte-ventas2/$', views.sales_report2, name='acuatica.sales-report2'),
     url(r'^inv-save/$', views.inv_save, name='acuatica.inv-save'),
     url(r'^sales-charge/$', views.sales_charge, name='acuatica.sales-charge'),
     url(r'^sale-ticket/$', views.ticket, name='acuatica.sales-ticket'),
     url(r'^new-sidebar/$', views.new_sidebar, name='acuatica.new-sidebar'),
     url(r'^cancela-venta/(?P<pk>\d+)/$',
         views.cancel_sale, name='acuatica.cancel-sale'),
-    url(r'^reporte-ventas2/$', views.sales_report2,
-        name='acuatica.sales-report2'),
 ]
